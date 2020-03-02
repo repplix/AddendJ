@@ -28,6 +28,12 @@
   <repositories>
 
     <repository>
+      <id>github2</id>
+      <name>GitHub OWNER Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/repplix/stereotyp</url>
+    </repository>
+
+    <repository>
       <id>github</id>
       <name>GitHub OWNER Apache Maven Packages</name>
       <url>https://github.com/repplix/stereotyp</url>
