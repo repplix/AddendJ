@@ -28,7 +28,7 @@
   <repositories>
     <repository>
       <id>github-repo</id>
-      <url>https://rawgit.com/repplix/artifacts/master</url>
+      <url>https://maven.pkg.github.com/repplix/stereotype</url>
       <releases>
         <enabled>true</enabled>
       </releases>
