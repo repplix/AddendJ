@@ -10,7 +10,7 @@ import io.ddd.aspect.reflection.ReflectiveToString;
  * Fügt allen ValueObjects jeweils Implementierungen der Methoden {@link Object#toString()}, {@link Object#hashCode()} und
  * {@link Object#equals(Object)} hinzu.
  */
-@SuppressWarnings("DanglingJavadoc") public aspect ValueObjectAspectWeaver
+@SuppressWarnings("DanglingJavadoc") public aspect ValueObjectAspect
 {
     /**
      * Pseudointerface, dem {@link Object#toString()}, {@link Object#hashCode()} und

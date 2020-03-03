@@ -8,7 +8,7 @@ import io.ddd.aspect.reflection.ReflectiveToString;
 /**
  * Fügt allen DomainEvents eine Implementierungen der Methode {@link Object#toString()} hinzu.
  */
-@SuppressWarnings("DanglingJavadoc") public aspect DomainEventAspectWeaver
+@SuppressWarnings("DanglingJavadoc") public aspect DomainEventAspect
 {
     /**
      * Pseudointerface, dem {@link Object#toString()} Methoden hinzugefügt werden.Alle DomainEvents
