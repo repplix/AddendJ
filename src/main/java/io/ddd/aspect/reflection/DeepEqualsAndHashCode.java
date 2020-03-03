@@ -22,14 +22,18 @@ public class DeepEqualsAndHashCode
      * Vergleicht beide Objekte nach den gegebenheiten der {@link Object#equals(Object)} Methode.
      * Diese Methode arbeitet mit reflection.
      *
-     * @param a Das erste Objekt, das verglichen wird. Üblicherweise {@code this} beim aufruf.
-     * @param b Das Objekt, welches mit dem ersten Objekt verglichen wird.
+     * @param object1 Das erste Objekt, das verglichen wird. Üblicherweise {@code this} beim aufruf.
+     * @param object2 Das Objekt, welches mit dem ersten Objekt verglichen wird.
      * @return True wenn beide Objekte gleich sind, False wenn nicht.
      * @throws FieldIsArrayException Wenn eines der Attribute ein Array ist.
      */
-    public static boolean isReflectiveEqual(final Object a, final Object b)
+    public static boolean isReflectiveEqual(final Object object1, final Object object2)
     {
-        return isSame(a, b) || (isBothNotNull(a, b) && isSameClass(a, b) && isDeepEquals(a, b));
+        if ( object1 == object2) {
+            return true;
+        }
+
+        return (isBothNotNull(object1, object2) && isSameClass(object1, object2) && isDeepEquals(object1, object2));
     }
 
     /**
