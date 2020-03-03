@@ -21,7 +21,7 @@
     <aspectjtools.version>1.9.5</aspectjtools.version>
     <aspectjrt.version>1.9.5</aspectjrt.version>
     <aspectj-maven-plugin.version>1.12.1</aspectj-maven-plugin.version>
-    <stereotype.version>1.0</stereotype.version>
+    <stereotype.version>1.1-Snapshot</stereotype.version>
 
   </properties>
 
@@ -55,8 +55,8 @@
     </dependency>
 
     <dependency>
-      <groupId>io.ddd.stereotyp</groupId>
-      <artifactId>stereotyp</artifactId>
+      <groupId>io.ddd.stereotype</groupId>
+      <artifactId>stereotype</artifactId>
       <version>${stereotype.version}</version>
     </dependency>
     <dependency>

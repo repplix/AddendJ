@@ -1,7 +1,7 @@
 package io.ddd.aspect.valueobjects;
 
 
-import io.ddd.stereotyp.applicationcore.ValueObject;
+import io.ddd.stereotype.applicationcore.ValueObject;
 
 /**
  * Immutable Klasse, die Attribute in einer unsortierten Reihenfolge deklariert hat.

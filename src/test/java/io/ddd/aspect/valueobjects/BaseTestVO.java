@@ -1,7 +1,7 @@
 package io.ddd.aspect.valueobjects;
 
 
-import io.ddd.stereotyp.applicationcore.ValueObject;
+import io.ddd.stereotype.applicationcore.ValueObject;
 
 /**
  * Immutable Klasse, die als Basis-Klasse dient zum erben beim testen von VererbungsHierarchien.

@@ -2,7 +2,7 @@ package io.ddd.aspect;
 
 
 //Import nicht entfernen! Import wird von Intellij fälschlicherweise ausgegraut
-import io.ddd.stereotyp.applicationcore.ValueObject;
+import io.ddd.stereotype.applicationcore.ValueObject;
 
 /**
  * Fügt allen ValueObjects jeweils Implementierungen der Methoden {@link Object#toString()}, {@link Object#hashCode()} und

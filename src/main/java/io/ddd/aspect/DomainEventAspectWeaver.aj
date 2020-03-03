@@ -2,7 +2,7 @@ package io.ddd.aspect;
 
 //Import nicht entfernen! Import wird von Intellij fälschlicherweise ausgegraut
 
-import io.ddd.stereotyp.applicationcore.DomainEvent;
+import io.ddd.stereotype.applicationcore.DomainEvent;
 
 
 /**
