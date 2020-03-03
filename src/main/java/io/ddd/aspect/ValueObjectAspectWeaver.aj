@@ -3,6 +3,8 @@ package io.ddd.aspect;
 
 //Import nicht entfernen! Import wird von Intellij fälschlicherweise ausgegraut
 import io.ddd.stereotype.applicationcore.ValueObject;
+import io.ddd.aspect.reflection.DeepEqualsAndHashCode;
+import io.ddd.aspect.reflection.ReflectiveToString;
 
 /**
  * Fügt allen ValueObjects jeweils Implementierungen der Methoden {@link Object#toString()}, {@link Object#hashCode()} und

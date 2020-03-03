@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.ddd.aspect.exception.AttributeAccessException;
-
 
 /**
  * Eine Klasse, die ein Objekt Kapselt und reflexiven zugriff auf Attribute bietet.

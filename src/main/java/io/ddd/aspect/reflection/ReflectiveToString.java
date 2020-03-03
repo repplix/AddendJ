@@ -1,10 +1,7 @@
-package io.ddd.aspect;
+package io.ddd.aspect.reflection;
 
 import java.util.List;
 import java.util.Map;
-
-import io.ddd.aspect.exception.FieldIsArrayException;
-import io.ddd.aspect.reflection.ClassAccessor;
 
 
 /**

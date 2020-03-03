@@ -1,4 +1,4 @@
-package io.ddd.aspect.exception;
+package io.ddd.aspect.reflection;
 
 /**
  * Wird geworfen, sobald versucht wird auf ein Feld zuzugreifen, dessen Typ ein Array ist.

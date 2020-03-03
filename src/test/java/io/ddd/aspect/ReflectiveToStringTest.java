@@ -4,7 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 
-import io.ddd.aspect.exception.FieldIsArrayException;
+import io.ddd.aspect.reflection.FieldIsArrayException;
+import io.ddd.aspect.reflection.DeepEqualsAndHashCode;
 import io.ddd.aspect.valueobjects.ArrayIntTestVO;
 import io.ddd.aspect.valueobjects.BaseTestVO;
 import io.ddd.aspect.valueobjects.DerivedSameAttributeNameTestVO;

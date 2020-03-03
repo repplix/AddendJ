@@ -1,4 +1,4 @@
-package io.ddd.aspect.exception;
+package io.ddd.aspect.reflection;
 
 /**
  * Diese Exception wird geworfen, falls es nicht möglich ist über Reflection auf ein
