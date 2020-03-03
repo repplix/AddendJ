@@ -10,13 +10,13 @@ import io.ddd.aspect.reflection.ClassAccessor;
 /**
  * Eine Klasse, die generische implementationen der {@link Object#equals(Object)} und {@link Object#hashCode()} Methoden bietet.
  */
-public class DeepEqualsAndHashCodeComputation
+public class DeepEqualsAndHashCode
 {
 
     /**
      * Privater konstruktor, da diese Klasse nur statische Methoden beinhaltet-
      */
-    private DeepEqualsAndHashCodeComputation()
+    private DeepEqualsAndHashCode()
     {
     }
 

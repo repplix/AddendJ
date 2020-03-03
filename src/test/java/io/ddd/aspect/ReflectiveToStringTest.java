@@ -21,7 +21,7 @@ import org.junit.runners.Parameterized;
 
 
 /**
- * Testet die Methode {@link DeepEqualsAndHashCodeComputation#reflectiveHashCode(Object)}
+ * Testet die Methode {@link DeepEqualsAndHashCode#reflectiveHashCode(Object)}
  */
 
 @RunWith(Parameterized.class)
