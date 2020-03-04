@@ -16,7 +16,7 @@ jobs:
             
     - name: Maven build
       env:
-        GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME2 }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN2 }}
         
       run: mvn --settings .github/workflows/settings.xml  -B package --file pom.xml
