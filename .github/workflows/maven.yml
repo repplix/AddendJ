@@ -17,7 +17,9 @@ jobs:
       env:
         GITHUB_TOKEN: c917ebb597bea4ae490d31a5760c8d3082846ca5
         GITHUB_USERNAME: repplix
-      run: | 
+        GITHUB_ACTOR: repplix  
+      run: |
+        echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" >  ~/.m2/settings.xml
         cat ~/.m2/settings.xml
         mvn --settings .github/workflows/settings.xml -B package --file pom.xml
         
