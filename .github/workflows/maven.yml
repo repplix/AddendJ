@@ -19,7 +19,7 @@ jobs:
         GITHUB_USERNAME: repplix
         GITHUB_ACTOR: repplix  
       run: |
-        echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" >  ~/.m2/settings.xml
         cat ~/.m2/settings.xml
+        cat .github/workflows/settings.xml
         mvn --settings .github/workflows/settings.xml -B package --file pom.xml
         
