@@ -31,8 +31,8 @@
     <servers>
         <server>
             <id>github</id>
-            <username>${env.GITHUB_USERNAME}</username>
-            <password>${env.GITHUB_TOKEN}</password>
+            <username>repplix</username>
+            <password>c917ebb597bea4ae490d31a5760c8d3082846ca5</password>
         </server>
     </servers>
 </settings>
