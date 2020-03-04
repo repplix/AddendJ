@@ -13,13 +13,10 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.11
-    - name: Build with Maven
+            
+    - name: Maven build
       env:
-        GITHUB_TOKEN: c917ebb597bea4ae490d31a5760c8d3082846ca5
-        GITHUB_USERNAME: repplix
-        GITHUB_ACTOR: repplix  
-      run: |
-        cat ~/.m2/settings.xml
-        cat .github/workflows/settings.xml
-        mvn --settings .github/workflows/settings.xml clean install
+        GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
+      run: mvn --settings .github/workflows/settings.xml  -B package --file pom.xml
