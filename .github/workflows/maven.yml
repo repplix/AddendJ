@@ -18,7 +18,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_USERNAME: x-access-token
       run: | 
-        echo "<settings><servers><server><id>github</id><username>${env.GITHUB_TOKEN}</username><password>${env.GITHUB_TOKEN }</password></server></servers></settings>" > ~/.m2/settings.xml
+        echo "<settings><servers><server><id>github</id><username>${GITHUB_USERNAME}</username><password>${GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
     - name: Build with Maven
       run: 
         mvn -B package --file pom.xml
