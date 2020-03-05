@@ -19,4 +19,4 @@ jobs:
         GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME2 }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN2 }}
         
-      run: mvn --settings .github/workflows/settings.xml  -B install --file pom.xml
+      run: mvn --settings .github/workflows/settings.xml  -B package --file pom.xml
