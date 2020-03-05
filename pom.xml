@@ -158,12 +158,5 @@
       <snapshots><enabled>true</enabled></snapshots>
     </repository>
   </repositories>
-
-  <distributionManagement>
-    <repository>
-      <id>github</id>
-      <name>GitHub OWNER Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/repplix/repository</url>
-    </repository>
-  </distributionManagement>
+ 
 </project>
