@@ -71,7 +71,7 @@ public class DeepEqualsAndHashCode
 
     private static boolean isSameObject(final Object a, final Object b)
     {
-        if ( a == null && b == null ) {
+        if ( a == null && b == null ) {  // explicitly added to avoid sonarlint Null pointer warnings
             return true;
         }
         return a == b;
@@ -129,7 +129,7 @@ public class DeepEqualsAndHashCode
 
 
     /**
-     * Vergleicht 2 Attribut-Werte miteinander.
+     * Compares if two objects are equal  
      *
      * @param a Ein Attribut-Wert.
      * @param b Ein anderer Attribut-Wert.
@@ -138,24 +138,25 @@ public class DeepEqualsAndHashCode
      */
     private static boolean isSingleAttributeGenericEquals(final Object a, final Object b)
     {
-        return (isSameObject(a, b) || (!isOneNull(a, b) && isArray(a, b) && a.equals(b)));
+        if (isSameObject(a, b)) {
+            return true;
+        }
+        if (isOneNull(a, b)) {
+            return false;
+        }
+
+        throwIfArrayDetected(a, b);
+
+        return a.equals(b);
     }
 
-    /**
-     * Überprüft ob eines der beiden Objekte ein Array ist.
-     *
-     * @param a Ein zu vergleichendes Objekt.
-     * @param b Ein anderes zu vergleichendes Objekt.
-     * @return True, wenn mindestens eines der beiden Objekte ein Array ist.
-     */
-    private static boolean isArray(Object a, Object b)
+    private static void throwIfArrayDetected(Object a, Object b)
     {
         if (a.getClass().isArray() || b.getClass().isArray())
         {
             throw new FieldIsArrayException(
                     "Context: Aspect/Generic Hash, Equals, toString; Cannot apply equals method to class with array attributes.");
         }
-        return true;
     }
 
 
