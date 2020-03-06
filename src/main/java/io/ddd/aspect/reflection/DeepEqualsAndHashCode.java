@@ -22,6 +22,21 @@ import java.util.Map;
  */
 public class DeepEqualsAndHashCode
 {
+
+    /**
+     * Generates a hash code for given Object which fulfills requirements of object.hashCode()
+     *
+     * @param object to create hash code
+     * @return The hash code.
+     */
+    public static int reflectiveHashCode(final Object object)
+    {
+        ClassAccessor objectAccessor = new ClassAccessor(object);
+        Map<String, Object> attributes = objectAccessor.getAllClassAttributes();
+        Object[] attributeValues = attributes.values().toArray();
+        return Arrays.deepHashCode(attributeValues);
+    }
+
     /**
      * This method can be used to implement a generic equals method.
      *
@@ -41,55 +56,12 @@ public class DeepEqualsAndHashCode
         if (isOneNull(object1, object2)) {
             return false;
         }
-
-        if (!isSameClass(object1, object2)) {
+        
+        if (object1.getClass() != object2.getClass()) {
             return false;
         }
 
         return isDeepEquals(object1, object2);
-    }
-
-    /**
-     * Hasht alle Attribute innerhalb eines Objekts und generiert einen Hashcode nach den richtlinien der {@link Object#hashCode()} Methode.
-     * Implementiert durch {@link Arrays#deepHashCode(Object[])}.
-     *
-     * @param obj Das Objekt, wessen Hashcode generiert werden soll.
-     * @return Ein Hashcode basierend auf dem übergebenen Objekt.
-     */
-    public static int reflectiveHashCode(final Object obj)
-    {
-        ClassAccessor objectAccessor = new ClassAccessor(obj);
-        Map<String, Object> attributes = objectAccessor.getAllClassAttributes();
-        Object[] attributeValues = attributes.values().toArray();
-        return Arrays.deepHashCode(attributeValues);
-    }
-
-    private DeepEqualsAndHashCode()
-    {
-    }
-    
-
-    private static boolean isSameObject(final Object a, final Object b)
-    {
-        if ( a == null && b == null ) {  // explicitly added to avoid sonarlint Null pointer warnings
-            return true;
-        }
-        return a == b;
-    }
-
-    private static boolean isSameClass(final Object a, final Object b)
-    {
-        return a.getClass() == b.getClass();
-    }
-
-    private static boolean isSameSize(final Map<String, Object> attributesA, final Map<String, Object> attributesB)
-    {
-        return attributesA.size() == attributesB.size();
-    }
-
-    private static boolean isOneNull(final Object a, final Object b)
-    {
-        return (a == null && b != null) || (a != null && b == null);
     }
 
     private static boolean isDeepEquals(final Object a, final Object b)
@@ -97,29 +69,15 @@ public class DeepEqualsAndHashCode
         Map<String, Object> attributesA = new ClassAccessor(a).getAllClassAttributes();
         Map<String, Object> attributesB = new ClassAccessor(b).getAllClassAttributes();
 
-        return isDeepEquals(attributesA, attributesB);
-    }
+        if ( attributesA.size() != attributesB.size() )    {
+            return false;
+        }
 
-    private static boolean isDeepEquals(final Map<String, Object> attributesA, final Map<String, Object> attributesB)
-    {
-        return (isSameSize(attributesA, attributesB) && isAttributesGenericEquals(attributesA, attributesB));
-    }
-
-
-    /**
-     * Überprüft ob die einträge der beiden Maps jeweils gleich sind.
-     *
-     * @param attributesA Eine zu vergleichende Map.
-     * @param attributesB Eine andere zu vergleichende Map.
-     * @return true, wenn beide Maps den gleichen inhalt besitzen.
-     */
-    private static boolean isAttributesGenericEquals(final Map<String, Object> attributesA, final Map<String, Object> attributesB)
-    {
         for (Map.Entry<String, Object> entryA : attributesA.entrySet())
         {
             Object valA = entryA.getValue();
             Object valB = attributesB.get(entryA.getKey());
-            if (!isSingleAttributeGenericEquals(valA, valB))
+            if (!isEquals(valA, valB))
             {
                 return false;
             }
@@ -127,16 +85,7 @@ public class DeepEqualsAndHashCode
         return true;
     }
 
-
-    /**
-     * Compares if two objects are equal  
-     *
-     * @param a Ein Attribut-Wert.
-     * @param b Ein anderer Attribut-Wert.
-     * @return True, wenn beide Werte gleich sind, False wenn nicht.
-     * @throws FieldIsArrayException Wenn eines der Attribute ein Array ist.
-     */
-    private static boolean isSingleAttributeGenericEquals(final Object a, final Object b)
+    private static boolean isEquals(final Object a, final Object b)
     {
         if (isSameObject(a, b)) {
             return true;
@@ -159,5 +108,25 @@ public class DeepEqualsAndHashCode
         }
     }
 
+
+
+    private static boolean isSameObject(final Object a, final Object b)
+    {
+        if ( a == null && b == null ) {  // explicitly added to avoid sonarlint Null pointer warnings
+            return true;
+        }
+        return a == b;
+    }
+
+
+    private static boolean isOneNull(final Object a, final Object b)
+    {
+        return (a == null && b != null) || (a != null && b == null);
+    }
+
+
+    private DeepEqualsAndHashCode()
+    {
+    }
 
 }
