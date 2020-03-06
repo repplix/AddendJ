@@ -77,23 +77,23 @@ public class DeepEqualsAndHashCode
                 allMatch(e -> isEquals(e.getValue(), attributesObject2.get(e.getKey())));
     }
 
-    private static boolean isEquals(final Object a, final Object b)
+    private static boolean isEquals(final Object object1, final Object object2)
     {
-        if (isSameObject(a, b)) {
+        if (isSameObject(object1, object2)) {
             return true;
         }
-        if (isOneNull(a, b)) {
+        if (isOneNull(object1, object2)) {
             return false;
         }
 
-        throwIfArrayDetected(a, b);
+        throwIfArrayDetected(object1, object2);
 
-        return a.equals(b);
+        return object1.equals(object2);
     }
 
-    private static void throwIfArrayDetected(Object a, Object b)
+    private static void throwIfArrayDetected(Object object1, Object object2)
     {
-        if (a.getClass().isArray() || b.getClass().isArray())
+        if (object1.getClass().isArray() || object2.getClass().isArray())
         {
             throw new FieldIsArrayException(
                     "Context: Aspect/Generic Hash, Equals, toString; Cannot apply equals method to class with array attributes.");
@@ -102,18 +102,18 @@ public class DeepEqualsAndHashCode
 
 
 
-    private static boolean isSameObject(final Object a, final Object b)
+    private static boolean isSameObject(final Object object1, final Object object2)
     {
-        if ( a == null && b == null ) {  // explicitly added to avoid sonarlint Null pointer warnings
+        if ( object1 == null && object2 == null ) {  // explicitly added to avoid sonarlint Null pointer warnings
             return true;
         }
-        return a == b;
+        return object1 == object2;
     }
 
 
-    private static boolean isOneNull(final Object a, final Object b)
+    private static boolean isOneNull(final Object object1, final Object object2)
     {
-        return (a == null && b != null) || (a != null && b == null);
+        return (object1 == null && object2 != null) || (object1 != null && object2 == null);
     }
 
 
