@@ -42,7 +42,7 @@ import io.ddd.aspect.reflection.ReflectiveToString;
 
     /**
      * Fügt {@link IValueObjectAspect} eine Implementierung der {@link Object#equals(Object)} Methode hinzu.
-     * Diese delegiert zu {@link DeepEqualsAndHashCode#isReflectiveEqual(Object, Object)} und führt den vergleich mit {@code this} und {@code other} aus.
+     * Diese delegiert zu {@link DeepEqualsAndHashCode#isReflectiveEquals(Object, Object)} und führt den vergleich mit {@code this} und {@code other} aus.
      *
      * @param other Das Objekt mit dem dieses verglichen wird.
      * @return True, wenn das andere Objekt inhaltlich gleich mit diesen ist, false wenn nicht.
@@ -50,7 +50,7 @@ import io.ddd.aspect.reflection.ReflectiveToString;
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     public boolean IValueObjectAspect.equals(Object other)
             {
-                return DeepEqualsAndHashCode.isReflectiveEqual(this, other);
+                return DeepEqualsAndHashCode.isReflectiveEquals(this, other);
             }
 
     /**

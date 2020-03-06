@@ -47,7 +47,7 @@ public class DeepEqualsAndHashCode
      * @return True if all attributes of both objects are euqual
      * @throws FieldIsArrayException If one of the two objects contains an array  
      */
-    public static boolean isReflectiveEqual(final Object object1, final Object object2)
+    public static boolean isReflectiveEquals(final Object object1, final Object object2)
     {
         if (isSameObject(object1, object2)) {
             return true;
@@ -64,25 +64,17 @@ public class DeepEqualsAndHashCode
         return isDeepEquals(object1, object2);
     }
 
-    private static boolean isDeepEquals(final Object a, final Object b)
+    private static boolean isDeepEquals(final Object object1, final Object object2)
     {
-        Map<String, Object> attributesA = new ClassAccessor(a).getAllClassAttributes();
-        Map<String, Object> attributesB = new ClassAccessor(b).getAllClassAttributes();
+        Map<String, Object> attributesObject1 = new ClassAccessor(object1).getAllClassAttributes();
+        Map<String, Object> attributesObject2 = new ClassAccessor(object2).getAllClassAttributes();
 
-        if ( attributesA.size() != attributesB.size() )    {
+        if ( attributesObject1.size() != attributesObject2.size() )    {
             return false;
         }
 
-        for (Map.Entry<String, Object> entryA : attributesA.entrySet())
-        {
-            Object valA = entryA.getValue();
-            Object valB = attributesB.get(entryA.getKey());
-            if (!isEquals(valA, valB))
-            {
-                return false;
-            }
-        }
-        return true;
+        return attributesObject1.entrySet().stream().
+                allMatch(e -> isEquals(e.getValue(), attributesObject2.get(e.getKey())));
     }
 
     private static boolean isEquals(final Object a, final Object b)
