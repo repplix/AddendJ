@@ -36,7 +36,7 @@ public class DeepEqualsAndHashCode
             return true;
         }
 
-        if (!isBothNotNull(object1, object2)) {
+        if (isOneNull(object1, object2)) {
             return false;
         }
 
@@ -69,6 +69,9 @@ public class DeepEqualsAndHashCode
 
     private static boolean isSameObject(final Object a, final Object b)
     {
+        if ( a == null && b == null ) {
+            return true;
+        }
         return a == b;
     }
 
@@ -82,9 +85,9 @@ public class DeepEqualsAndHashCode
         return attributesA.size() == attributesB.size();
     }
 
-    private static boolean isBothNotNull(final Object a, final Object b)
+    private static boolean isOneNull(final Object a, final Object b)
     {
-        return a != null && b != null;
+        return (a == null && b != null) || (a != null && b == null);
     }
 
     private static boolean isDeepEquals(final Object a, final Object b)
@@ -133,7 +136,7 @@ public class DeepEqualsAndHashCode
      */
     private static boolean isSingleAttributeGenericEquals(final Object a, final Object b)
     {
-        return (isSameObject(a, b) || (isBothNotNull(a, b) && isArray(a, b) && a.equals(b)));
+        return (isSameObject(a, b) || (!isOneNull(a, b) && isArray(a, b) && a.equals(b)));
     }
 
     /**
