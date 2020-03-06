@@ -17,6 +17,8 @@ import java.util.Map;
  *    internal consistency: the value of hashCode() may only change if a property that is in equals() changes
  *    equals consistency: objects that are equal to each other must return the same hashCode
  *    collisions: unequal objects may have the same hashCode
+ *
+ * NOTE: classes with arrays as attributes are not supported at the moment
  */
 public class DeepEqualsAndHashCode
 {
