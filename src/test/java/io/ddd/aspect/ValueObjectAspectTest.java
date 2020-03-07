@@ -53,6 +53,7 @@ public class ValueObjectAspectTest
      * @return Eine Liste von Datensätzen, die getestet werden.
      */
     @Parameters
+    @SuppressWarnings("squid:S3878")
     public static Iterable<Object[]> data()
     {
         return Arrays.asList(
