@@ -29,6 +29,15 @@ public class ClassAccessorTest
         assertEquals(2, access.getAllClassAttributes().size());
     }
 
+    /**
+     * estet ob alle Felder innerhalb der Klassenhierarchie zurückgegeben werden.
+     */
+    @Test
+    public void testClassHierarchy()
+    {
+        assertEquals(2, ClassAccessor.getClassHierarchy(new DerivedTestVO(1,2) ).size());
+    }
+
 
     /**
      * Testet ob alle Attribute korrekt wiedergegeben werden, auch geerbte attribute.

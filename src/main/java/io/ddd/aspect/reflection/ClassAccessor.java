@@ -44,7 +44,7 @@ public class ClassAccessor
      * aber jeweils einen anderen statischen Typ aus der hierarchie besitzen.
      *
      * @return Eine sortierte Liste, die alle Klassen der Klassenhierarchie beinhaltet.
-     */
+     */                         
     private List<ClassAccessor> getClassHierarchy()
     {
         Class<?> currentSuperClass = staticType;
@@ -53,6 +53,29 @@ public class ClassAccessor
         while (currentSuperClass != Object.class)
         {
             superClasses.add(new ClassAccessor(currentObject, currentSuperClass));
+            currentSuperClass = currentSuperClass.getSuperclass();
+        }
+
+        return superClasses;
+    }
+
+
+    /**
+     * Gibt eine sortierte Liste zurück, die alle Klassen in der Klassenhierarchie beinhaltet.
+     * Diese Liste besteht aus ClassAccessor instanzen, die alle das selbe Objekt haben,
+     * aber jeweils einen anderen statischen Typ aus der hierarchie besitzen.
+     *
+     * @return Eine sortierte Liste, die alle Klassen der Klassenhierarchie beinhaltet.
+     */
+    static List<Class<?>> getClassHierarchy(Object object)
+    {
+        Class<?> currentSuperClass = object.getClass();
+        List<Class<?>> superClasses = new ArrayList<>();
+
+
+        while (currentSuperClass != Object.class)
+        {
+            superClasses.add(currentSuperClass);
             currentSuperClass = currentSuperClass.getSuperclass();
         }
 
