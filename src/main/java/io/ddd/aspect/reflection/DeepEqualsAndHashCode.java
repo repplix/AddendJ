@@ -42,9 +42,9 @@ public class DeepEqualsAndHashCode
      *
      * It compares if all attributes of the two given objects are equals
      *
-     * @param object1 First given object which is comapr
-     * @param object2 Das Objekt, welches mit dem ersten Objekt verglichen wird.
-     * @return True if all attributes of both objects are euqual
+     * @param object1 which is compared with object2
+     * @param object2 which is compared to object1
+     * @return True if all attributes of both objects are equal, otherwise false
      * @throws IllegalArgumentException If one of the two objects contains an array
      */
     public static boolean isReflectiveEquals(final Object object1, final Object object2)
