@@ -1,6 +1,8 @@
 package io.ddd.aspect;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import io.ddd.aspect.domain.SimpleDomainEvent;
@@ -9,8 +11,7 @@ import org.junit.Test;
 
 
 /**
- * Diese Methode überprüft ob die Standard implementierung der toString Methode durch AspectJ überschrieben wurde nicht nicht deren Korrektheit!
- * Dies wird dadurch realisiert das zwei gleiche Objekte erzeugt werden und deren Ergebnis der toString Methode verglichen wird. Falls die toString Methode nicht überschrieben wurde sind die Ergebnisse unterschiedlich da dort dann die unterschiedlichen ObjectIDs teil des Strings sind.
+ * Test for objects annotated with @DomainEvent 
  */
 public class DomainEventAspectTest
 {
@@ -27,11 +28,22 @@ public class DomainEventAspectTest
     }
 
     @Test
+    @SuppressWarnings("squid:S1874")
     public void testEquals(){
         SimpleDomainEvent simpleDomainEvent1 = new SimpleDomainEvent(defaultIntValue, defaultStringValue);
         SimpleDomainEvent simpleDomainEvent2 = new SimpleDomainEvent(defaultIntValue, defaultStringValue);
 
-        assertEquals(simpleDomainEvent1.hashCode(), simpleDomainEvent2.hashCode());
+        assertEquals(simpleDomainEvent1.hashCode(), simpleDomainEvent2.hashCode(), 0);
         assertEquals(simpleDomainEvent1, simpleDomainEvent2);
     }
+
+    @Test
+    public void testNotEquals(){
+        SimpleDomainEvent simpleDomainEvent1 = new SimpleDomainEvent(defaultIntValue, defaultStringValue);
+        SimpleDomainEvent simpleDomainEvent2 = new SimpleDomainEvent(defaultIntValue * defaultIntValue, defaultStringValue + defaultStringValue);
+
+        assertNotEquals(simpleDomainEvent1.hashCode(), simpleDomainEvent2.hashCode());
+        assertNotEquals(simpleDomainEvent1, simpleDomainEvent2);
+    }
+
 }
