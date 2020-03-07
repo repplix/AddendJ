@@ -9,8 +9,6 @@ import io.ddd.aspect.reflection.DeepToString;
 /**
  * Weaving following methods into Objects annotated with @DomainEvent
  * {@link Object#toString()}
- *
- * // TODO: Following methods are missing
  * {@link Object#hashCode()}
  * {@link Object#equals(Object).
  */
