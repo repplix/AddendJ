@@ -40,7 +40,6 @@ import io.ddd.stereotype.applicationcore.AggregateId;
         Method thisAggregateIDMethod = ClassAccessor.getMethodAnnotatedWith(this, AggregateId.class);
         Method otherAggregateIDMethod = ClassAccessor.getMethodAnnotatedWith(other, AggregateId.class);
 
-        System.out.println("AggregateEquals");
         try
         {
             return DeepEqualsAndHashCode.isReflectiveEquals(thisAggregateIDMethod.invoke(this),
