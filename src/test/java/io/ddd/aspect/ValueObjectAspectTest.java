@@ -22,7 +22,7 @@ import org.junit.runners.Parameterized.Parameters;
 
 
 @RunWith(Parameterized.class)
-public class ValueObjectTest
+public class ValueObjectAspectTest
 {
     private final Object equalA;
     private final Object equalB;
@@ -37,7 +37,7 @@ public class ValueObjectTest
      * @param notEqual Ein Objekt, das equalA und equalB nicht gleich ist.
      * @param expected Eine erwartete exception oder null.
      */
-    public ValueObjectTest(final Object equalA, final Object equalB, final Object notEqual, final Class<? extends Throwable> expected)
+    public ValueObjectAspectTest(final Object equalA, final Object equalB, final Object notEqual, final Class<? extends Throwable> expected)
     {
         this.equalA = equalA;
         this.equalB = equalB;
@@ -53,7 +53,7 @@ public class ValueObjectTest
      * @return Eine Liste von Datensätzen, die getestet werden.
      */
     @Parameters
-    public static Iterable<? extends Object[]> data()
+    public static Iterable<Object[]> data()
     {
         return Arrays.asList(
                 new Object[]{
@@ -137,7 +137,7 @@ public class ValueObjectTest
             testContracts(notEqual, equalB);
             testContracts(equalA, equalB);
         }
-        catch (Throwable t)
+        catch (Exception t)
         {
             if (expected == null)
             {
