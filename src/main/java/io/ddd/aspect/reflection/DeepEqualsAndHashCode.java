@@ -31,8 +31,7 @@ public class DeepEqualsAndHashCode
      */
     public static int reflectiveHashCode(final Object object)
     {
-        ClassAccessor objectAccessor = new ClassAccessor(object);
-        Map<String, Object> attributes = objectAccessor.getAllClassAttributes();
+        Map<String, Object> attributes = ClassAccessor.getAllClassAttributes(object);
         Object[] attributeValues = attributes.values().toArray();
         return Arrays.deepHashCode(attributeValues);
     }
@@ -66,8 +65,8 @@ public class DeepEqualsAndHashCode
 
     private static boolean isDeepEquals(final Object object1, final Object object2)
     {
-        Map<String, Object> attributesObject1 = new ClassAccessor(object1).getAllClassAttributes();
-        Map<String, Object> attributesObject2 = new ClassAccessor(object2).getAllClassAttributes();
+        Map<String, Object> attributesObject1 = ClassAccessor.getAllClassAttributes(object1);
+        Map<String, Object> attributesObject2 = ClassAccessor.getAllClassAttributes(object2);
 
         if ( attributesObject1.size() != attributesObject2.size() )    {
             return false;

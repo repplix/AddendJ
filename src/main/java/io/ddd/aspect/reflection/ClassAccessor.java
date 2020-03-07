@@ -61,11 +61,7 @@ public class ClassAccessor
 
 
     /**
-     * Gibt eine sortierte Liste zurück, die alle Klassen in der Klassenhierarchie beinhaltet.
-     * Diese Liste besteht aus ClassAccessor instanzen, die alle das selbe Objekt haben,
-     * aber jeweils einen anderen statischen Typ aus der hierarchie besitzen.
-     *
-     * @return Eine sortierte Liste, die alle Klassen der Klassenhierarchie beinhaltet.
+     * returns class hierarchy (excluding Object.class) 
      */
     static List<Class<?>> getClassHierarchy(Object object)
     {
@@ -88,7 +84,7 @@ public class ClassAccessor
      *
      * @return Eine Map, die alle deklarierten Attribut-Namen mit deren passenden Werten beinhaltet.
      */
-    private Map<String, Object> getDeclaredClassAttributes()
+    public Map<String, Object> getDeclaredClassAttributes()
     {
         Map<String, Object> returnedAttributes = new HashMap<>();
         Field[] declaredAttributes = staticType.getDeclaredFields();
@@ -102,6 +98,32 @@ public class ClassAccessor
                 try
                 {
                     returnedAttributes.put(attribute.getName(), attribute.get(currentObject));
+                }
+                catch (final IllegalAccessException e)
+                {
+                    throw new AttributeAccessException("Context: Aspect/Generic Hash, Equals, toString: error accessing " + attribute.toString(), e);
+                }
+            }
+        }
+
+        return returnedAttributes;
+    }
+
+
+    public static Map<String, Object> getDeclaredClassAttributes(Class<?> clazz, Object object)
+    {
+        Map<String, Object> returnedAttributes = new HashMap<>();
+        Field[] declaredAttributes = clazz.getDeclaredFields();
+
+        for (Field attribute : declaredAttributes)
+        {
+            // Falls statische Attribute nicht herausgenommen werden, kann es bei Klassen, die rekursiv definiert sind und die Equals Methode aus diesem Package verwenden, ein StackOverflow vorkommen.
+            if (!Modifier.isStatic(attribute.getModifiers()))
+            {
+                attribute.setAccessible(true);
+                try
+                {
+                    returnedAttributes.put(attribute.getName(), attribute.get(object));
                 }
                 catch (final IllegalAccessException e)
                 {
@@ -132,6 +154,28 @@ public class ClassAccessor
         return returnedAttributes;
     }
 
+
+    /**
+     * Generiert eine Map nach dem Schema {@code Voller-Klassen-Name.Attribut-Name -> Attribut-Wert} und gibt diese zurück.
+     * {@code Voller-Klassen-Name} bedeutet hier Package-Name + Klassen-Name.
+     *
+     * @return Eine Map, die alle deklarierten und geerbten Attribute beinhaltet.
+     */
+    static public Map<String, Object> getAllClassAttributes(Object object)
+    {
+        final Map<String, Object> returnedAttributes = new HashMap<>();
+        
+        for (Class<?> currentClass : getClassHierarchy(object))
+        {
+            returnedAttributes.putAll(addClassNameToAttributeNames(
+                    getDeclaredClassAttributes(currentClass, object),
+                    currentClass.getName()
+            ));
+        }
+        return returnedAttributes;
+    }
+
+
     /**
      * Generiert eine Liste aus Schlüssel, Wert Paaren, die nach ihrem Auftreten in der Klassenhierarchie und danach Alphabetisch sortiert sind.
      * Der Schlüssel besteht nur Rein aus dem Attribut-Namen ohne Klassen-Name und der Wert ist der eigentliche Attribut-Wert.
@@ -149,14 +193,10 @@ public class ClassAccessor
         return attributes;
     }
 
-    /**
-     * Fügt den übergebenen Klassen-Namen als Prefix an jeden AttributNamen in der Map hinzu.
-     *
-     * @param attributes eine Map, die aus Attribut-Name, Attribut-Wert Paaren besteht.
-     * @param className  Der Klassen-Namen Prefix.
-     * @return Die gleiche Map, aber mit Prefix vor jedem Attribut-Namen.
-     */
-    private Map<String, Object> addClassNameToAttributeNames(final Map<String, Object> attributes, final String className)
+
+
+
+    static private Map<String, Object> addClassNameToAttributeNames(final Map<String, Object> attributes, final String className)
     {
         final Map<String, Object> renamedAttributes = new HashMap<>();
         for (Map.Entry<String, Object> entry : attributes.entrySet())
