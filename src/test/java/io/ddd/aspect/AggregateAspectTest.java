@@ -19,7 +19,19 @@ public class AggregateAspectTest
         SimpleAggregate simpleAggregate1 = SimpleAggregate.create(new SimpleValueObject(dafaultValueID));
         SimpleAggregate simpleAggregate2 = SimpleAggregate.create(new SimpleValueObject(dafaultValueID));
         
-        //assertEquals(simpleAggregate1.hashCode(), simpleAggregate2.hashCode(),0);
+        assertEquals(simpleAggregate1.hashCode(), simpleAggregate2.hashCode(),0);
         assertEquals(simpleAggregate1, simpleAggregate2);
     }
+
+    @Test
+    @SuppressWarnings("squid:S1874")
+    public void testNotEquals()
+    {
+        SimpleAggregate simpleAggregate1 = SimpleAggregate.create(new SimpleValueObject(dafaultValueID));
+        SimpleAggregate simpleAggregate2 = SimpleAggregate.create(new SimpleValueObject(dafaultValueID * dafaultValueID));
+
+        assertNotEquals(simpleAggregate1.hashCode(), simpleAggregate2.hashCode());
+        assertNotEquals(simpleAggregate1, simpleAggregate2);
+    }
+
 }

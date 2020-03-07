@@ -15,6 +15,8 @@ import io.ddd.stereotype.applicationcore.AggregateId;
  * Weaving following methods into Objects annotated with @Aggregate
  * {@link Object#hashCode()}
  * {@link Object#equals(Object).
+ *
+ * NOTE: These methods are based on annotation @AggregateID 
  */
 @SuppressWarnings("DanglingJavadoc") public aspect AggregateAspect
 {
@@ -52,12 +54,21 @@ import io.ddd.stereotype.applicationcore.AggregateId;
         }
     }
 
-    /*public int IAggregateAspect.hashCode()
-            {
-                return DeepEqualsAndHashCode.reflectiveHashCode(this);
-            }
-            
-     */
+    public int IAggregateAspect.hashCode()
+    {
+        Method thisAggregateIDMethod = ClassAccessor.getMethodAnnotatedWith(this, AggregateId.class);
+
+        try
+        {
+            return DeepEqualsAndHashCode.reflectiveHashCode(thisAggregateIDMethod.invoke(this));
+        }
+        catch (IllegalAccessException | InvocationTargetException e)
+        {
+            throw new IllegalArgumentException("Could not invoke method annotated with " +
+                    AggregateId.class.getSimpleName() + " on object " + this.getClass().getSimpleName());
+        }
+    }
+    
 }
 
 
