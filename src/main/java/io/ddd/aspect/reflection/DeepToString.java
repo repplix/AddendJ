@@ -17,7 +17,7 @@ public class DeepToString
 
     public static String toString(final Object obj)
     {
-        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAllClassAttributesSorted(obj);
+        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(obj);
         StringBuilder attributesAsString = new StringBuilder();
 
         attributes.forEach( e -> attributesAsString.append((attributesAsString.length() == 0) ? "" : ", ").

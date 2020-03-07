@@ -9,18 +9,20 @@ import java.util.Map;
 
 
 /**
- * Eine Klasse, die ein Objekt Kapselt und reflexiven zugriff auf Attribute bietet.
+ * This class provides methods to access the attributes of a class as it is required by {@link DeepEqualsAndHashCode }
+ * {@link DeepToString }
  */
 public class ClassAccessor
 {
 
     /**
-     * Generiert eine Liste aus Schlüssel, Wert Paaren, die nach ihrem Auftreten in der Klassenhierarchie und danach Alphabetisch sortiert sind.
-     * Der Schlüssel besteht nur Rein aus dem Attribut-Namen ohne Klassen-Name und der Wert ist der eigentliche Attribut-Wert.
+     * Returns a key/value list with all class attributes.
      *
-     * @return Eine sortierte Liste mit allen Attributen und deren Werten.
+     * The name of the attribute is returned as key. The attribute itself is returned as value.     
+     *
+     * @return a key/value list with all class attributes of given object.
      */
-    public static List<Map.Entry<String, Object>> getAllClassAttributesSorted(Object object)
+    public static List<Map.Entry<String, Object>> getAttributeList(Object object)
     {
         List<Map.Entry<String, Object>> result = new ArrayList<>();
 
@@ -31,10 +33,10 @@ public class ClassAccessor
     }
 
     /**
-     * Generiert eine Map nach dem Schema {@code Voller-Klassen-Name.Attribut-Name -> Attribut-Wert} und gibt diese zurück.
-     * {@code Voller-Klassen-Name} bedeutet hier Package-Name + Klassen-Name.
+     * Returns a map including the name of all attributes as {@code <full class name>.<attribute name> ->
+     * and the attribute itself.
      *
-     * @return Eine Map, die alle deklarierten und geerbten Attribute beinhaltet.
+     * @return  a map including name of all attributes and the attribute itself 
      */
     public static Map<String, Object> getAllClassAttributes(Object object)
     {

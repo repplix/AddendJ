@@ -45,7 +45,7 @@ public class ClassAccessorTest
     @Test
     public void testGetAllAttributesSortedInheritance()
     {
-        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAllClassAttributesSorted(new DerivedTestVO(1, 2));
+        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(new DerivedTestVO(1, 2));
         assertEquals("b", attributes.get(0).getKey());
         assertEquals(1, attributes.get(0).getValue());
 
@@ -59,7 +59,7 @@ public class ClassAccessorTest
     @Test
     public void testGetAllAttributesSorted()
     {
-        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAllClassAttributesSorted(new UnorderedAttributesTestVO(1F, 2D, 3L, (byte) 4));
+        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(new UnorderedAttributesTestVO(1F, 2D, 3L, (byte) 4));
         assertEquals("a", attributes.get(0).getKey());
         assertEquals(3L, attributes.get(0).getValue());
 
@@ -79,7 +79,7 @@ public class ClassAccessorTest
     @Test
     public void testGetAllAttributesSortedUnorderedHierarchy()
     {
-        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAllClassAttributesSorted(new ThreeStringsTestVO(1, "two", "three", "four"));
+        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(new ThreeStringsTestVO(1, "two", "three", "four"));
 
         assertEquals("b", attributes.get(0).getKey());
         assertEquals("two", attributes.get(0).getValue());
