@@ -1,11 +1,15 @@
 package io.ddd.aspect.reflection;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 /**
@@ -15,6 +19,22 @@ import java.util.Map;
 public class ClassAccessor
 {
 
+    public static Method getMethodAnnotatedWith(final Object object, final Class<? extends Annotation> annotation) {
+
+        List<Method> methodList = Arrays.asList(object.getClass().getDeclaredMethods());
+
+        Optional<Method> result = methodList.stream().
+                                    filter(method -> method.isAnnotationPresent(annotation)).
+                                    findFirst();
+
+        if ( !result.isPresent() ) {
+            throw new IllegalArgumentException(
+                    "Class " + object.getClass().getSimpleName() +
+                    " is not annotated with " + annotation.getSimpleName());
+        }
+
+        return result.get();
+    }
     /**
      * Returns a key/value list with all class attributes.
      *
