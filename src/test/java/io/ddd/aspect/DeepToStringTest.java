@@ -25,7 +25,7 @@ import org.junit.runners.Parameterized;
  */
 
 @RunWith(Parameterized.class)
-public class ReflectiveToStringTest
+public class DeepToStringTest
 {
     private final String expectedString;
     private final Object subject;
@@ -38,7 +38,7 @@ public class ReflectiveToStringTest
      * @param subject           Ein Objekt, welches getestet wird.
      * @param expectedException Eine EXception, die werwartet wird oder null.
      */
-    public ReflectiveToStringTest(final String expectedString, final Object subject, final Class<? extends Throwable> expectedException)
+    public DeepToStringTest(final String expectedString, final Object subject, final Class<? extends Throwable> expectedException)
     {
         this.expectedString = expectedString;
         this.subject = subject;

@@ -2,7 +2,7 @@ package io.ddd.aspect;
 
 //Import nicht entfernen! Import wird von Intellij fälschlicherweise ausgegraut
 import io.ddd.stereotype.applicationcore.DomainEvent;
-import io.ddd.aspect.reflection.ReflectiveToString;
+import io.ddd.aspect.reflection.DeepToString;
 
 
 /**
@@ -21,8 +21,7 @@ import io.ddd.aspect.reflection.ReflectiveToString;
     private interface IDomainEventAspect
     {
     }
-
-
+    
     /**
      * Extensions are made for all classes annotated with @ValueObject
      */
@@ -34,7 +33,7 @@ import io.ddd.aspect.reflection.ReflectiveToString;
 
     public String IDomainEventAspect.toString()
             {
-                return ReflectiveToString.toString(this);
+                return DeepToString.toString(this);
             }
 
 }

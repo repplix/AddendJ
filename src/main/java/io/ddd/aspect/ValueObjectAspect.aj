@@ -4,7 +4,7 @@ package io.ddd.aspect;
 //Do NOT remove import! Some IDEs (such as Intellij detect as unrequired import which is wrong.
 import io.ddd.stereotype.applicationcore.ValueObject;
 import io.ddd.aspect.reflection.DeepEqualsAndHashCode;
-import io.ddd.aspect.reflection.ReflectiveToString;
+import io.ddd.aspect.reflection.DeepToString;
 
 /**
  * Weaving following methods into Objects annotated with @ValueObject
@@ -31,7 +31,7 @@ import io.ddd.aspect.reflection.ReflectiveToString;
 
     public String IValueObjectAspect.toString()
             {
-                return ReflectiveToString.toString(this);
+                return DeepToString.toString(this);
             }
 
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
