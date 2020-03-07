@@ -7,19 +7,14 @@ import java.util.Map;
 /**
  * Provides a {@link Object#toString()} method which shows all members as key value pairs
  *
- * Note: Since {@link DeepEqualsAndHashCode } does not support Arrays, they are also disabled in this class 
+ * The string is formatted as {@code <name of class>{<name of attribute 1>=<value as string>, ..., <name of attribute n>=<value as string>>}}
+ *
+ * Note: This implementation of toString is just for debugging/logging purpose. In case you to serialize objects use some json lib 
+ * Note: Since {@link DeepEqualsAndHashCode } does not support Arrays, they are also disabled in this class
  */
 public class DeepToString
 {
 
-
-    /**
-     * Greift auf eine Klasse zu mittels reflection und generiert einen String, der die gesamte Klasse repräsentiert.
-     * Format {@code Klassen-Name{Attribut0=Wert0, Attribut1=Wert1}}
-     *
-     * @param obj Das Objekt, dessen String-Repräsentation generiert werden soll.
-     * @return Ein String, der das Objekt repräsentiert.
-     */
     public static String toString(final Object obj)
     {
         List<Map.Entry<String, Object>> attributes = new ClassAccessor(obj).getAllClassAttributesSorted();
