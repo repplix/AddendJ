@@ -19,10 +19,10 @@ public class DeepToString
     {
         List<Map.Entry<String, Object>> attributes = new ClassAccessor(obj).getAllClassAttributesSorted();
         StringBuilder attributesAsString = new StringBuilder();
-        for (Map.Entry<String, Object> attribute : attributes)
-        {
-            attributesAsString.append((attributesAsString.length() == 0) ? "" : ", ").append(objectToString(attribute.getKey(), attribute.getValue()));
-        }
+
+        attributes.forEach( e -> attributesAsString.append((attributesAsString.length() == 0) ? "" : ", ").
+                                                    append(objectToString(e.getKey(), e.getValue())));
+        
         return String.format("%s{%s}", obj.getClass().getSimpleName(), attributesAsString.toString());
     }
 
