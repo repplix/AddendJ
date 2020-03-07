@@ -22,7 +22,7 @@ import io.ddd.aspect.reflection.ReflectiveToString;
     }
 
     /**
-     * Excensions are made for all classes annotated with @ValueObject
+     * Extensions are made for all classes annotated with @ValueObject
      */
     // Disable formatter because space between annotation and '*' is important
     // @formatter:off
