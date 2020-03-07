@@ -28,9 +28,10 @@ public class DeepToString
 
     private static String objectToString(final String name, Object object)
     {
+        String format = "%s=%s";
         if (object == null)
         {
-            return String.format("%s=%s", name, "null");
+            return String.format(format, name, "null");
         }
 
         if (object.getClass().isArray())
@@ -42,10 +43,10 @@ public class DeepToString
         if (object instanceof String ||
             object instanceof Character)
         {
-            return  String.format("%s=%s", name, String.format("'%s'", object));
+            return  String.format(format, name, String.format("'%s'", object));
         }
 
-        return String.format("%s=%s", name, object.toString());
+        return String.format(format, name, object.toString());
     }
 
     private DeepToString()
