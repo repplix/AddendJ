@@ -41,7 +41,7 @@ public class ReflectiveToString
      *
      * @param attribute Das zu transformierende Attribut.
      * @return Eine String-Repräsentation des Attributs.
-     * @throws FieldIsArrayException Wenn ein Array übergeben wurde.
+     * @throws IllegalArgumentException Wenn ein Array übergeben wurde.
      */
     private static String singleAttributeAsString(final Map.Entry<String, Object> attribute)
     {
@@ -56,7 +56,7 @@ public class ReflectiveToString
 
         if (value.getClass().isArray())
         {
-            throw new FieldIsArrayException(
+            throw new IllegalArgumentException(
                     "Context: Aspect/Generic Hash, Equals, toString; Cannot apply toString to Field " + name);
         }
 

@@ -45,7 +45,7 @@ public class DeepEqualsAndHashCode
      * @param object1 First given object which is comapr
      * @param object2 Das Objekt, welches mit dem ersten Objekt verglichen wird.
      * @return True if all attributes of both objects are euqual
-     * @throws FieldIsArrayException If one of the two objects contains an array  
+     * @throws IllegalArgumentException If one of the two objects contains an array
      */
     public static boolean isReflectiveEquals(final Object object1, final Object object2)
     {
@@ -95,7 +95,7 @@ public class DeepEqualsAndHashCode
     {
         if (object1.getClass().isArray() || object2.getClass().isArray())
         {
-            throw new FieldIsArrayException(
+            throw new IllegalArgumentException(
                     "Context: Aspect/Generic Hash, Equals, toString; Cannot apply equals method to class with array attributes.");
         }
     }

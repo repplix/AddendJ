@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNotEquals;
 
 import java.util.Arrays;
 
-import io.ddd.aspect.reflection.FieldIsArrayException;
 import io.ddd.aspect.valueobjects.ArrayIntTestVO;
 import io.ddd.aspect.valueobjects.DerivedSameAttributeNameTestVO;
 import io.ddd.aspect.valueobjects.DerivedTestVO;
@@ -59,7 +58,7 @@ public class DeepEqualsAndHashCodeTest
                         new ArrayIntTestVO(new int[]{1, 2, 3}),
                         new ArrayIntTestVO(new int[]{1, 2, 3}),
                         new ArrayIntTestVO(new int[]{3, 2, 3}),
-                        FieldIsArrayException.class
+                        IllegalArgumentException.class
                 },
                 new Object[]{
                         new DerivedSameAttributeNameTestVO(1, 2),

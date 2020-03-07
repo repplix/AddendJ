@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 
-import io.ddd.aspect.reflection.FieldIsArrayException;
 import io.ddd.aspect.reflection.DeepEqualsAndHashCode;
 import io.ddd.aspect.valueobjects.ArrayIntTestVO;
 import io.ddd.aspect.valueobjects.BaseTestVO;
@@ -65,12 +64,12 @@ public class ReflectiveToStringTest
                 new Object[]{
                         ArrayIntTestVO.class.getSimpleName() + "{a=[1, 2, 3, 4, 5]}",
                         new ArrayIntTestVO(new int[]{1, 2, 3, 4, 5}),
-                        FieldIsArrayException.class
+                        IllegalArgumentException.class
                 },
                 new Object[]{
                         BaseTestVO.class.getSimpleName() + "{a=99}",
                         new BaseTestVO(99),
-                        FieldIsArrayException.class
+                        IllegalArgumentException.class
                 },
                 new Object[]{
                         DerivedSameAttributeNameTestVO.class.getSimpleName() + "{a=1414, a=9999}",
