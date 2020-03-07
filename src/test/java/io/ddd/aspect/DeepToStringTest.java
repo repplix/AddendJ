@@ -124,7 +124,7 @@ public class DeepToStringTest
         {
             assertEquals(expectedString, subject.toString());
         }
-        catch (Throwable t)
+        catch (Exception t)
         {
             if (expectedException == null)
             {

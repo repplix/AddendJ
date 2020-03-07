@@ -1,5 +1,8 @@
 package io.ddd.aspect;
 
+import static org.junit.Assert.assertTrue;
+
+import io.ddd.aspect.domain.SimpleDomainEvent;
 import org.junit.Test;
 
 
@@ -10,16 +13,20 @@ import org.junit.Test;
  */
 public class DomainEventAspectTest
 {
+    private int defaultIntValue = 42;
+    private String defaultStringValue = "Hello DomainEvent";
+    
     @Test
-    public void testeErzeugtToStringMethodeFuerDomainEvent()
+    public void testToString()
     {
-        //
-        /*final BestellnummerTest.Bestellnummer bestelnummer = new BestellnummerTest.Bestellnummer(64);
-        final GleisTest.Gleis gleis = GleisTest.Gleis.GLEIS_1;
-        final DomainEventStub domainEventStub1 = new DomainEventStub(bestelnummer, gleis, 64);
-        final DomainEventStub domainEventStub2 = new DomainEventStub(bestelnummer, gleis, 64);
+        SimpleDomainEvent simpleDomainEvent = new SimpleDomainEvent(defaultIntValue, defaultStringValue);
 
-        assertEquals("Die toString() methode wird für @DomainEvent nicht korrekt erzeugt", domainEventStub1.toString(),
-                domainEventStub2.toString()); */
+        assertTrue(simpleDomainEvent.toString().contains(defaultStringValue));
+        assertTrue(simpleDomainEvent.toString().contains(Integer.toString(defaultIntValue)));
+    }
+
+    @Test
+    public void testEquals(){
+
     }
 }
