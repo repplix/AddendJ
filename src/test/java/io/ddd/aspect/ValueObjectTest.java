@@ -22,7 +22,7 @@ import org.junit.runners.Parameterized.Parameters;
 
 
 @RunWith(Parameterized.class)
-public class DeepEqualsAndHashCodeTest
+public class ValueObjectTest
 {
     private final Object equalA;
     private final Object equalB;
@@ -37,7 +37,7 @@ public class DeepEqualsAndHashCodeTest
      * @param notEqual Ein Objekt, das equalA und equalB nicht gleich ist.
      * @param expected Eine erwartete exception oder null.
      */
-    public DeepEqualsAndHashCodeTest(final Object equalA, final Object equalB, final Object notEqual, final Class<? extends Throwable> expected)
+    public ValueObjectTest(final Object equalA, final Object equalB, final Object notEqual, final Class<? extends Throwable> expected)
     {
         this.equalA = equalA;
         this.equalB = equalB;
