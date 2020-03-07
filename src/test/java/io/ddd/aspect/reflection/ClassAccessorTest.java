@@ -18,22 +18,12 @@ import org.junit.Test;
 public class ClassAccessorTest
 {
 
-    /**
-     * estet ob alle Felder innerhalb der Klassenhierarchie zurückgegeben werden.
-     */
-    @Test
-    public void testHierarchy()
-    {
-        ClassAccessor access = new ClassAccessor(new DerivedTestVO(1, 2));
-
-        assertEquals(2, access.getAllClassAttributes().size());
-    }
 
     /**
-     * estet ob alle Felder innerhalb der Klassenhierarchie zurückgegeben werden.
+     * Checks class hierarchy with Inheritance .
      */
     @Test
-    public void testClassHierarchy()
+    public void testClassHierarchyWithInheritance()
     {
         assertEquals(2, ClassAccessor.getClassHierarchy(new DerivedTestVO(1,2) ).size());
     }
@@ -45,9 +35,8 @@ public class ClassAccessorTest
     @Test
     public void testGetAllAttributes()
     {
-        ClassAccessor accessor = new ClassAccessor(new DerivedTestVO(1, 2));
-        assertEquals(2, accessor.getAllClassAttributes().get(BaseTestVO.class.getName() + ".a"));
-        assertEquals(1, accessor.getAllClassAttributes().get(DerivedTestVO.class.getName() + ".b"));
+        assertEquals(2, ClassAccessor.getAllClassAttributes(new DerivedTestVO(1, 2)).get(BaseTestVO.class.getName() + ".a"));
+        assertEquals(1, ClassAccessor.getAllClassAttributes(new DerivedTestVO(1, 2)).get(DerivedTestVO.class.getName() + ".b"));
     }
 
     /**
@@ -56,8 +45,7 @@ public class ClassAccessorTest
     @Test
     public void testGetAllAttributesSortedInheritance()
     {
-        ClassAccessor accessor = new ClassAccessor(new DerivedTestVO(1, 2));
-        List<Map.Entry<String, Object>> attributes = accessor.getAllClassAttributesSorted();
+        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAllClassAttributesSorted(new DerivedTestVO(1, 2));
         assertEquals("b", attributes.get(0).getKey());
         assertEquals(1, attributes.get(0).getValue());
 
@@ -71,8 +59,7 @@ public class ClassAccessorTest
     @Test
     public void testGetAllAttributesSorted()
     {
-        ClassAccessor accessor = new ClassAccessor(new UnorderedAttributesTestVO(1F, 2D, 3L, (byte) 4));
-        List<Map.Entry<String, Object>> attributes = accessor.getAllClassAttributesSorted();
+        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAllClassAttributesSorted(new UnorderedAttributesTestVO(1F, 2D, 3L, (byte) 4));
         assertEquals("a", attributes.get(0).getKey());
         assertEquals(3L, attributes.get(0).getValue());
 
@@ -92,8 +79,7 @@ public class ClassAccessorTest
     @Test
     public void testGetAllAttributesSortedUnorderedHierarchy()
     {
-        ClassAccessor accessor = new ClassAccessor(new ThreeStringsTestVO(1, "two", "three", "four"));
-        List<Map.Entry<String, Object>> attributes = accessor.getAllClassAttributesSorted();
+        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAllClassAttributesSorted(new ThreeStringsTestVO(1, "two", "three", "four"));
 
         assertEquals("b", attributes.get(0).getKey());
         assertEquals("two", attributes.get(0).getValue());
