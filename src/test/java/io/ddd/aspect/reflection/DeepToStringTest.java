@@ -1,10 +1,9 @@
-package io.ddd.aspect;
+package io.ddd.aspect.reflection;
 
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 
-import io.ddd.aspect.reflection.DeepEqualsAndHashCode;
 import io.ddd.aspect.valueobjects.ArrayIntTestVO;
 import io.ddd.aspect.valueobjects.BaseTestVO;
 import io.ddd.aspect.valueobjects.DerivedSameAttributeNameTestVO;
@@ -52,6 +51,7 @@ public class DeepToStringTest
      * @return Eine Liste von Datensätzen, die getestet werden.
      */
     @Parameterized.Parameters
+    @SuppressWarnings({"squid:S1452", "squid:S3878"})
     public static Iterable<? extends Object[]> data()
     {
         return Arrays.asList(
