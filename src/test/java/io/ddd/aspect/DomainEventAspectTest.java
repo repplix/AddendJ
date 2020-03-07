@@ -1,5 +1,6 @@
 package io.ddd.aspect;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import io.ddd.aspect.domain.SimpleDomainEvent;
@@ -27,6 +28,10 @@ public class DomainEventAspectTest
 
     @Test
     public void testEquals(){
+        SimpleDomainEvent simpleDomainEvent1 = new SimpleDomainEvent(defaultIntValue, defaultStringValue);
+        SimpleDomainEvent simpleDomainEvent2 = new SimpleDomainEvent(defaultIntValue, defaultStringValue);
 
+        assertEquals(simpleDomainEvent1.hashCode(), simpleDomainEvent2.hashCode());
+        assertEquals(simpleDomainEvent1, simpleDomainEvent2);
     }
 }

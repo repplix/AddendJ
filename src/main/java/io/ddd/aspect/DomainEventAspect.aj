@@ -2,6 +2,7 @@ package io.ddd.aspect;
 
 //Do NOT remove import! Some IDEs (such as Intellij detect as unrequired import which is wrong.
 import io.ddd.stereotype.applicationcore.DomainEvent;
+import io.ddd.aspect.reflection.DeepEqualsAndHashCode;
 import io.ddd.aspect.reflection.DeepToString;
 
 
@@ -36,4 +37,14 @@ import io.ddd.aspect.reflection.DeepToString;
                 return DeepToString.toString(this);
             }
 
+    @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
+    public boolean IDomainEventAspect.equals(Object other)
+            {
+                return DeepEqualsAndHashCode.isReflectiveEquals(this, other);
+            }
+
+    public int IDomainEventAspect.hashCode()
+            {
+                return DeepEqualsAndHashCode.reflectiveHashCode(this);
+            }
 }
