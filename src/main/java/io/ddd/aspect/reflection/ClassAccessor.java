@@ -161,7 +161,7 @@ public class ClassAccessor
      *
      * @return Eine Map, die alle deklarierten und geerbten Attribute beinhaltet.
      */
-    static public Map<String, Object> getAllClassAttributes(Object object)
+    public static Map<String, Object> getAllClassAttributes(Object object)
     {
         final Map<String, Object> returnedAttributes = new HashMap<>();
         
@@ -194,6 +194,23 @@ public class ClassAccessor
     }
 
 
+
+    /**
+     * Generiert eine Liste aus Schlüssel, Wert Paaren, die nach ihrem Auftreten in der Klassenhierarchie und danach Alphabetisch sortiert sind.
+     * Der Schlüssel besteht nur Rein aus dem Attribut-Namen ohne Klassen-Name und der Wert ist der eigentliche Attribut-Wert.
+     *
+     * @return Eine sortierte Liste mit allen Attributen und deren Werten.
+     */
+    public static List<Map.Entry<String, Object>> getAllClassAttributesSorted(Object object)
+    {
+        List<Map.Entry<String, Object>> attributes = new ArrayList<>();
+        for (Class<?> currentClass : getClassHierarchy(object))
+        {
+            List<Map.Entry<String, Object>> currentAttributes = new ArrayList<>(getDeclaredClassAttributes(currentClass, object).entrySet());
+            attributes.addAll(currentAttributes);
+        }
+        return attributes;
+    }
 
 
     static private Map<String, Object> addClassNameToAttributeNames(final Map<String, Object> attributes, final String className)
