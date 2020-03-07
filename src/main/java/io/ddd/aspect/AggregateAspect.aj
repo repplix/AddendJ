@@ -12,10 +12,7 @@ import io.ddd.stereotype.applicationcore.AggregateId;
 
 
 /**
- * Weaving following methods into Objects annotated with @DomainEvent
- * {@link Object#toString()}
- *
- * // TODO: Following methods are missing
+ * Weaving following methods into Objects annotated with @Aggregate
  * {@link Object#hashCode()}
  * {@link Object#equals(Object).
  */
@@ -46,18 +43,14 @@ import io.ddd.stereotype.applicationcore.AggregateId;
         System.out.println("AggregateEquals");
         try
         {
-            return DeepEqualsAndHashCode.isReflectiveEquals(thisAggregateIDMethod.invoke(this), otherAggregateIDMethod.invoke(other));
+            return DeepEqualsAndHashCode.isReflectiveEquals(thisAggregateIDMethod.invoke(this),
+                                                            otherAggregateIDMethod.invoke(other));
         }
-        catch (IllegalAccessException e)
+        catch (IllegalAccessException | InvocationTargetException e)
         {
-            e.printStackTrace();
+            throw new IllegalArgumentException("Could not invoke method annotated with " +
+                    AggregateId.class.getSimpleName() + " on object " + this.getClass().getSimpleName());
         }
-        catch (InvocationTargetException e)
-        {
-            e.printStackTrace();
-        }
-
-        return false;
     }
 
     /*public int IAggregateAspect.hashCode()
