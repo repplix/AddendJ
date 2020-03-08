@@ -33,7 +33,8 @@
 <servers>
     <server>
         <id>github-stereotype</id>
-        <password>${env.GITHUB_TOKEN}</password>
+        <password>${env.GITHUB_TOKEN2}</password>
+        <username>${env.GITHUB_USERNAME2}</username>
     </server>
 </servers>
 
