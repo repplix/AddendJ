@@ -17,9 +17,9 @@ jobs:
     - name: Maven build      
       env:
         GITHUB_TOKEN: ${{ github.token }}  
-      run: mvn -B package --file pom.xml
+      run: mvn -s $GITHUB_WORKSPACE/.github/workflows/settings.xml -B package --file pom.xml
     
     - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy 
       env:
         GITHUB_TOKEN: ${{ github.token }}
+      run: mvn deploy 
