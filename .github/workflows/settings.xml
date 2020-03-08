@@ -23,7 +23,7 @@
                 <name>GitHub OWNER Apache Maven Packages</name>
                 <url>https://github.com/repplix/stereotype</url>
                 <releases><enabled>true</enabled></releases>
-                <snapshots><enabled>false</enabled></snapshots>
+                <snapshots><enabled>true</enabled></snapshots>
             </repository>
         </repositories>
     </profile>

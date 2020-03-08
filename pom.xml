@@ -48,6 +48,22 @@
     </dependency>
   </dependencies>
 
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>https://repo1.maven.org/maven2</url>
+      <releases><enabled>true</enabled></releases>
+      <snapshots><enabled>true</enabled></snapshots>
+    </repository>
+    <repository>
+      <id>github-stereotype</id>
+      <name>GitHub OWNER Apache Maven Packages</name>
+      <url>https://github.com/repplix/stereotype</url>
+      <releases><enabled>true</enabled></releases>
+      <snapshots><enabled>true</enabled></snapshots>
+    </repository>
+  </repositories>
+
 
   <build>
     <pluginManagement>
