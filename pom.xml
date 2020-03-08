@@ -21,7 +21,7 @@
     <aspectjtools.version>1.9.5</aspectjtools.version>
     <aspectjrt.version>1.9.5</aspectjrt.version>
     <aspectj-maven-plugin.version>1.12.1</aspectj-maven-plugin.version>
-    <stereotype.version>1.2-snapshot</stereotype.version>
+    <stereotype.version>1.1</stereotype.version>
   </properties>
   
   <dependencies>
