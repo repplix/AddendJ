@@ -7,7 +7,6 @@ import java.lang.reflect.Method;
 import io.ddd.aspect.reflection.ClassAccessor;
 import io.ddd.stereotype.applicationcore.Aggregate;
 import io.ddd.aspect.reflection.DeepEqualsAndHashCode;
-import io.ddd.aspect.reflection.DeepToString;
 import io.ddd.stereotype.applicationcore.AggregateId;
 
 
@@ -44,7 +43,7 @@ import io.ddd.stereotype.applicationcore.AggregateId;
 
         try
         {
-            return DeepEqualsAndHashCode.isReflectiveEquals(thisAggregateIDMethod.invoke(this),
+            return DeepEqualsAndHashCode.deepEquals(thisAggregateIDMethod.invoke(this),
                                                             otherAggregateIDMethod.invoke(other));
         }
         catch (IllegalAccessException | InvocationTargetException e)
@@ -60,7 +59,7 @@ import io.ddd.stereotype.applicationcore.AggregateId;
 
         try
         {
-            return DeepEqualsAndHashCode.reflectiveHashCode(thisAggregateIDMethod.invoke(this));
+            return DeepEqualsAndHashCode.deepHashCode(thisAggregateIDMethod.invoke(this));
         }
         catch (IllegalAccessException | InvocationTargetException e)
         {

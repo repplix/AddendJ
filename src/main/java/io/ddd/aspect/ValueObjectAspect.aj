@@ -37,11 +37,11 @@ import io.ddd.aspect.reflection.DeepToString;
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     public boolean IValueObjectAspect.equals(Object other)
             {
-                return DeepEqualsAndHashCode.isReflectiveEquals(this, other);
+                return DeepEqualsAndHashCode.deepEquals(this, other);
             }
 
     public int IValueObjectAspect.hashCode()
             {
-                return DeepEqualsAndHashCode.reflectiveHashCode(this);
+                return DeepEqualsAndHashCode.deepHashCode(this);
             }
 }

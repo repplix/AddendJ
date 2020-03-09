@@ -29,7 +29,7 @@ public class DeepEqualsAndHashCode
      * @param object to create hash code
      * @return The hash code.
      */
-    public static int reflectiveHashCode(final Object object)
+    public static int deepHashCode(final Object object)
     {
         Map<String, Object> attributes = ClassAccessor.getAllClassAttributes(object);
         Object[] attributeValues = attributes.values().toArray();
@@ -46,7 +46,7 @@ public class DeepEqualsAndHashCode
      * @return True if all attributes of both objects are equal, otherwise false
      * @throws IllegalArgumentException If one of the two objects contains an array
      */
-    public static boolean isReflectiveEquals(final Object object1, final Object object2)
+    public static boolean deepEquals(final Object object1, final Object object2)
     {
         if (isSameObject(object1, object2)) {
             return true;

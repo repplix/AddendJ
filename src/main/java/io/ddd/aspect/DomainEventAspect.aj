@@ -38,11 +38,11 @@ import io.ddd.aspect.reflection.DeepToString;
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     public boolean IDomainEventAspect.equals(Object other)
             {
-                return DeepEqualsAndHashCode.isReflectiveEquals(this, other);
+                return DeepEqualsAndHashCode.deepEquals(this, other);
             }
 
     public int IDomainEventAspect.hashCode()
             {
-                return DeepEqualsAndHashCode.reflectiveHashCode(this);
+                return DeepEqualsAndHashCode.deepHashCode(this);
             }
 }
