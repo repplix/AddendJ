@@ -5,9 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import io.ddd.aspect.reflection.ClassAccessor;
-import io.ddd.stereotype.applicationcore.Aggregate;
 import io.ddd.aspect.reflection.DeepEqualsAndHashCode;
-import io.ddd.stereotype.applicationcore.AggregateId;
+import io.ddd.stereotype.applicationcore.AggregateID;
 
 
 /**
@@ -38,8 +37,8 @@ import io.ddd.stereotype.applicationcore.AggregateId;
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     public boolean IAggregateAspect.equals(Object other)
     {
-        Method thisAggregateIDMethod = ClassAccessor.getMethodAnnotatedWith(this, AggregateId.class);
-        Method otherAggregateIDMethod = ClassAccessor.getMethodAnnotatedWith(other, AggregateId.class);
+        Method thisAggregateIDMethod = ClassAccessor.getMethodAnnotatedWith(this, AggregateID.class);
+        Method otherAggregateIDMethod = ClassAccessor.getMethodAnnotatedWith(other, AggregateID.class);
 
         try
         {
@@ -49,13 +48,13 @@ import io.ddd.stereotype.applicationcore.AggregateId;
         catch (IllegalAccessException | InvocationTargetException e)
         {
             throw new IllegalArgumentException("Could not invoke method annotated with " +
-                    AggregateId.class.getSimpleName() + " on object " + this.getClass().getSimpleName());
+                    AggregateID.class.getSimpleName() + " on object " + this.getClass().getSimpleName());
         }
     }
 
     public int IAggregateAspect.hashCode()
     {
-        Method thisAggregateIDMethod = ClassAccessor.getMethodAnnotatedWith(this, AggregateId.class);
+        Method thisAggregateIDMethod = ClassAccessor.getMethodAnnotatedWith(this, AggregateID.class);
 
         try
         {
@@ -64,7 +63,7 @@ import io.ddd.stereotype.applicationcore.AggregateId;
         catch (IllegalAccessException | InvocationTargetException e)
         {
             throw new IllegalArgumentException("Could not invoke method annotated with " +
-                    AggregateId.class.getSimpleName() + " on object " + this.getClass().getSimpleName());
+                    AggregateID.class.getSimpleName() + " on object " + this.getClass().getSimpleName());
         }
     }
     

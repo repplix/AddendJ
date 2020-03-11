@@ -2,7 +2,7 @@ package io.ddd.aspect.domain;
 
 import io.ddd.stereotype.applicationcore.Aggregate;
 import io.ddd.stereotype.applicationcore.AggregateFactory;
-import io.ddd.stereotype.applicationcore.AggregateId;
+import io.ddd.stereotype.applicationcore.AggregateID;
 
 @Aggregate
 public class SimpleAggregate
@@ -14,7 +14,7 @@ public class SimpleAggregate
         this.simpleValueObject = simpleValueObject;
     }
 
-    @AggregateId
+    @AggregateID
     public SimpleValueObject getSimpleValueObject()
     {
         return simpleValueObject;
