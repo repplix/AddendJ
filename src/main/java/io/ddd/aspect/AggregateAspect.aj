@@ -13,7 +13,7 @@ import io.ddd.stereotype.applicationcore.AggregateID;
 /**
  * Weaving following methods into Objects annotated with @Aggregate
  * {@link Object#hashCode()}
- * {@link Object#equals(Object).
+ * {@link Object#equals(Object)}.
  *
  * NOTE: These methods are based on annotation @AggregateID 
  */
