@@ -4,13 +4,26 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>io.ddd.aspect</groupId>
-  <artifactId>aspect</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <groupId>io.jexxa.addendj</groupId>
+  <artifactId>AddendJ</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
 
-  <name>aspect</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <!-- Project Information -->
+  <name>AddendJ</name>
+  <url>https://github.com/repplix/AddendJ</url>
+  <description>AddendJ - Cross cutting concerns for Domain Driven Design</description>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>Michael Repplinger</name>
+    </developer>
+  </developers>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,7 +34,7 @@
     <aspectjtools.version>1.9.5</aspectjtools.version>
     <aspectjrt.version>1.9.5</aspectjrt.version>
     <aspectj-maven-plugin.version>1.12.1</aspectj-maven-plugin.version>
-    <stereotype.version>1.2-SNAPSHOT</stereotype.version>
+    <addend.version>1.0</addend.version>
   </properties>
   
   <dependencies>
@@ -32,9 +45,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>io.ddd.stereotype</groupId>
-      <artifactId>stereotype</artifactId>
-      <version>${stereotype.version}</version>
+      <groupId>io.jexxa.addend</groupId>
+      <artifactId>Addend</artifactId>
+      <version>${addend.version}</version>
     </dependency>
     <dependency>
       <groupId>org.aspectj</groupId>
@@ -52,13 +65,6 @@
     <repository>
       <id>central</id>
       <url>https://repo1.maven.org/maven2</url>
-      <releases><enabled>true</enabled></releases>
-      <snapshots><enabled>true</enabled></snapshots>
-    </repository>
-    <repository>
-      <id>github-stereotype</id>
-      <name>GitHub OWNER Apache Maven Packages</name>
-      <url>https://github.com/repplix/stereotype</url>
       <releases><enabled>true</enabled></releases>
       <snapshots><enabled>true</enabled></snapshots>
     </repository>

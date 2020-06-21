@@ -2,9 +2,9 @@ package io.ddd.aspect;
 
 
 //Do NOT remove import! Some IDEs (such as Intellij detect as unrequired import which is wrong.
-import io.ddd.stereotype.applicationcore.ValueObject;
 import io.ddd.aspect.reflection.DeepEqualsAndHashCode;
 import io.ddd.aspect.reflection.DeepToString;
+import io.jexxa.addend.applicationcore.ValueObject;
 
 /**
  * Weaving following methods into Objects annotated with @ValueObject

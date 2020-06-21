@@ -1,6 +1,6 @@
 package io.ddd.aspect.domain;
 
-import io.ddd.stereotype.applicationcore.DomainEvent;
+import io.jexxa.addend.applicationcore.DomainEvent;
 
 @DomainEvent
 public class SimpleDomainEvent

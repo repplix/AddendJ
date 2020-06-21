@@ -6,8 +6,8 @@ import java.lang.reflect.Method;
 
 import io.ddd.aspect.reflection.ClassAccessor;
 import io.ddd.aspect.reflection.DeepEqualsAndHashCode;
-import io.ddd.stereotype.applicationcore.Aggregate;
-import io.ddd.stereotype.applicationcore.AggregateID;
+import io.jexxa.addend.applicationcore.Aggregate;
+import io.jexxa.addend.applicationcore.AggregateID;
 
 
 /**

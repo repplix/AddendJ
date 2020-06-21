@@ -1,6 +1,6 @@
 package io.ddd.aspect.domain;
 
-import io.ddd.stereotype.applicationcore.ValueObject;
+import io.jexxa.addend.applicationcore.ValueObject;
 
 @ValueObject
 public class SimpleValueObject

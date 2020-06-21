@@ -1,7 +1,7 @@
 package io.ddd.aspect.valueobjects;
 
 
-import io.ddd.stereotype.applicationcore.ValueObject;
+import io.jexxa.addend.applicationcore.ValueObject;
 
 /**
  * Immutable Klasse, die viele verschiedene Typen als Attribut hat.

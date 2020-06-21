@@ -1,9 +1,9 @@
 package io.ddd.aspect;
 
 //Do NOT remove import! Some IDEs (such as Intellij detect as unrequired import which is wrong.
-import io.ddd.stereotype.applicationcore.DomainEvent;
 import io.ddd.aspect.reflection.DeepEqualsAndHashCode;
 import io.ddd.aspect.reflection.DeepToString;
+import io.jexxa.addend.applicationcore.DomainEvent;
 
 
 /**
@@ -19,6 +19,7 @@ import io.ddd.aspect.reflection.DeepToString;
      */
     private interface IDomainEventAspect
     {
+
     }
     
     /**

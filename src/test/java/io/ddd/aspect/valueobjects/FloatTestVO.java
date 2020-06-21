@@ -1,7 +1,7 @@
 package io.ddd.aspect.valueobjects;
 
 
-import io.ddd.stereotype.applicationcore.ValueObject;
+import io.jexxa.addend.applicationcore.ValueObject;
 
 /**
  * Immutable Klasse, die einen Float als Attribut besitzt.
