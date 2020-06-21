@@ -11,6 +11,9 @@
 <profiles>
     <profile>
         <id>github</id>
+        <properties>
+            <sonar-login>${env.SONAR_TOKEN}</sonar-login>
+        </properties>
         <repositories>
             <repository>
                 <id>central</id>
@@ -19,9 +22,9 @@
                 <snapshots><enabled>false</enabled></snapshots>
             </repository>
             <repository>
-                <id>github-stereotype</id>
+                <id>github-addendj</id>
                 <name>GitHub OWNER Apache Maven Packages</name>
-                <url>https://maven.pkg.github.com/repplix/stereotype</url>
+                <url>https://maven.pkg.github.com/repplix/AddendJ</url>
                 <releases><enabled>true</enabled></releases>
                 <snapshots><enabled>true</enabled></snapshots>
             </repository>
@@ -32,7 +35,7 @@
 
 <servers>
     <server>
-        <id>github-stereotype</id>
+        <id>github-addendj</id>
         <password>${env.GITHUB_TOKEN2}</password>
         <username>${env.GITHUB_USERNAME2}</username>
     </server>
