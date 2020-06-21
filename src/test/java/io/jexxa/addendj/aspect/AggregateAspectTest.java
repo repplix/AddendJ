@@ -1,23 +1,22 @@
 package io.jexxa.addendj.aspect;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import io.jexxa.addendj.aspect.domain.SimpleAggregate;
 import io.jexxa.addendj.aspect.domain.SimpleValueObject;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class AggregateAspectTest
 {
-    int defaultValueID = 42;
+    private static final int DEFAULT_VALUE_ID = 42;
 
     @Test
     @SuppressWarnings("squid:S1874")
     public void testEquals()
     {
-        SimpleAggregate simpleAggregate1 = SimpleAggregate.create(new SimpleValueObject(defaultValueID));
-        SimpleAggregate simpleAggregate2 = SimpleAggregate.create(new SimpleValueObject(defaultValueID));
+        SimpleAggregate simpleAggregate1 = SimpleAggregate.create(new SimpleValueObject(DEFAULT_VALUE_ID));
+        SimpleAggregate simpleAggregate2 = SimpleAggregate.create(new SimpleValueObject(DEFAULT_VALUE_ID));
         
         assertEquals(simpleAggregate1.hashCode(), simpleAggregate2.hashCode(),0);
         assertEquals(simpleAggregate1, simpleAggregate2);
@@ -27,8 +26,8 @@ public class AggregateAspectTest
     @SuppressWarnings("squid:S1874")
     public void testNotEquals()
     {
-        SimpleAggregate simpleAggregate1 = SimpleAggregate.create(new SimpleValueObject(defaultValueID));
-        SimpleAggregate simpleAggregate2 = SimpleAggregate.create(new SimpleValueObject(defaultValueID * defaultValueID));
+        SimpleAggregate simpleAggregate1 = SimpleAggregate.create(new SimpleValueObject(DEFAULT_VALUE_ID));
+        SimpleAggregate simpleAggregate2 = SimpleAggregate.create(new SimpleValueObject(DEFAULT_VALUE_ID * DEFAULT_VALUE_ID));
 
         assertNotEquals(simpleAggregate1.hashCode(), simpleAggregate2.hashCode());
         assertNotEquals(simpleAggregate1, simpleAggregate2);

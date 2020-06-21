@@ -1,11 +1,9 @@
 package io.jexxa.addendj.aspect;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import java.util.Arrays;
+import java.util.stream.Stream;
 
 import io.jexxa.addendj.aspect.valueobjects.ArrayIntTestVO;
 import io.jexxa.addendj.aspect.valueobjects.DerivedSameAttributeNameTestVO;
@@ -15,34 +13,27 @@ import io.jexxa.addendj.aspect.valueobjects.IntTestVO;
 import io.jexxa.addendj.aspect.valueobjects.MultipleDifferentTypesTestVO;
 import io.jexxa.addendj.aspect.valueobjects.ThreeStringsTestVO;
 import io.jexxa.addendj.aspect.valueobjects.UnorderedAttributesTestVO;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 
-@RunWith(Parameterized.class)
 public class ValueObjectAspectTest
 {
-    private final Object equalA;
-    private final Object equalB;
-    private final Object notEqual;
-    private final Class<? extends Throwable> expected;
 
-    /**
-     * Konstruktor.
-     *
-     * @param equalA   Ein Objekt, das equalB gleich ist.
-     * @param equalB   Ein Objekt, das equalA gleich ist.
-     * @param notEqual Ein Objekt, das equalA und equalB nicht gleich ist.
-     * @param expected Eine erwartete exception oder null.
-     */
-    public ValueObjectAspectTest(final Object equalA, final Object equalB, final Object notEqual, final Class<? extends Throwable> expected)
+    static class InternalValueObjectAspectTest
     {
-        this.equalA = equalA;
-        this.equalB = equalB;
-        this.notEqual = notEqual;
-        this.expected = expected;
+        final Object equalA;
+        final Object equalB;
+        final Object notEqual;
+        final Class<? extends Throwable> expected;
+
+        InternalValueObjectAspectTest(final Object equalA, final Object equalB, final Object notEqual, final Class<? extends Throwable> expected)
+        {
+            this.equalA = equalA;
+            this.equalB = equalB;
+            this.notEqual = notEqual;
+            this.expected = expected;
+        }
     }
 
 
@@ -52,72 +43,70 @@ public class ValueObjectAspectTest
      *
      * @return Eine Liste von Datensätzen, die getestet werden.
      */
-    @Parameters
-    @SuppressWarnings("squid:S3878")
-    public static Iterable<Object[]> data()
+    public static Stream<InternalValueObjectAspectTest> data()
     {
-        return Arrays.asList(
-                new Object[]{
+        return Stream.of(
+                new InternalValueObjectAspectTest(
                         new ArrayIntTestVO(new int[]{1, 2, 3}),
                         new ArrayIntTestVO(new int[]{1, 2, 3}),
                         new ArrayIntTestVO(new int[]{3, 2, 3}),
                         IllegalArgumentException.class
-                },
-                new Object[]{
+                ),
+                new InternalValueObjectAspectTest(
                         new DerivedSameAttributeNameTestVO(1, 2),
                         new DerivedSameAttributeNameTestVO(1, 2),
                         new DerivedSameAttributeNameTestVO(2, 2),
                         null
-                },
-                new Object[]{
+                ),
+                new InternalValueObjectAspectTest(
                         new DerivedTestVO(9999, 123123),
                         new DerivedTestVO(9999, 123123),
                         new DerivedTestVO(1111111111, 0),
                         null
-                },
-                new Object[]{
+                ),
+                new InternalValueObjectAspectTest(
                         new FloatTestVO(1243.283f),
                         new FloatTestVO(1243.283f),
                         new FloatTestVO(1243.284f),
                         null
-                },
-                new Object[]{
+                ),
+                new InternalValueObjectAspectTest(
                         new IntTestVO(1),
                         new IntTestVO(1),
                         new IntTestVO(2),
                         null
-                },
-                new Object[]{
+                ),
+                new InternalValueObjectAspectTest(
                         new MultipleDifferentTypesTestVO(1, 2L, 12.0f, 13.0, true, 'd', "Hallo", (byte) 12, (short) 13),
                         new MultipleDifferentTypesTestVO(1, 2L, 12.0f, 13.0, true, 'd', "Hallo", (byte) 12, (short) 13),
                         new MultipleDifferentTypesTestVO(1, 2L, 12.0f, 13.0, true, 'd', "Halo", (byte) 12, (short) 13),
                         null
-                },
+                ),
 
-                new Object[]{
+                new InternalValueObjectAspectTest(
                         new ThreeStringsTestVO(1, null, null, null),
                         new ThreeStringsTestVO(1, null, null, null),
                         new ThreeStringsTestVO(1, "a", "b", "c"),
                         null
-                },
-                new Object[]{
+                ),
+                new InternalValueObjectAspectTest(
                         new ThreeStringsTestVO(1, "a", "b", "c"),
                         new ThreeStringsTestVO(1, "a", "b", "c"),
                         new ThreeStringsTestVO(1, "a", "2", "c"),
                         null
-                },
-                new Object[]{
+                ),
+                new InternalValueObjectAspectTest(
                         new ThreeStringsTestVO(1, "a", "b", "c"),
                         new ThreeStringsTestVO(1, "a", "b", "c"),
                         new ThreeStringsTestVO(2, "a", "b", "c"),
                         null
-                },
-                new Object[]{
+                ),
+                new InternalValueObjectAspectTest(
                         new UnorderedAttributesTestVO(2423.9f, 22222222.99999, 999123472, (byte) 127),
                         new UnorderedAttributesTestVO(2423.9f, 22222222.99999, 999123472, (byte) 127),
                         new UnorderedAttributesTestVO(2423.9f, 22222222.99998, 999123472, (byte) 127),
                         null
-                }
+                )
         );
     }
 
@@ -125,26 +114,27 @@ public class ValueObjectAspectTest
     /**
      * Startet die tests
      */
-    @Test
-    public void test()
+    @ParameterizedTest
+    @MethodSource("data")
+    public void test(InternalValueObjectAspectTest testSetup)
     {
         try
         {
-            equality(equalA, equalB);
-            inEquality(equalA, equalB, notEqual);
-            equalsWithNull(equalA, equalB, notEqual);
-            testHash(equalA, equalB, notEqual);
-            testContracts(notEqual, equalA);
-            testContracts(notEqual, equalB);
-            testContracts(equalA, equalB);
+            equality(testSetup.equalA, testSetup.equalB);
+            inEquality(testSetup.equalA, testSetup.equalB, testSetup.notEqual);
+            equalsWithNull(testSetup.equalA, testSetup.equalB, testSetup.notEqual);
+            testHash(testSetup.equalA, testSetup.equalB, testSetup.notEqual);
+            testContracts(testSetup.notEqual, testSetup.equalA);
+            testContracts(testSetup.notEqual, testSetup.equalB);
+            testContracts(testSetup.equalA, testSetup.equalB);
         }
         catch (Exception t)
         {
-            if (expected == null)
+            if (testSetup.expected == null)
             {
                 throw t;
             }
-            if (expected != t.getClass())
+            if (testSetup.expected != t.getClass())
             {
                 throw t;
             }

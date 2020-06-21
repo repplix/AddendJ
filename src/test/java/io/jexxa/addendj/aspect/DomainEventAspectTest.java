@@ -1,13 +1,12 @@
 package io.jexxa.addendj.aspect;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import io.jexxa.addendj.aspect.domain.SimpleDomainEvent;
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 
 
 /**
@@ -15,23 +14,23 @@ import org.junit.Test;
  */
 public class DomainEventAspectTest
 {
-    private int defaultIntValue = 42;
-    private String defaultStringValue = "Hello DomainEvent";
+    private static final int DEFAULT_INT_VALUE = 42;
+    private static final String DEFAULT_STRING_VALUE = "Hello DomainEvent";
     
     @Test
     public void testToString()
     {
-        SimpleDomainEvent simpleDomainEvent = new SimpleDomainEvent(defaultIntValue, defaultStringValue);
+        SimpleDomainEvent simpleDomainEvent = new SimpleDomainEvent(DEFAULT_INT_VALUE, DEFAULT_STRING_VALUE);
 
-        assertTrue(simpleDomainEvent.toString().contains(defaultStringValue));
-        assertTrue(simpleDomainEvent.toString().contains(Integer.toString(defaultIntValue)));
+        assertTrue(simpleDomainEvent.toString().contains(DEFAULT_STRING_VALUE));
+        assertTrue(simpleDomainEvent.toString().contains(Integer.toString(DEFAULT_INT_VALUE)));
     }
 
     @Test
     @SuppressWarnings("squid:S1874")
     public void testEquals(){
-        SimpleDomainEvent simpleDomainEvent1 = new SimpleDomainEvent(defaultIntValue, defaultStringValue);
-        SimpleDomainEvent simpleDomainEvent2 = new SimpleDomainEvent(defaultIntValue, defaultStringValue);
+        SimpleDomainEvent simpleDomainEvent1 = new SimpleDomainEvent(DEFAULT_INT_VALUE, DEFAULT_STRING_VALUE);
+        SimpleDomainEvent simpleDomainEvent2 = new SimpleDomainEvent(DEFAULT_INT_VALUE, DEFAULT_STRING_VALUE);
 
         assertEquals(simpleDomainEvent1.hashCode(), simpleDomainEvent2.hashCode(), 0);
         assertEquals(simpleDomainEvent1, simpleDomainEvent2);
@@ -39,8 +38,8 @@ public class DomainEventAspectTest
 
     @Test
     public void testNotEquals(){
-        SimpleDomainEvent simpleDomainEvent1 = new SimpleDomainEvent(defaultIntValue, defaultStringValue);
-        SimpleDomainEvent simpleDomainEvent2 = new SimpleDomainEvent(defaultIntValue * defaultIntValue, defaultStringValue + defaultStringValue);
+        SimpleDomainEvent simpleDomainEvent1 = new SimpleDomainEvent(DEFAULT_INT_VALUE, DEFAULT_STRING_VALUE);
+        SimpleDomainEvent simpleDomainEvent2 = new SimpleDomainEvent(DEFAULT_INT_VALUE * DEFAULT_INT_VALUE, DEFAULT_STRING_VALUE + DEFAULT_STRING_VALUE);
 
         assertNotEquals(simpleDomainEvent1.hashCode(), simpleDomainEvent2.hashCode());
         assertNotEquals(simpleDomainEvent1, simpleDomainEvent2);

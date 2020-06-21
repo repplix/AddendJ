@@ -1,6 +1,7 @@
 package io.jexxa.addendj.aspect.reflection;
 
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,7 @@ import io.jexxa.addendj.aspect.valueobjects.BaseTestVO;
 import io.jexxa.addendj.aspect.valueobjects.DerivedTestVO;
 import io.jexxa.addendj.aspect.valueobjects.ThreeStringsTestVO;
 import io.jexxa.addendj.aspect.valueobjects.UnorderedAttributesTestVO;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 /**
