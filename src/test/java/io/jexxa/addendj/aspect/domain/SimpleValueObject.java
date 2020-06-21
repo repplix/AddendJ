@@ -5,7 +5,7 @@ import io.jexxa.addend.applicationcore.ValueObject;
 @ValueObject
 public class SimpleValueObject
 {
-    private int valueID;
+    private final int valueID;
 
     public SimpleValueObject(int valueID)
     {

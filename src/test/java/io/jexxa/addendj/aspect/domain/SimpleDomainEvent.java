@@ -5,8 +5,8 @@ import io.jexxa.addend.applicationcore.DomainEvent;
 @DomainEvent
 public class SimpleDomainEvent
 {
-    private int intValue;
-    private String stringValue;
+    private final int intValue;
+    private final String stringValue;
 
     public SimpleDomainEvent(int intValue, String stringValue) {
         this.intValue = intValue;
