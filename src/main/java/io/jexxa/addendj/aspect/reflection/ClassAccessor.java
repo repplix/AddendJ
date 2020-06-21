@@ -15,7 +15,7 @@ import java.util.Map;
  * This class provides methods to access the attributes of a class as it is required by {@link DeepEqualsAndHashCode }
  * {@link DeepToString }
  */
-public class ClassAccessor
+public final class ClassAccessor
 {
     public static Method getMethodAnnotatedWith(final Object object, final Class<? extends Annotation> annotation) {
         return Arrays.stream(object.getClass().getDeclaredMethods())

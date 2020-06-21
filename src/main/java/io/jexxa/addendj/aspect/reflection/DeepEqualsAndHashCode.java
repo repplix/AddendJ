@@ -29,12 +29,16 @@ public class DeepEqualsAndHashCode
      * @param object to create hash code
      * @return The hash code.
      */
-    public static int deepHashCode(final Object object)
+    public static int deepHashCode(Object object)
     {
-        Map<String, Object> attributes = ClassAccessor.getAllClassAttributes(object);
-        Object[] attributeValues = attributes.values().toArray();
-        return Arrays.deepHashCode(attributeValues);
+        return Arrays.deepHashCode(
+                ClassAccessor
+                        .getAllClassAttributes(object)
+                        .values()
+                        .toArray()
+        );
     }
+
 
     /**
      * This method can be used to implement a generic equals method.
@@ -48,15 +52,18 @@ public class DeepEqualsAndHashCode
      */
     public static boolean deepEquals(final Object object1, final Object object2)
     {
-        if (isSameObject(object1, object2)) {
+        if (isSameObject(object1, object2))
+        {
             return true;
         }
 
-        if (isOneNull(object1, object2)) {
+        if (isOneNull(object1, object2))
+        {
             return false;
         }
         
-        if (object1.getClass() != object2.getClass()) {
+        if (object1.getClass() != object2.getClass())
+        {
             return false;
         }
 
@@ -68,12 +75,15 @@ public class DeepEqualsAndHashCode
         Map<String, Object> attributesObject1 = ClassAccessor.getAllClassAttributes(object1);
         Map<String, Object> attributesObject2 = ClassAccessor.getAllClassAttributes(object2);
 
-        if ( attributesObject1.size() != attributesObject2.size() )    {
+        if ( attributesObject1.size() != attributesObject2.size() )
+        {
             return false;
         }
 
-        return attributesObject1.entrySet().stream().
-                allMatch(e -> isEquals(e.getValue(), attributesObject2.get(e.getKey())));
+        return attributesObject1
+                .entrySet()
+                .stream()
+                .allMatch(e -> isEquals(e.getValue(), attributesObject2.get(e.getKey())));
     }
 
     private static boolean isEquals(final Object object1, final Object object2)
@@ -103,7 +113,8 @@ public class DeepEqualsAndHashCode
 
     private static boolean isSameObject(final Object object1, final Object object2)
     {
-        if ( object1 == null && object2 == null ) {  // explicitly added to avoid sonarlint Null pointer warnings
+        if ( object1 == null && object2 == null )
+        {  // explicitly added to avoid sonarlint Null pointer warnings
             return true;
         }
         return object1 == object2;
@@ -118,6 +129,7 @@ public class DeepEqualsAndHashCode
 
     private DeepEqualsAndHashCode()
     {
+        //Empty constructor 
     }
 
 }
