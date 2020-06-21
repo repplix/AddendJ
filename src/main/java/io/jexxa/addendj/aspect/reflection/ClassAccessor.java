@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 
 /**
@@ -18,23 +17,16 @@ import java.util.Optional;
  */
 public class ClassAccessor
 {
-
     public static Method getMethodAnnotatedWith(final Object object, final Class<? extends Annotation> annotation) {
-
-        List<Method> methodList = Arrays.asList(object.getClass().getDeclaredMethods());
-
-        Optional<Method> result = methodList.stream().
-                                    filter(method -> method.isAnnotationPresent(annotation)).
-                                    findFirst();
-
-        if ( !result.isPresent() ) {
-            throw new IllegalArgumentException(
-                    "Class " + object.getClass().getSimpleName() +
-                    " is not annotated with " + annotation.getSimpleName());
-        }
-
-        return result.get();
+        return Arrays.stream(object.getClass().getDeclaredMethods())
+                .filter(method -> method.isAnnotationPresent(annotation))
+                .findFirst()
+                .orElseThrow(
+                        () -> new IllegalArgumentException(object.getClass().getName() +
+                                " is not annotated with " + annotation.getSimpleName())
+                );
     }
+
     /**
      * Returns a key/value list with all class attributes.
      *
@@ -129,6 +121,6 @@ public class ClassAccessor
 
     private ClassAccessor()
     {
-
+       //Private consturctor
     }
 }
