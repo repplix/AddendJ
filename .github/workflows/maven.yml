@@ -24,14 +24,14 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
       run: mvn deploy
-
-     - name: sonarqube update
-       env:
-         GITHUB_USERNAME2: ${{ secrets.GITHUB_USERNAME2 }}
-         GITHUB_TOKEN2: ${{ secrets.GITHUB_TOKEN2 }}
-         GITHUB_TOKEN: ${{ github.token }}
-         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-         SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
-         SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-       run: mvn -s $GITHUB_WORKSPACE/.github/workflows/settings.xml sonar:sonar
+      
+    - name: sonarqube update
+      env:
+        GITHUB_USERNAME2: ${{ secrets.GITHUB_USERNAME2 }}
+        GITHUB_TOKEN2: ${{ secrets.GITHUB_TOKEN2 }}
+        GITHUB_TOKEN: ${{ github.token }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+        SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}        
+      run: mvn -s $GITHUB_WORKSPACE/.github/workflows/settings.xml sonar:sonar
 
