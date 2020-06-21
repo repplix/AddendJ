@@ -173,13 +173,13 @@
     <snapshotRepository>
       <id>github</id>
       <name>GitHub snapshot</name>
-      <url>https://maven.pkg.github.com/repplix/aspect</url>
+      <url>https://maven.pkg.github.com/repplix/AddendJ</url>
       <uniqueVersion>true</uniqueVersion>
     </snapshotRepository>
     <repository>
       <id>github</id>
       <name>GitHub OWNER Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/repplix/aspect</url>
+      <url>https://maven.pkg.github.com/repplix/AddendJ</url>
     </repository>
   </distributionManagement>
  
