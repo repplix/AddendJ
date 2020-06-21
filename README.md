@@ -1,6 +1,5 @@
-# aspect
-Aspects implementation for DDD stereotypes
+# AddendJ - Crosscutting Concerns for Domain Driven Design 
 
+![Java CI](https://github.com/repplix/AddendJ/workflows/Java%20CI/badge.svg)
 
-![Java CI](https://github.com/repplix/aspect/workflows/Java%20CI/badge.svg)
-Test
+TODO 
