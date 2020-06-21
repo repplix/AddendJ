@@ -33,5 +33,5 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
         SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}        
-        run: mvn -s $GITHUB_WORKSPACE/.github/workflows/settings.xml sonar:sonar
+      run: mvn -s $GITHUB_WORKSPACE/.github/workflows/settings.xml sonar:sonar
 
