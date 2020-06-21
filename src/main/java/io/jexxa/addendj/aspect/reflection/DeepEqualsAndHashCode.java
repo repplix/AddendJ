@@ -20,7 +20,7 @@ import java.util.Map;
  *
  * NOTE: classes with arrays as attributes are not supported at the moment
  */
-public class DeepEqualsAndHashCode
+public final class DeepEqualsAndHashCode
 {
 
     /**

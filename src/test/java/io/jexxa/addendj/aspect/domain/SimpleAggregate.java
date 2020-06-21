@@ -6,9 +6,9 @@ import io.jexxa.addend.applicationcore.AggregateFactory;
 import io.jexxa.addend.applicationcore.AggregateID;
 
 @Aggregate
-public class SimpleAggregate
+public final class SimpleAggregate
 {
-    private SimpleValueObject simpleValueObject;
+    private final SimpleValueObject simpleValueObject;
 
     private SimpleAggregate(SimpleValueObject simpleValueObject)
     {

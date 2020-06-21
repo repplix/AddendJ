@@ -12,7 +12,7 @@ import java.util.Map;
  * Note: This implementation of toString is just for debugging/logging purpose. In case you to serialize objects use some json lib 
  * Note: Since {@link DeepEqualsAndHashCode } does not support Arrays, they are also disabled in this class
  */
-public class DeepToString
+public final class DeepToString
 {
 
     public static String toString(final Object obj)
