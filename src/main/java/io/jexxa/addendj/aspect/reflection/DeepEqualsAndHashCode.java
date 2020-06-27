@@ -62,7 +62,7 @@ public final class DeepEqualsAndHashCode
             return false;
         }
         
-        if (object1.getClass() != object2.getClass())
+        if (!isSameType(object1, object2))
         {
             return false;
         }
@@ -88,20 +88,33 @@ public final class DeepEqualsAndHashCode
 
     private static boolean isEquals(final Object object1, final Object object2)
     {
-        if (isSameObject(object1, object2)) {
+        if (isSameObject(object1, object2))
+        {
             return true;
         }
-        if (isOneNull(object1, object2)) {
+
+        if (isOneNull(object1, object2))
+        {
             return false;
         }
 
         throwIfArrayDetected(object1, object2);
 
-        return object1.equals(object2);
+        if ( object1 != null )
+        {
+            return object1.equals(object2);
+        }
+
+        return false;
     }
 
     private static void throwIfArrayDetected(Object object1, Object object2)
     {
+        if ( object1 == null || object2 == null)
+        {
+            return;
+        }
+
         if (object1.getClass().isArray() || object2.getClass().isArray())
         {
             throw new IllegalArgumentException(
@@ -123,9 +136,18 @@ public final class DeepEqualsAndHashCode
 
     private static boolean isOneNull(final Object object1, final Object object2)
     {
-        return (object1 == null && object2 != null) || (object1 != null && object2 == null);
+        return (object1 == null) ^ (object2 == null);  //Xor operation
     }
 
+    private static boolean isSameType(final Object object1, final Object object2)
+    {
+        if ( object1 == null || object2 == null)
+        {
+            return false;
+        }
+
+        return object1.getClass().equals(object2.getClass());
+    }
 
     private DeepEqualsAndHashCode()
     {
