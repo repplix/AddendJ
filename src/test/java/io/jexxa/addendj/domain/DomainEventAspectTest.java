@@ -32,7 +32,7 @@ public class DomainEventAspectTest
         SimpleDomainEvent simpleDomainEvent1 = new SimpleDomainEvent(DEFAULT_INT_VALUE, DEFAULT_STRING_VALUE);
         SimpleDomainEvent simpleDomainEvent2 = new SimpleDomainEvent(DEFAULT_INT_VALUE, DEFAULT_STRING_VALUE);
 
-        assertEquals(simpleDomainEvent1.hashCode(), simpleDomainEvent2.hashCode(), 0);
+        assertEquals(simpleDomainEvent1.hashCode(), simpleDomainEvent2.hashCode());
         assertEquals(simpleDomainEvent1, simpleDomainEvent2);
     }
 
