@@ -8,8 +8,8 @@ import java.util.Map;
 
 import io.jexxa.addendj.domain.valueobject.BaseValueObject;
 import io.jexxa.addendj.domain.valueobject.DerivedValueObject;
+import io.jexxa.addendj.domain.valueobject.PrimitiveDataTypeValueObject;
 import io.jexxa.addendj.domain.valueobject.ThreeStringsValueObject;
-import io.jexxa.addendj.domain.valueobject.UnorderedAttributesTestVO;
 import org.junit.jupiter.api.Test;
 
 
@@ -51,24 +51,35 @@ class ClassAccessorTest
         assertEquals(2, attributes.get(1).getValue());
     }
 
-    /**
-     * Deklarierte attribute sollten alphabetisch sortiert werden.
-     */
     @Test
     void testGetAllAttributesSorted()
     {
-        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(new UnorderedAttributesTestVO(1F, 2D, 3L, (byte) 4));
-        assertEquals("c", attributes.get(0).getKey());
-        assertEquals(1F, attributes.get(0).getValue());
+        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(
+                new PrimitiveDataTypeValueObject(1, 2L, 12.0f, 13.0, true, 'd', (byte) 12, (short) 13)
+        );
+        assertEquals("intValue", attributes.get(0).getKey());
+        assertEquals(1, attributes.get(0).getValue());
 
-        assertEquals("b", attributes.get(1).getKey());
-        assertEquals(2D, attributes.get(1).getValue());
+        assertEquals("longValue", attributes.get(1).getKey());
+        assertEquals(2L, attributes.get(1).getValue());
 
-        assertEquals("a", attributes.get(2).getKey());
-        assertEquals(3L, attributes.get(2).getValue());
+        assertEquals("floatValue", attributes.get(2).getKey());
+        assertEquals(12.0f, attributes.get(2).getValue());
 
-        assertEquals("d", attributes.get(3).getKey());
-        assertEquals((byte) 4, attributes.get(3).getValue());
+        assertEquals("doubleValue", attributes.get(3).getKey());
+        assertEquals(13.0, attributes.get(3).getValue());
+
+        assertEquals("booleanValue", attributes.get(4).getKey());
+        assertEquals(true, attributes.get(4).getValue());
+
+        assertEquals("charValue", attributes.get(5).getKey());
+        assertEquals('d', attributes.get(5).getValue());
+
+        assertEquals("byteValue", attributes.get(6).getKey());
+        assertEquals((byte) 12, attributes.get(6).getValue());
+
+        assertEquals("shortValue", attributes.get(7).getKey());
+        assertEquals((short) 13, attributes.get(7).getValue());
     }
 
     /**

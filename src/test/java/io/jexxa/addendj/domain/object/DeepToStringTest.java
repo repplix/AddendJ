@@ -11,7 +11,6 @@ import io.jexxa.addendj.domain.valueobject.DerivedValueObjectWithSameFieldNames;
 import io.jexxa.addendj.domain.valueobject.DerivedValueObject;
 import io.jexxa.addendj.domain.valueobject.PrimitiveDataTypeValueObject;
 import io.jexxa.addendj.domain.valueobject.ThreeStringsValueObject;
-import io.jexxa.addendj.domain.valueobject.UnorderedAttributesTestVO;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -82,11 +81,6 @@ class DeepToStringTest
                 new InternalDeepToStringTest(
                         ThreeStringsValueObject.class.getSimpleName() + "{b='asd', c='qwe', d='yxc', value=1}",
                         new ThreeStringsValueObject(1, "asd", "qwe", "yxc"),
-                        null
-                ),
-                new InternalDeepToStringTest(
-                        UnorderedAttributesTestVO.class.getSimpleName() + "{c=12.0, b=13.0, a=25555, d=7}",
-                        new UnorderedAttributesTestVO(12.0f, 13.0, 25555, (byte) 7),
                         null
                 )
         );
