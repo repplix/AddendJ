@@ -15,6 +15,7 @@ public final class SimpleAggregate
         this.simpleValueObject = simpleValueObject;
     }
 
+    @SuppressWarnings("unused")
     @AggregateID
     public SimpleValueObject getSimpleValueObject()
     {

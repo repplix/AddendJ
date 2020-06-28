@@ -35,7 +35,7 @@
 
 ### Gradle
 
-```groovy
+```gradle
 compile "io.jexxa.addendj:AddendJ:1.0.0-SNAPSHOT"
 compile "org.aspectj:aspectjtools:1.9.5"
 compile "org.aspectj.aspectjrt:1.9.5"

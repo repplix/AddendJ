@@ -2,6 +2,7 @@ package io.jexxa.addendj.domain.domain;
 
 import io.jexxa.addend.applicationcore.DomainEvent;
 
+@SuppressWarnings("unused")
 @DomainEvent
 public class SimpleDomainEvent
 {

@@ -2,6 +2,7 @@ package io.jexxa.addendj.domain.domain;
 
 import io.jexxa.addend.applicationcore.ValueObject;
 
+@SuppressWarnings("unused")
 @ValueObject
 public class SimpleValueObject
 {

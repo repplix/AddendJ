@@ -7,7 +7,7 @@ import io.jexxa.addendj.domain.object.DeepToString;
 import io.jexxa.addend.applicationcore.ValueObject;
 
 /**
- * Weaving following methods into Objects annotated with @ValueObject
+ * Weaving following methods into Objects annotated with {@link ValueObject}
  * {@link Object#toString()}
  * {@link Object#hashCode()}
  * {@link Object#equals(Object).

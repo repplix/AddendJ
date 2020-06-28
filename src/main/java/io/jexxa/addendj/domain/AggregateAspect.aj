@@ -11,11 +11,11 @@ import io.jexxa.addendj.domain.object.DeepEqualsAndHashCode;
 import io.jexxa.addend.applicationcore.Aggregate;
 
 /**
- * Weaving following methods into Objects annotated with @Aggregate
+ * Weaving following methods into Objects annotated with {@link Aggregate}
  * {@link Object#hashCode()}
  * {@link Object#equals(Object)}.
  *
- * NOTE: These methods depends on @Aggregate and @AggregateID
+ * NOTE: These methods depends on {@link Aggregate}  and {@link AggregateID}
  */
 @SuppressWarnings("DanglingJavadoc") public aspect AggregateAspect
 {

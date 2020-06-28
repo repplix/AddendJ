@@ -7,7 +7,7 @@ import io.jexxa.addend.applicationcore.DomainEvent;
 
 
 /**
- * Weaving following methods into Objects annotated with @DomainEvent
+ * Weaving following methods into Objects annotated with {@link DomainEvent}
  * {@link Object#toString()}
  * {@link Object#hashCode()}
  * {@link Object#equals(Object).
