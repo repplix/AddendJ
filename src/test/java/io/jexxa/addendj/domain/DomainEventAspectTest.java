@@ -1,11 +1,11 @@
-package io.jexxa.addendj.aspect;
+package io.jexxa.addendj.domain;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import io.jexxa.addendj.aspect.domain.SimpleDomainEvent;
+import io.jexxa.addendj.domain.domain.SimpleDomainEvent;
 import org.junit.jupiter.api.Test;
 
 

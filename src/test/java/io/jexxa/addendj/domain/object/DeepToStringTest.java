@@ -1,19 +1,19 @@
-package io.jexxa.addendj.aspect.reflection;
+package io.jexxa.addendj.domain.object;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.stream.Stream;
 
-import io.jexxa.addendj.aspect.valueobjects.ArrayIntTestVO;
-import io.jexxa.addendj.aspect.valueobjects.BaseTestVO;
-import io.jexxa.addendj.aspect.valueobjects.DerivedSameAttributeNameTestVO;
-import io.jexxa.addendj.aspect.valueobjects.DerivedTestVO;
-import io.jexxa.addendj.aspect.valueobjects.FloatTestVO;
-import io.jexxa.addendj.aspect.valueobjects.IntTestVO;
-import io.jexxa.addendj.aspect.valueobjects.MultipleDifferentTypesTestVO;
-import io.jexxa.addendj.aspect.valueobjects.ThreeStringsTestVO;
-import io.jexxa.addendj.aspect.valueobjects.UnorderedAttributesTestVO;
+import io.jexxa.addendj.domain.valueobjects.ArrayIntTestVO;
+import io.jexxa.addendj.domain.valueobjects.BaseTestVO;
+import io.jexxa.addendj.domain.valueobjects.DerivedSameAttributeNameTestVO;
+import io.jexxa.addendj.domain.valueobjects.DerivedTestVO;
+import io.jexxa.addendj.domain.valueobjects.FloatTestVO;
+import io.jexxa.addendj.domain.valueobjects.IntTestVO;
+import io.jexxa.addendj.domain.valueobjects.MultipleDifferentTypesTestVO;
+import io.jexxa.addendj.domain.valueobjects.ThreeStringsTestVO;
+import io.jexxa.addendj.domain.valueobjects.UnorderedAttributesTestVO;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 

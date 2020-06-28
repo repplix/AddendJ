@@ -1,4 +1,4 @@
-package io.jexxa.addendj.aspect.reflection;
+package io.jexxa.addendj.domain.object;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import java.util.Map;
 
-import io.jexxa.addendj.aspect.valueobjects.BaseTestVO;
-import io.jexxa.addendj.aspect.valueobjects.DerivedTestVO;
-import io.jexxa.addendj.aspect.valueobjects.ThreeStringsTestVO;
-import io.jexxa.addendj.aspect.valueobjects.UnorderedAttributesTestVO;
+import io.jexxa.addendj.domain.valueobjects.BaseTestVO;
+import io.jexxa.addendj.domain.valueobjects.DerivedTestVO;
+import io.jexxa.addendj.domain.valueobjects.ThreeStringsTestVO;
+import io.jexxa.addendj.domain.valueobjects.UnorderedAttributesTestVO;
 import org.junit.jupiter.api.Test;
 
 

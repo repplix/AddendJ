@@ -1,4 +1,4 @@
-package io.jexxa.addendj.aspect.domain;
+package io.jexxa.addendj.domain.domain;
 
 
 import io.jexxa.addend.applicationcore.Aggregate;

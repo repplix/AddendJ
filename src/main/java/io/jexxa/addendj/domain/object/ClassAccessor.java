@@ -1,4 +1,4 @@
-package io.jexxa.addendj.aspect.reflection;
+package io.jexxa.addendj.domain.object;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -87,10 +87,10 @@ public final class ClassAccessor
 
         for (Field attribute : declaredAttributes)
         {
-            // Falls statische Attribute nicht herausgenommen werden, kann es bei Klassen, die rekursiv definiert sind und die Equals Methode aus diesem Package verwenden, ein StackOverflow vorkommen.
+            // Ignore static members
             if (!Modifier.isStatic(attribute.getModifiers()))
             {
-                attribute.setAccessible(true);
+                attribute.setAccessible(true); // We need access to all fields (also private ones)  
                 try
                 {
                     returnedAttributes.put(attribute.getName(), attribute.get(object));

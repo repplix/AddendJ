@@ -1,11 +1,11 @@
-package io.jexxa.addendj.aspect;
+package io.jexxa.addendj.domain;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import io.jexxa.addend.applicationcore.AggregateID;
-import io.jexxa.addendj.aspect.reflection.ClassAccessor;
-import io.jexxa.addendj.aspect.reflection.DeepEqualsAndHashCode;
+import io.jexxa.addendj.domain.object.ClassAccessor;
+import io.jexxa.addendj.domain.object.DeepEqualsAndHashCode;
 
 //Do NOT remove import! Some IDEs (such as Intellij detect as unrequired import which is wrong.
 import io.jexxa.addend.applicationcore.Aggregate;
@@ -15,7 +15,7 @@ import io.jexxa.addend.applicationcore.Aggregate;
  * {@link Object#hashCode()}
  * {@link Object#equals(Object)}.
  *
- * NOTE: These methods are based on annotation @AggregateID 
+ * NOTE: These methods depends on @Aggregate and @AggregateID
  */
 @SuppressWarnings("DanglingJavadoc") public aspect AggregateAspect
 {

@@ -1,48 +1,46 @@
-package io.jexxa.addendj.aspect;
+package io.jexxa.addendj.domain;
 
-import io.jexxa.addendj.aspect.reflection.DeepEqualsAndHashCode;
-import io.jexxa.addendj.aspect.reflection.DeepToString;
-//Do NOT remove import! Some IDEs (such as Intellij detect as unrequired import which is wrong.
-import io.jexxa.addend.applicationcore.DomainEvent;
 
+import io.jexxa.addendj.domain.object.DeepEqualsAndHashCode;
+import io.jexxa.addendj.domain.object.DeepToString;
+//Do NOT remove import! Some IDEs (such as Intellij detect as unrequired import which is wrong here.
+import io.jexxa.addend.applicationcore.ValueObject;
 
 /**
- * Weaving following methods into Objects annotated with @DomainEvent
+ * Weaving following methods into Objects annotated with @ValueObject
  * {@link Object#toString()}
  * {@link Object#hashCode()}
  * {@link Object#equals(Object).
  */
-@SuppressWarnings("DanglingJavadoc") public aspect DomainEventAspect
+@SuppressWarnings("DanglingJavadoc") public aspect ValueObjectAspect
 {
     /**
      * Interface for weaving methods into a @ValueObject
      */
-    private interface IDomainEventAspect
+    private interface IValueObjectAspect
     {
-
     }
-    
+
     /**
      * Extensions are made for all classes annotated with @ValueObject
      */
     // Disable formatter because space between annotation and '*' is important
     // @formatter:off
-    declare parents :(@DomainEvent *)implements IDomainEventAspect;
+    declare parents :(@ValueObject *)implements IValueObjectAspect;
     // @formatter:on
 
-
-    public String IDomainEventAspect.toString()
+    public String IValueObjectAspect.toString()
             {
                 return DeepToString.toString(this);
             }
 
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
-    public boolean IDomainEventAspect.equals(Object other)
+    public boolean IValueObjectAspect.equals(Object other)
             {
                 return DeepEqualsAndHashCode.deepEquals(this, other);
             }
 
-    public int IDomainEventAspect.hashCode()
+    public int IValueObjectAspect.hashCode()
             {
                 return DeepEqualsAndHashCode.deepHashCode(this);
             }

@@ -1,4 +1,4 @@
-package io.jexxa.addendj.aspect.reflection;
+package io.jexxa.addendj.domain.object;
 
 import java.util.List;
 import java.util.Map;
