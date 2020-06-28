@@ -35,12 +35,27 @@ import io.jexxa.addend.applicationcore.Aggregate;
     // @formatter:on
 
 
-    @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     public boolean IAggregateAspect.equals(Object other)
     {
+        if (this == other)
+        {
+            return true;
+        }
+
+        if ( other == null )
+        {
+            return false;
+        }
+        
+        if (getClass() != other.getClass())
+        {
+            return false;
+        }
+
         Method thisAggregateIDMethod = ClassAccessor.getMethodAnnotatedWith(this, AggregateID.class);
         Method otherAggregateIDMethod = ClassAccessor.getMethodAnnotatedWith(other, AggregateID.class);
 
+        //Compare result of AggrgateID mehtod to decide of both objects are equal
         try
         {
             return DeepEqualsAndHashCode.deepEquals(thisAggregateIDMethod.invoke(this),
