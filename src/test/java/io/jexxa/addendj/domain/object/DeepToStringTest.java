@@ -22,7 +22,7 @@ import org.junit.jupiter.params.provider.MethodSource;
  * Testet die Methode {@link DeepEqualsAndHashCode#deepHashCode(Object)}
  */
 
-public class DeepToStringTest
+class DeepToStringTest
 {
     static class InternalDeepToStringTest
     {
@@ -40,7 +40,7 @@ public class DeepToStringTest
     }
 
 
-    public static Stream<InternalDeepToStringTest> data()
+    static Stream<InternalDeepToStringTest> data()
     {
         return Stream.of(
                 new InternalDeepToStringTest(
@@ -106,7 +106,7 @@ public class DeepToStringTest
      */
     @ParameterizedTest
     @MethodSource("data")
-    public void test(InternalDeepToStringTest testSource)
+    void test(InternalDeepToStringTest testSource)
     {
         try
         {

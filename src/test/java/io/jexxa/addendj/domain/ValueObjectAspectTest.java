@@ -17,7 +17,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 
-public class ValueObjectAspectTest
+class ValueObjectAspectTest
 {
 
     static class InternalValueObjectAspectTest
@@ -43,7 +43,7 @@ public class ValueObjectAspectTest
      *
      * @return Eine Liste von Datensätzen, die getestet werden.
      */
-    public static Stream<InternalValueObjectAspectTest> data()
+    static Stream<InternalValueObjectAspectTest> data()
     {
         return Stream.of(
                 new InternalValueObjectAspectTest(
@@ -116,7 +116,7 @@ public class ValueObjectAspectTest
      */
     @ParameterizedTest
     @MethodSource("data")
-    public void test(InternalValueObjectAspectTest testSetup)
+    void test(InternalValueObjectAspectTest testSetup)
     {
         try
         {

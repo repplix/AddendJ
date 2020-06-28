@@ -11,13 +11,13 @@ import io.jexxa.addendj.domain.domain.SimpleAggregate;
 import io.jexxa.addendj.domain.domain.SimpleValueObject;
 import org.junit.jupiter.api.Test;
 
-public class AggregateAspectTest
+class AggregateAspectTest
 {
     private static final int DEFAULT_VALUE_ID = 42;
 
     @Test
     @SuppressWarnings("squid:S1874")
-    public void testEquals()
+    void testEquals()
     {
         SimpleAggregate simpleAggregate1 = SimpleAggregate.create(new SimpleValueObject(DEFAULT_VALUE_ID));
         SimpleAggregate simpleAggregate2 = SimpleAggregate.create(new SimpleValueObject(DEFAULT_VALUE_ID));
@@ -28,7 +28,7 @@ public class AggregateAspectTest
 
     @Test
     @SuppressWarnings("squid:S1874")
-    public void testNotEquals()
+    void testNotEquals()
     {
         SimpleAggregate simpleAggregate1 = SimpleAggregate.create(new SimpleValueObject(DEFAULT_VALUE_ID));
         SimpleAggregate simpleAggregate2 = SimpleAggregate.create(new SimpleValueObject(DEFAULT_VALUE_ID * DEFAULT_VALUE_ID));
@@ -39,7 +39,7 @@ public class AggregateAspectTest
 
     @Test
     @SuppressWarnings("squid:S1874")
-    public void testNotEqualsDifferentType()
+    void testNotEqualsDifferentType()
     {
         var aggregateA = SimpleAggregate.create(new SimpleValueObject(DEFAULT_VALUE_ID));
         var aggregateB = AggregateDifferentType.create(new SimpleValueObject(DEFAULT_VALUE_ID));
@@ -51,7 +51,7 @@ public class AggregateAspectTest
 
     @Test
     @SuppressWarnings("squid:S1874")
-    public void testMissingAnnotation()
+    void testMissingAnnotation()
     {
         var aggregateA = AggregateMissingAnnotation.create(new SimpleValueObject(DEFAULT_VALUE_ID));
         var aggregateB = AggregateMissingAnnotation.create(new SimpleValueObject(DEFAULT_VALUE_ID));
@@ -65,7 +65,7 @@ public class AggregateAspectTest
 
     @SuppressWarnings("unused")
     @Aggregate
-    public static final class AggregateMissingAnnotation
+    static final class AggregateMissingAnnotation
     {
         private final SimpleValueObject simpleValueObject;
 
@@ -74,13 +74,13 @@ public class AggregateAspectTest
             this.simpleValueObject = simpleValueObject;
         }
 
-        public SimpleValueObject getSimpleValueObject()
+        SimpleValueObject getSimpleValueObject()
         {
             return simpleValueObject;
         }
 
         @AggregateFactory(AggregateMissingAnnotation.class)
-        public static AggregateMissingAnnotation create(SimpleValueObject simpleValueObject) {
+        static AggregateMissingAnnotation create(SimpleValueObject simpleValueObject) {
             return new AggregateMissingAnnotation(simpleValueObject);
         }
     }
@@ -88,7 +88,7 @@ public class AggregateAspectTest
 
     @SuppressWarnings("unused")
     @Aggregate
-    public static final class AggregateDifferentType
+    static final class AggregateDifferentType
     {
         private final SimpleValueObject simpleValueObject;
 
@@ -98,13 +98,13 @@ public class AggregateAspectTest
         }
 
         @AggregateID
-        public SimpleValueObject getSimpleValueObject()
+        SimpleValueObject getSimpleValueObject()
         {
             return simpleValueObject;
         }
 
         @AggregateFactory(AggregateDifferentType.class)
-        public static AggregateDifferentType create(SimpleValueObject simpleValueObject) {
+        static AggregateDifferentType create(SimpleValueObject simpleValueObject) {
             return new AggregateDifferentType(simpleValueObject);
         }
     }

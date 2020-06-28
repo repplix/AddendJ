@@ -13,10 +13,7 @@ import io.jexxa.addendj.domain.valueobjects.UnorderedAttributesTestVO;
 import org.junit.jupiter.api.Test;
 
 
-/**
- * Diese Klasse testet rein nur {@link ClassAccessor}
- */
-public class ClassAccessorTest
+class ClassAccessorTest
 {
 
 
@@ -24,7 +21,7 @@ public class ClassAccessorTest
      * Checks class hierarchy with Inheritance .
      */
     @Test
-    public void testClassHierarchyWithInheritance()
+    void testClassHierarchyWithInheritance()
     {
         assertEquals(2, ClassAccessor.getClassHierarchy(new DerivedTestVO(1,2) ).size());
     }
@@ -34,7 +31,7 @@ public class ClassAccessorTest
      * Testet ob alle Attribute korrekt wiedergegeben werden, auch geerbte attribute.
      */
     @Test
-    public void testGetAllAttributes()
+    void testGetAllAttributes()
     {
         assertEquals(2, ClassAccessor.getAllClassAttributes(new DerivedTestVO(1, 2)).get(BaseTestVO.class.getName() + ".a"));
         assertEquals(1, ClassAccessor.getAllClassAttributes(new DerivedTestVO(1, 2)).get(DerivedTestVO.class.getName() + ".b"));
@@ -44,7 +41,7 @@ public class ClassAccessorTest
      * Attribute sollten nach der ebene der Vererbung sortiert werden und dann alphabetisch.
      */
     @Test
-    public void testGetAllAttributesSortedInheritance()
+    void testGetAllAttributesSortedInheritance()
     {
         List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(new DerivedTestVO(1, 2));
         assertEquals("b", attributes.get(0).getKey());
@@ -58,7 +55,7 @@ public class ClassAccessorTest
      * Deklarierte attribute sollten alphabetisch sortiert werden.
      */
     @Test
-    public void testGetAllAttributesSorted()
+    void testGetAllAttributesSorted()
     {
         List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(new UnorderedAttributesTestVO(1F, 2D, 3L, (byte) 4));
         assertEquals("a", attributes.get(0).getKey());
@@ -78,7 +75,7 @@ public class ClassAccessorTest
      * Attribute mit vererbungshierarchie, die unsortiert deklariert wurden sollten richtig sortiert zurückgegeben werden.
      */
     @Test
-    public void testGetAllAttributesSortedUnorderedHierarchy()
+    void testGetAllAttributesSortedUnorderedHierarchy()
     {
         List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(new ThreeStringsTestVO(1, "two", "three", "four"));
 

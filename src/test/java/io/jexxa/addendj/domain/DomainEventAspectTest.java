@@ -12,13 +12,13 @@ import org.junit.jupiter.api.Test;
 /**
  * Test for objects annotated with @DomainEvent 
  */
-public class DomainEventAspectTest
+class DomainEventAspectTest
 {
     private static final int DEFAULT_INT_VALUE = 42;
     private static final String DEFAULT_STRING_VALUE = "Hello DomainEvent";
     
     @Test
-    public void testToString()
+    void testToString()
     {
         SimpleDomainEvent simpleDomainEvent = new SimpleDomainEvent(DEFAULT_INT_VALUE, DEFAULT_STRING_VALUE);
 
@@ -28,7 +28,7 @@ public class DomainEventAspectTest
 
     @Test
     @SuppressWarnings("squid:S1874")
-    public void testEquals(){
+    void testEquals(){
         SimpleDomainEvent simpleDomainEvent1 = new SimpleDomainEvent(DEFAULT_INT_VALUE, DEFAULT_STRING_VALUE);
         SimpleDomainEvent simpleDomainEvent2 = new SimpleDomainEvent(DEFAULT_INT_VALUE, DEFAULT_STRING_VALUE);
 
@@ -37,7 +37,7 @@ public class DomainEventAspectTest
     }
 
     @Test
-    public void testNotEquals(){
+    void testNotEquals(){
         SimpleDomainEvent simpleDomainEvent1 = new SimpleDomainEvent(DEFAULT_INT_VALUE, DEFAULT_STRING_VALUE);
         SimpleDomainEvent simpleDomainEvent2 = new SimpleDomainEvent(DEFAULT_INT_VALUE * DEFAULT_INT_VALUE, DEFAULT_STRING_VALUE + DEFAULT_STRING_VALUE);
 
