@@ -5,15 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.stream.Stream;
 
-import io.jexxa.addendj.domain.valueobjects.ArrayIntTestVO;
-import io.jexxa.addendj.domain.valueobjects.BaseTestVO;
-import io.jexxa.addendj.domain.valueobjects.DerivedSameAttributeNameTestVO;
-import io.jexxa.addendj.domain.valueobjects.DerivedTestVO;
-import io.jexxa.addendj.domain.valueobjects.FloatTestVO;
-import io.jexxa.addendj.domain.valueobjects.IntTestVO;
-import io.jexxa.addendj.domain.valueobjects.MultipleDifferentTypesTestVO;
-import io.jexxa.addendj.domain.valueobjects.ThreeStringsTestVO;
-import io.jexxa.addendj.domain.valueobjects.UnorderedAttributesTestVO;
+import io.jexxa.addendj.domain.valueobject.ArrayIntTestVO;
+import io.jexxa.addendj.domain.valueobject.BaseTestVO;
+import io.jexxa.addendj.domain.valueobject.DerivedSameAttributeNameTestVO;
+import io.jexxa.addendj.domain.valueobject.DerivedTestVO;
+import io.jexxa.addendj.domain.valueobject.FloatValueObject;
+import io.jexxa.addendj.domain.valueobject.IntValueObject;
+import io.jexxa.addendj.domain.valueobject.PrimitiveDataTypeValueObject;
+import io.jexxa.addendj.domain.valueobject.ThreeStringsTestVO;
+import io.jexxa.addendj.domain.valueobject.UnorderedAttributesTestVO;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -44,57 +44,64 @@ class DeepToStringTest
     {
         return Stream.of(
                 new InternalDeepToStringTest(
-                        ArrayIntTestVO.class.getSimpleName() + "{a=null}",
+                        ArrayIntTestVO.class.getSimpleName() + "{value=null}",
                         new ArrayIntTestVO(null),
                         null
                 ),
                 new InternalDeepToStringTest(
-                        ArrayIntTestVO.class.getSimpleName() + "{a=[1, 2, 3, 4, 5]}",
+                        ArrayIntTestVO.class.getSimpleName() + "{value=[1, 2, 3, 4, 5]}",
                         new ArrayIntTestVO(new int[]{1, 2, 3, 4, 5}),
                         IllegalArgumentException.class
                 ),
                 new InternalDeepToStringTest(
-                        BaseTestVO.class.getSimpleName() + "{a=99}",
+                        BaseTestVO.class.getSimpleName() + "{value=99}",
                         new BaseTestVO(99),
                         IllegalArgumentException.class
                 ),
                 new InternalDeepToStringTest(
-                        DerivedSameAttributeNameTestVO.class.getSimpleName() + "{a=1414, a=9999}",
+                        DerivedSameAttributeNameTestVO.class.getSimpleName() + "{a=1414, value=9999}",
                         new DerivedSameAttributeNameTestVO(1414, 9999),
                         null
                 ),
                 new InternalDeepToStringTest(
-                        DerivedTestVO.class.getSimpleName() + "{b=142, a=734}",
+                        DerivedTestVO.class.getSimpleName() + "{b=142, value=734}",
                         new DerivedTestVO(142, 734),
                         null
                 ),
                 new InternalDeepToStringTest(
-                        FloatTestVO.class.getSimpleName() + "{a=6.022137E-23}",
-                        new FloatTestVO(6.022137e-23f),
+                        FloatValueObject.class.getSimpleName() + "{value=6.022137E-23}",
+                        new FloatValueObject(6.022137e-23f),
                         null
                 ),
                 new InternalDeepToStringTest(
-                        FloatTestVO.class.getSimpleName() + "{a=0.33333334}",
-                        new FloatTestVO(1.0f / 3f),
+                        FloatValueObject.class.getSimpleName() + "{value=0.33333334}",
+                        new FloatValueObject(1.0f / 3f),
                         null
                 ),
                 new InternalDeepToStringTest(
-                        IntTestVO.class.getSimpleName() + "{a=56134}",
-                        new IntTestVO(56134),
+                        IntValueObject.class.getSimpleName() + "{value=56134}",
+                        new IntValueObject(56134),
                         null
                 ),
                 new InternalDeepToStringTest(
-                        MultipleDifferentTypesTestVO.class.getSimpleName() + "{a=125, b=1238712387, c=2531.99, d=1234.236, e=true, f='H', g='AAA', h=127, i=200}",
-                        new MultipleDifferentTypesTestVO(125, 1238712387, 2531.99f, 1234.236, true, 'H', "AAA", (byte) 127, (short) 200),
+                        PrimitiveDataTypeValueObject.class.getSimpleName() + "{" +
+                                "intValue=125, " +
+                                "longValue=1238712387, " +
+                                "floatValue=2531.99, " +
+                                "doubleValue=1234.236, " +
+                                "booleanValue=true, charValue='H', " +
+                                "byteValue=127, " +
+                                "shortValue=200}",
+                        new PrimitiveDataTypeValueObject(125, 1238712387, 2531.99f, 1234.236, true, 'H', (byte) 127, (short) 200),
                         null
                 ),
                 new InternalDeepToStringTest(
-                        ThreeStringsTestVO.class.getSimpleName() + "{b='asd', c='qwe', d='yxc', a=1}",
+                        ThreeStringsTestVO.class.getSimpleName() + "{b='asd', c='qwe', d='yxc', value=1}",
                         new ThreeStringsTestVO(1, "asd", "qwe", "yxc"),
                         null
                 ),
                 new InternalDeepToStringTest(
-                        UnorderedAttributesTestVO.class.getSimpleName() + "{a=25555, b=13.0, c=12.0, d=7}",
+                        UnorderedAttributesTestVO.class.getSimpleName() + "{c=12.0, b=13.0, a=25555, d=7}",
                         new UnorderedAttributesTestVO(12.0f, 13.0, 25555, (byte) 7),
                         null
                 )

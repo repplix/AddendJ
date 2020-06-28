@@ -1,4 +1,4 @@
-package io.jexxa.addendj.domain.valueobjects;
+package io.jexxa.addendj.domain.valueobject;
 
 
 import io.jexxa.addend.applicationcore.ValueObject;

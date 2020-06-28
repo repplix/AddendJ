@@ -4,6 +4,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public final class ClassAccessor
         List<Map.Entry<String, Object>> result = new ArrayList<>();
 
         getClassHierarchy(object).
-                forEach( entry -> result.addAll(getDeclaredClassAttributes(entry, object).entrySet()));
+                forEach( entry -> result.addAll(getDeclaredClassAttributes(entry, object)));
 
         return result;
     }
@@ -80,9 +81,10 @@ public final class ClassAccessor
     }
 
 
-    private static Map<String, Object> getDeclaredClassAttributes(Class<?> clazz, Object object)
+
+    private static List< Map.Entry<String, Object>> getDeclaredClassAttributes(Class<?> clazz, Object object)
     {
-        Map<String, Object> returnedAttributes = new HashMap<>();
+        var returnedAttributes = new ArrayList<Map.Entry<String, Object>>();
         Field[] declaredAttributes = clazz.getDeclaredFields();
 
         for (Field attribute : declaredAttributes)
@@ -90,10 +92,10 @@ public final class ClassAccessor
             // Ignore static members
             if (!Modifier.isStatic(attribute.getModifiers()))
             {
-                attribute.setAccessible(true); // We need access to all fields (also private ones)  
+                attribute.setAccessible(true); // We need access to all fields (also private ones)
                 try
                 {
-                    returnedAttributes.put(attribute.getName(), attribute.get(object));
+                    returnedAttributes.add(new AbstractMap.SimpleEntry<>(attribute.getName(), attribute.get(object)));
                 }
                 catch (final IllegalAccessException e)
                 {
@@ -106,15 +108,11 @@ public final class ClassAccessor
     }
 
 
-    private static Map<String, Object> addClassNameToAttributeNames(final Map<String, Object> attributes, final String className)
+    private static Map<String, Object> addClassNameToAttributeNames(final List<Map.Entry<String, Object>> attributes, final String className)
     {
         final Map<String, Object> renamedAttributes = new HashMap<>();
-        for (Map.Entry<String, Object> entry : attributes.entrySet())
-        {
-            Object value = entry.getValue();
-            renamedAttributes.put(String.format("%s.%s", className, entry.getKey()), value
-            );
-        }
+
+        attributes.forEach(entry -> renamedAttributes.put(String.format("%s.%s", className, entry.getKey()), entry.getValue()));
 
         return renamedAttributes;
     }

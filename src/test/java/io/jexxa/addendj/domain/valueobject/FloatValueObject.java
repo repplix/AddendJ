@@ -1,4 +1,4 @@
-package io.jexxa.addendj.domain.valueobjects;
+package io.jexxa.addendj.domain.valueobject;
 
 
 import io.jexxa.addend.applicationcore.ValueObject;
@@ -7,13 +7,13 @@ import io.jexxa.addend.applicationcore.ValueObject;
  * Immutable Klasse, die einen Float als Attribut besitzt.
  */
 @ValueObject
-public class FloatTestVO
+public class FloatValueObject
 {
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
-    private final float a;
+    private final float value;
 
-    public FloatTestVO(final float a)
+    public FloatValueObject(float a)
     {
-        this.a = a;
+        this.value = a;
     }
 }

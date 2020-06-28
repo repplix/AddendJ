@@ -2,17 +2,19 @@ package io.jexxa.addendj.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.stream.Stream;
 
-import io.jexxa.addendj.domain.valueobjects.ArrayIntTestVO;
-import io.jexxa.addendj.domain.valueobjects.DerivedSameAttributeNameTestVO;
-import io.jexxa.addendj.domain.valueobjects.DerivedTestVO;
-import io.jexxa.addendj.domain.valueobjects.FloatTestVO;
-import io.jexxa.addendj.domain.valueobjects.IntTestVO;
-import io.jexxa.addendj.domain.valueobjects.MultipleDifferentTypesTestVO;
-import io.jexxa.addendj.domain.valueobjects.ThreeStringsTestVO;
-import io.jexxa.addendj.domain.valueobjects.UnorderedAttributesTestVO;
+import io.jexxa.addendj.domain.valueobject.ArrayIntTestVO;
+import io.jexxa.addendj.domain.valueobject.DerivedSameAttributeNameTestVO;
+import io.jexxa.addendj.domain.valueobject.DerivedTestVO;
+import io.jexxa.addendj.domain.valueobject.FloatValueObject;
+import io.jexxa.addendj.domain.valueobject.IntValueObject;
+import io.jexxa.addendj.domain.valueobject.PrimitiveDataTypeValueObject;
+import io.jexxa.addendj.domain.valueobject.ThreeStringsTestVO;
+import io.jexxa.addendj.domain.valueobject.UnorderedAttributesTestVO;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -25,14 +27,12 @@ class ValueObjectAspectTest
         final Object equalA;
         final Object equalB;
         final Object notEqual;
-        final Class<? extends Throwable> expected;
 
-        InternalValueObjectAspectTest(final Object equalA, final Object equalB, final Object notEqual, final Class<? extends Throwable> expected)
+        InternalValueObjectAspectTest(final Object equalA, final Object equalB, final Object notEqual)
         {
             this.equalA = equalA;
             this.equalB = equalB;
             this.notEqual = notEqual;
-            this.expected = expected;
         }
     }
 
@@ -47,65 +47,50 @@ class ValueObjectAspectTest
     {
         return Stream.of(
                 new InternalValueObjectAspectTest(
-                        new ArrayIntTestVO(new int[]{1, 2, 3}),
-                        new ArrayIntTestVO(new int[]{1, 2, 3}),
-                        new ArrayIntTestVO(new int[]{3, 2, 3}),
-                        IllegalArgumentException.class
-                ),
-                new InternalValueObjectAspectTest(
                         new DerivedSameAttributeNameTestVO(1, 2),
                         new DerivedSameAttributeNameTestVO(1, 2),
-                        new DerivedSameAttributeNameTestVO(2, 2),
-                        null
+                        new DerivedSameAttributeNameTestVO(2, 2)
                 ),
                 new InternalValueObjectAspectTest(
                         new DerivedTestVO(9999, 123123),
                         new DerivedTestVO(9999, 123123),
-                        new DerivedTestVO(1111111111, 0),
-                        null
+                        new DerivedTestVO(1111111111, 0)
                 ),
                 new InternalValueObjectAspectTest(
-                        new FloatTestVO(1243.283f),
-                        new FloatTestVO(1243.283f),
-                        new FloatTestVO(1243.284f),
-                        null
+                        new FloatValueObject(1243.283f),
+                        new FloatValueObject(1243.283f),
+                        new FloatValueObject(1243.284f)
                 ),
                 new InternalValueObjectAspectTest(
-                        new IntTestVO(1),
-                        new IntTestVO(1),
-                        new IntTestVO(2),
-                        null
+                        new IntValueObject(1),
+                        new IntValueObject(1),
+                        new IntValueObject(2)
                 ),
                 new InternalValueObjectAspectTest(
-                        new MultipleDifferentTypesTestVO(1, 2L, 12.0f, 13.0, true, 'd', "Hallo", (byte) 12, (short) 13),
-                        new MultipleDifferentTypesTestVO(1, 2L, 12.0f, 13.0, true, 'd', "Hallo", (byte) 12, (short) 13),
-                        new MultipleDifferentTypesTestVO(1, 2L, 12.0f, 13.0, true, 'd', "Halo", (byte) 12, (short) 13),
-                        null
+                        new PrimitiveDataTypeValueObject(1, 2L, 12.0f, 13.0, true, 'd', (byte) 12, (short) 13),
+                        new PrimitiveDataTypeValueObject(1, 2L, 12.0f, 13.0, true, 'd', (byte) 12, (short) 13),
+                        new PrimitiveDataTypeValueObject(1, 2L, 12.0f, 13.0, false, 'd', (byte) 12, (short) 13)
                 ),
 
                 new InternalValueObjectAspectTest(
                         new ThreeStringsTestVO(1, null, null, null),
                         new ThreeStringsTestVO(1, null, null, null),
-                        new ThreeStringsTestVO(1, "a", "b", "c"),
-                        null
+                        new ThreeStringsTestVO(1, "a", "b", "c")
                 ),
                 new InternalValueObjectAspectTest(
                         new ThreeStringsTestVO(1, "a", "b", "c"),
                         new ThreeStringsTestVO(1, "a", "b", "c"),
-                        new ThreeStringsTestVO(1, "a", "2", "c"),
-                        null
+                        new ThreeStringsTestVO(1, "a", "2", "c")
                 ),
                 new InternalValueObjectAspectTest(
                         new ThreeStringsTestVO(1, "a", "b", "c"),
                         new ThreeStringsTestVO(1, "a", "b", "c"),
-                        new ThreeStringsTestVO(2, "a", "b", "c"),
-                        null
+                        new ThreeStringsTestVO(2, "a", "b", "c")
                 ),
                 new InternalValueObjectAspectTest(
                         new UnorderedAttributesTestVO(2423.9f, 22222222.99999, 999123472, (byte) 127),
                         new UnorderedAttributesTestVO(2423.9f, 22222222.99999, 999123472, (byte) 127),
-                        new UnorderedAttributesTestVO(2423.9f, 22222222.99998, 999123472, (byte) 127),
-                        null
+                        new UnorderedAttributesTestVO(2423.9f, 22222222.99998, 999123472, (byte) 127)
                 )
         );
     }
@@ -118,27 +103,25 @@ class ValueObjectAspectTest
     @MethodSource("data")
     void test(InternalValueObjectAspectTest testSetup)
     {
-        try
-        {
-            equality(testSetup.equalA, testSetup.equalB);
-            inEquality(testSetup.equalA, testSetup.equalB, testSetup.notEqual);
-            equalsWithNull(testSetup.equalA, testSetup.equalB, testSetup.notEqual);
-            testHash(testSetup.equalA, testSetup.equalB, testSetup.notEqual);
-            testContracts(testSetup.notEqual, testSetup.equalA);
-            testContracts(testSetup.notEqual, testSetup.equalB);
-            testContracts(testSetup.equalA, testSetup.equalB);
-        }
-        catch (Exception t)
-        {
-            if (testSetup.expected == null)
-            {
-                throw t;
-            }
-            if (testSetup.expected != t.getClass())
-            {
-                throw t;
-            }
-        }
+        equality(testSetup.equalA, testSetup.equalB);
+        inEquality(testSetup.equalA, testSetup.equalB, testSetup.notEqual);
+        equalsWithNull(testSetup.equalA, testSetup.equalB, testSetup.notEqual);
+        testHash(testSetup.equalA, testSetup.equalB, testSetup.notEqual);
+        testContracts(testSetup.notEqual, testSetup.equalA);
+        testContracts(testSetup.notEqual, testSetup.equalB);
+        testContracts(testSetup.equalA, testSetup.equalB);
+    }
+
+    @Test
+    void invalidValueObject()
+    {
+        //Arrange
+        var objectUnderTestA = new ArrayIntTestVO(new int[]{1, 2, 3});
+        var objectUnderTestB = new ArrayIntTestVO(new int[]{1, 2, 3});
+
+        //Act/Assert
+        assertThrows(IllegalArgumentException.class, () -> objectUnderTestA.equals(objectUnderTestB) );
+        assertEquals(objectUnderTestA.hashCode(), objectUnderTestB.hashCode());
     }
 
     

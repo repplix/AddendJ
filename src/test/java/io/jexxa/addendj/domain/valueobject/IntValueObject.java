@@ -1,4 +1,4 @@
-package io.jexxa.addendj.domain.valueobjects;
+package io.jexxa.addendj.domain.valueobject;
 
 
 import io.jexxa.addend.applicationcore.ValueObject;
@@ -8,13 +8,13 @@ import io.jexxa.addend.applicationcore.ValueObject;
  */
 @SuppressWarnings("unused")
 @ValueObject
-public class IntTestVO
+public class IntValueObject
 {
     @SuppressWarnings("FieldCanBeLocal")
-    private final int a;
+    private final int value;
 
-    public IntTestVO(final int a)
+    public IntValueObject(int value)
     {
-        this.a = a;
+        this.value = value;
     }
 }

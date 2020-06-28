@@ -1,11 +1,7 @@
-package io.jexxa.addendj.domain.valueobjects;
+package io.jexxa.addendj.domain.valueobject;
 
 
 import io.jexxa.addend.applicationcore.ValueObject;
-
-/**
- * Immutable Klasse, die von einer BasisKlasse erbt .
- */
 
 @ValueObject
 public class DerivedTestVO extends BaseTestVO
