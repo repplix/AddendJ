@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import java.util.Map;
 
-import io.jexxa.addendj.domain.valueobject.BaseTestVO;
-import io.jexxa.addendj.domain.valueobject.DerivedTestVO;
-import io.jexxa.addendj.domain.valueobject.ThreeStringsTestVO;
+import io.jexxa.addendj.domain.valueobject.BaseValueObject;
+import io.jexxa.addendj.domain.valueobject.DerivedValueObject;
+import io.jexxa.addendj.domain.valueobject.ThreeStringsValueObject;
 import io.jexxa.addendj.domain.valueobject.UnorderedAttributesTestVO;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +23,7 @@ class ClassAccessorTest
     @Test
     void testClassHierarchyWithInheritance()
     {
-        assertEquals(2, ClassAccessor.getClassHierarchy(new DerivedTestVO(1,2) ).size());
+        assertEquals(2, ClassAccessor.getClassHierarchy(new DerivedValueObject(1,2) ).size());
     }
 
 
@@ -33,8 +33,8 @@ class ClassAccessorTest
     @Test
     void testGetAllAttributes()
     {
-        assertEquals(2, ClassAccessor.getAllClassAttributes(new DerivedTestVO(1, 2)).get(BaseTestVO.class.getName() + ".value"));
-        assertEquals(1, ClassAccessor.getAllClassAttributes(new DerivedTestVO(1, 2)).get(DerivedTestVO.class.getName() + ".b"));
+        assertEquals(2, ClassAccessor.getAllClassAttributes(new DerivedValueObject(1, 2)).get(BaseValueObject.class.getName() + ".value"));
+        assertEquals(1, ClassAccessor.getAllClassAttributes(new DerivedValueObject(1, 2)).get(DerivedValueObject.class.getName() + ".b"));
     }
 
     /**
@@ -43,7 +43,7 @@ class ClassAccessorTest
     @Test
     void testGetAllAttributesSortedInheritance()
     {
-        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(new DerivedTestVO(1, 2));
+        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(new DerivedValueObject(1, 2));
         assertEquals("b", attributes.get(0).getKey());
         assertEquals(1, attributes.get(0).getValue());
 
@@ -77,7 +77,7 @@ class ClassAccessorTest
     @Test
     void testGetAllAttributesSortedUnorderedHierarchy()
     {
-        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(new ThreeStringsTestVO(1, "two", "three", "four"));
+        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(new ThreeStringsValueObject(1, "two", "three", "four"));
 
         assertEquals("b", attributes.get(0).getKey());
         assertEquals("two", attributes.get(0).getValue());

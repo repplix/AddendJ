@@ -9,14 +9,14 @@ import io.jexxa.addend.applicationcore.ValueObject;
 
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
 @ValueObject
-public class ThreeStringsTestVO extends BaseTestVO
+public class ThreeStringsValueObject extends BaseValueObject
 {
     @SuppressWarnings("FieldCanBeLocal")
     private final String b;
     private final String c;
     private final String d;
 
-    public ThreeStringsTestVO(final int a, final String b, final String c, final String d)
+    public ThreeStringsValueObject(final int a, final String b, final String c, final String d)
     {
         super(a);
         this.b = b;

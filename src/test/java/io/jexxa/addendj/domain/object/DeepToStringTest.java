@@ -6,13 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.stream.Stream;
 
 import io.jexxa.addendj.domain.valueobject.ArrayIntTestVO;
-import io.jexxa.addendj.domain.valueobject.BaseTestVO;
-import io.jexxa.addendj.domain.valueobject.DerivedSameAttributeNameTestVO;
-import io.jexxa.addendj.domain.valueobject.DerivedTestVO;
-import io.jexxa.addendj.domain.valueobject.FloatValueObject;
-import io.jexxa.addendj.domain.valueobject.IntValueObject;
+import io.jexxa.addendj.domain.valueobject.BaseValueObject;
+import io.jexxa.addendj.domain.valueobject.DerivedValueObjectWithSameFieldNames;
+import io.jexxa.addendj.domain.valueobject.DerivedValueObject;
 import io.jexxa.addendj.domain.valueobject.PrimitiveDataTypeValueObject;
-import io.jexxa.addendj.domain.valueobject.ThreeStringsTestVO;
+import io.jexxa.addendj.domain.valueobject.ThreeStringsValueObject;
 import io.jexxa.addendj.domain.valueobject.UnorderedAttributesTestVO;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -54,33 +52,18 @@ class DeepToStringTest
                         IllegalArgumentException.class
                 ),
                 new InternalDeepToStringTest(
-                        BaseTestVO.class.getSimpleName() + "{value=99}",
-                        new BaseTestVO(99),
+                        BaseValueObject.class.getSimpleName() + "{value=99}",
+                        new BaseValueObject(99),
                         IllegalArgumentException.class
                 ),
                 new InternalDeepToStringTest(
-                        DerivedSameAttributeNameTestVO.class.getSimpleName() + "{a=1414, value=9999}",
-                        new DerivedSameAttributeNameTestVO(1414, 9999),
+                        DerivedValueObjectWithSameFieldNames.class.getSimpleName() + "{value=1414, value=9999}",
+                        new DerivedValueObjectWithSameFieldNames(1414, 9999),
                         null
                 ),
                 new InternalDeepToStringTest(
-                        DerivedTestVO.class.getSimpleName() + "{b=142, value=734}",
-                        new DerivedTestVO(142, 734),
-                        null
-                ),
-                new InternalDeepToStringTest(
-                        FloatValueObject.class.getSimpleName() + "{value=6.022137E-23}",
-                        new FloatValueObject(6.022137e-23f),
-                        null
-                ),
-                new InternalDeepToStringTest(
-                        FloatValueObject.class.getSimpleName() + "{value=0.33333334}",
-                        new FloatValueObject(1.0f / 3f),
-                        null
-                ),
-                new InternalDeepToStringTest(
-                        IntValueObject.class.getSimpleName() + "{value=56134}",
-                        new IntValueObject(56134),
+                        DerivedValueObject.class.getSimpleName() + "{b=142, value=734}",
+                        new DerivedValueObject(142, 734),
                         null
                 ),
                 new InternalDeepToStringTest(
@@ -89,15 +72,16 @@ class DeepToStringTest
                                 "longValue=1238712387, " +
                                 "floatValue=2531.99, " +
                                 "doubleValue=1234.236, " +
-                                "booleanValue=true, charValue='H', " +
+                                "booleanValue=true, " +
+                                "charValue='H', " +
                                 "byteValue=127, " +
                                 "shortValue=200}",
                         new PrimitiveDataTypeValueObject(125, 1238712387, 2531.99f, 1234.236, true, 'H', (byte) 127, (short) 200),
                         null
                 ),
                 new InternalDeepToStringTest(
-                        ThreeStringsTestVO.class.getSimpleName() + "{b='asd', c='qwe', d='yxc', value=1}",
-                        new ThreeStringsTestVO(1, "asd", "qwe", "yxc"),
+                        ThreeStringsValueObject.class.getSimpleName() + "{b='asd', c='qwe', d='yxc', value=1}",
+                        new ThreeStringsValueObject(1, "asd", "qwe", "yxc"),
                         null
                 ),
                 new InternalDeepToStringTest(

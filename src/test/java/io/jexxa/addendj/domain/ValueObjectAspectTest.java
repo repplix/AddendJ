@@ -7,13 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.stream.Stream;
 
 import io.jexxa.addendj.domain.valueobject.ArrayIntTestVO;
-import io.jexxa.addendj.domain.valueobject.DerivedSameAttributeNameTestVO;
-import io.jexxa.addendj.domain.valueobject.DerivedTestVO;
-import io.jexxa.addendj.domain.valueobject.FloatValueObject;
-import io.jexxa.addendj.domain.valueobject.IntValueObject;
+import io.jexxa.addendj.domain.valueobject.DerivedValueObjectWithSameFieldNames;
+import io.jexxa.addendj.domain.valueobject.DerivedValueObject;
 import io.jexxa.addendj.domain.valueobject.PrimitiveDataTypeValueObject;
-import io.jexxa.addendj.domain.valueobject.ThreeStringsTestVO;
-import io.jexxa.addendj.domain.valueobject.UnorderedAttributesTestVO;
+import io.jexxa.addendj.domain.valueobject.ThreeStringsValueObject;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -47,24 +44,14 @@ class ValueObjectAspectTest
     {
         return Stream.of(
                 new InternalValueObjectAspectTest(
-                        new DerivedSameAttributeNameTestVO(1, 2),
-                        new DerivedSameAttributeNameTestVO(1, 2),
-                        new DerivedSameAttributeNameTestVO(2, 2)
+                        new DerivedValueObjectWithSameFieldNames(1, 2),
+                        new DerivedValueObjectWithSameFieldNames(1, 2),
+                        new DerivedValueObjectWithSameFieldNames(2, 2)
                 ),
                 new InternalValueObjectAspectTest(
-                        new DerivedTestVO(9999, 123123),
-                        new DerivedTestVO(9999, 123123),
-                        new DerivedTestVO(1111111111, 0)
-                ),
-                new InternalValueObjectAspectTest(
-                        new FloatValueObject(1243.283f),
-                        new FloatValueObject(1243.283f),
-                        new FloatValueObject(1243.284f)
-                ),
-                new InternalValueObjectAspectTest(
-                        new IntValueObject(1),
-                        new IntValueObject(1),
-                        new IntValueObject(2)
+                        new DerivedValueObject(9999, 123123),
+                        new DerivedValueObject(9999, 123123),
+                        new DerivedValueObject(1111111111, 0)
                 ),
                 new InternalValueObjectAspectTest(
                         new PrimitiveDataTypeValueObject(1, 2L, 12.0f, 13.0, true, 'd', (byte) 12, (short) 13),
@@ -73,24 +60,19 @@ class ValueObjectAspectTest
                 ),
 
                 new InternalValueObjectAspectTest(
-                        new ThreeStringsTestVO(1, null, null, null),
-                        new ThreeStringsTestVO(1, null, null, null),
-                        new ThreeStringsTestVO(1, "a", "b", "c")
+                        new ThreeStringsValueObject(1, null, null, null),
+                        new ThreeStringsValueObject(1, null, null, null),
+                        new ThreeStringsValueObject(1, "a", "b", "c")
                 ),
                 new InternalValueObjectAspectTest(
-                        new ThreeStringsTestVO(1, "a", "b", "c"),
-                        new ThreeStringsTestVO(1, "a", "b", "c"),
-                        new ThreeStringsTestVO(1, "a", "2", "c")
+                        new ThreeStringsValueObject(1, "a", "b", "c"),
+                        new ThreeStringsValueObject(1, "a", "b", "c"),
+                        new ThreeStringsValueObject(1, "a", "2", "c")
                 ),
                 new InternalValueObjectAspectTest(
-                        new ThreeStringsTestVO(1, "a", "b", "c"),
-                        new ThreeStringsTestVO(1, "a", "b", "c"),
-                        new ThreeStringsTestVO(2, "a", "b", "c")
-                ),
-                new InternalValueObjectAspectTest(
-                        new UnorderedAttributesTestVO(2423.9f, 22222222.99999, 999123472, (byte) 127),
-                        new UnorderedAttributesTestVO(2423.9f, 22222222.99999, 999123472, (byte) 127),
-                        new UnorderedAttributesTestVO(2423.9f, 22222222.99998, 999123472, (byte) 127)
+                        new ThreeStringsValueObject(1, "a", "b", "c"),
+                        new ThreeStringsValueObject(1, "a", "b", "c"),
+                        new ThreeStringsValueObject(2, "a", "b", "c")
                 )
         );
     }

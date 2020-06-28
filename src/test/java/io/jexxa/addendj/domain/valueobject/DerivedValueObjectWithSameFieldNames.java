@@ -9,14 +9,14 @@ import io.jexxa.addend.applicationcore.ValueObject;
  */
 @SuppressWarnings("unused")
 @ValueObject
-public class DerivedSameAttributeNameTestVO extends BaseTestVO
+public class DerivedValueObjectWithSameFieldNames extends BaseValueObject
 {
     @SuppressWarnings("FieldCanBeLocal")
-    private final int a;
+    private final int value;
 
-    public DerivedSameAttributeNameTestVO(final int a, final int b)
+    public DerivedValueObjectWithSameFieldNames(final int thisValue, final int baseValue)
     {
-        super(b);
-        this.a = a;
+        super(baseValue);
+        this.value = thisValue;
     }
 }

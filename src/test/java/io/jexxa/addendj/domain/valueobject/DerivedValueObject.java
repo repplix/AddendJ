@@ -3,15 +3,15 @@ package io.jexxa.addendj.domain.valueobject;
 
 import io.jexxa.addend.applicationcore.ValueObject;
 
-
 @ValueObject
-public class BaseTestVO
+public class DerivedValueObject extends BaseValueObject
 {
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
-    private final int value;
+    private final int b;
 
-    public BaseTestVO(int value)
+    public DerivedValueObject(final int b, final int a)
     {
-        this.value = value;
+        super(a);
+        this.b = b;
     }
 }
