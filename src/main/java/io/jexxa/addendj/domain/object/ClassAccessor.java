@@ -119,6 +119,6 @@ public final class ClassAccessor
 
     private ClassAccessor()
     {
-       //Private consturctor
+       //Private constructor
     }
 }
