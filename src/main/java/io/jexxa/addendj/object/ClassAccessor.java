@@ -1,4 +1,4 @@
-package io.jexxa.addendj.domain.object;
+package io.jexxa.addendj.object;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

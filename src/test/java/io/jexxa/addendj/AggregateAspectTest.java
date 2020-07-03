@@ -1,4 +1,4 @@
-package io.jexxa.addendj.domain;
+package io.jexxa.addendj;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import io.jexxa.addend.applicationcore.Aggregate;
 import io.jexxa.addend.applicationcore.AggregateFactory;
 import io.jexxa.addend.applicationcore.AggregateID;
-import io.jexxa.addendj.domain.domain.SimpleAggregate;
-import io.jexxa.addendj.domain.domain.SimpleValueObject;
+import io.jexxa.addendj.domain.SimpleAggregate;
+import io.jexxa.addendj.domain.SimpleValueObject;
 import org.junit.jupiter.api.Test;
 
 class AggregateAspectTest

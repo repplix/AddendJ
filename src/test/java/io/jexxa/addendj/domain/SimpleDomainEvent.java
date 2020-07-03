@@ -1,4 +1,4 @@
-package io.jexxa.addendj.domain.domain;
+package io.jexxa.addendj.domain;
 
 import io.jexxa.addend.applicationcore.DomainEvent;
 

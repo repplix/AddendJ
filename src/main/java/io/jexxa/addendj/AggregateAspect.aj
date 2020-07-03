@@ -1,11 +1,11 @@
-package io.jexxa.addendj.domain;
+package io.jexxa.addendj;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import io.jexxa.addend.applicationcore.AggregateID;
-import io.jexxa.addendj.domain.object.ClassAccessor;
-import io.jexxa.addendj.domain.object.DeepEqualsAndHashCode;
+import io.jexxa.addendj.object.ClassAccessor;
+import io.jexxa.addendj.object.DeepEqualsAndHashCode;
 
 //Do NOT remove import! Some IDEs (such as Intellij detect as unrequired import which is wrong.
 import io.jexxa.addend.applicationcore.Aggregate;

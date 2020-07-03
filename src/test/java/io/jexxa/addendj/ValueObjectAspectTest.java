@@ -1,4 +1,4 @@
-package io.jexxa.addendj.domain;
+package io.jexxa.addendj;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.stream.Stream;
 
-import io.jexxa.addendj.domain.valueobject.ArrayIntTestVO;
-import io.jexxa.addendj.domain.valueobject.DerivedValueObjectWithSameFieldNames;
-import io.jexxa.addendj.domain.valueobject.DerivedValueObject;
-import io.jexxa.addendj.domain.valueobject.PrimitiveDataTypeValueObject;
-import io.jexxa.addendj.domain.valueobject.ThreeStringsValueObject;
+import io.jexxa.addendj.valueobject.ArrayIntTestVO;
+import io.jexxa.addendj.valueobject.DerivedValueObjectWithSameFieldNames;
+import io.jexxa.addendj.valueobject.DerivedValueObject;
+import io.jexxa.addendj.valueobject.PrimitiveDataTypeValueObject;
+import io.jexxa.addendj.valueobject.ThreeStringsValueObject;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;

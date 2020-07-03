@@ -1,4 +1,4 @@
-package io.jexxa.addendj.domain.object;
+package io.jexxa.addendj.object;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import java.util.Map;
 
-import io.jexxa.addendj.domain.valueobject.BaseValueObject;
-import io.jexxa.addendj.domain.valueobject.DerivedValueObject;
-import io.jexxa.addendj.domain.valueobject.PrimitiveDataTypeValueObject;
-import io.jexxa.addendj.domain.valueobject.ThreeStringsValueObject;
+import io.jexxa.addendj.valueobject.BaseValueObject;
+import io.jexxa.addendj.valueobject.DerivedValueObject;
+import io.jexxa.addendj.valueobject.PrimitiveDataTypeValueObject;
+import io.jexxa.addendj.valueobject.ThreeStringsValueObject;
 import org.junit.jupiter.api.Test;
 
 

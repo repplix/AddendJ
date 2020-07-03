@@ -1,4 +1,4 @@
-package io.jexxa.addendj.domain.object;
+package io.jexxa.addendj.object;
 
 import java.util.Arrays;
 import java.util.Map;
