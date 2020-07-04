@@ -21,9 +21,11 @@ class AggregateAspectTest
     {
         SimpleAggregate simpleAggregate1 = SimpleAggregate.create(new SimpleValueObject(DEFAULT_VALUE_ID));
         SimpleAggregate simpleAggregate2 = SimpleAggregate.create(new SimpleValueObject(DEFAULT_VALUE_ID));
-        
+
+
         assertEquals(simpleAggregate1.hashCode(), simpleAggregate2.hashCode());
         assertEquals(simpleAggregate1, simpleAggregate2);
+        assertEquals(simpleAggregate1, simpleAggregate1);
     }
 
     @Test
@@ -35,6 +37,7 @@ class AggregateAspectTest
 
         assertNotEquals(simpleAggregate1.hashCode(), simpleAggregate2.hashCode());
         assertNotEquals(simpleAggregate1, simpleAggregate2);
+        assertNotEquals(simpleAggregate1, null);
     }
 
     @Test
