@@ -10,7 +10,6 @@ import io.jexxa.addendj.applicationcore.testclasses.valueobject.BaseValueObject;
 import io.jexxa.addendj.applicationcore.testclasses.valueobject.DerivedValueObjectWithSameFieldNames;
 import io.jexxa.addendj.applicationcore.testclasses.valueobject.DerivedValueObject;
 import io.jexxa.addendj.applicationcore.testclasses.valueobject.PrimitiveDataTypeValueObject;
-import io.jexxa.addendj.applicationcore.testclasses.valueobject.ThreeStringsValueObject;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -76,11 +75,6 @@ class DeepToStringTest
                                 "byteValue=127, " +
                                 "shortValue=200}",
                         new PrimitiveDataTypeValueObject(125, 1238712387, 2531.99f, 1234.236, true, 'H', (byte) 127, (short) 200),
-                        null
-                ),
-                new InternalDeepToStringTest(
-                        ThreeStringsValueObject.class.getSimpleName() + "{b='asd', c='qwe', d='yxc', value=1}",
-                        new ThreeStringsValueObject(1, "asd", "qwe", "yxc"),
                         null
                 )
         );

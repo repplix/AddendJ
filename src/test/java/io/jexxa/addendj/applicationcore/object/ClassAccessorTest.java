@@ -9,7 +9,6 @@ import java.util.Map;
 import io.jexxa.addendj.applicationcore.testclasses.valueobject.BaseValueObject;
 import io.jexxa.addendj.applicationcore.testclasses.valueobject.DerivedValueObject;
 import io.jexxa.addendj.applicationcore.testclasses.valueobject.PrimitiveDataTypeValueObject;
-import io.jexxa.addendj.applicationcore.testclasses.valueobject.ThreeStringsValueObject;
 import org.junit.jupiter.api.Test;
 
 
@@ -78,28 +77,6 @@ class ClassAccessorTest
         assertEquals("shortValue", attributes.get(7).getKey());
         assertEquals((short) 13, attributes.get(7).getValue());
     }
-
-    /**
-     * Attribute mit vererbungshierarchie, die unsortiert deklariert wurden sollten richtig sortiert zurückgegeben werden.
-     */
-    @Test
-    void testGetAllAttributesSortedUnorderedHierarchy()
-    {
-        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(new ThreeStringsValueObject(1, "two", "three", "four"));
-
-        assertEquals("b", attributes.get(0).getKey());
-        assertEquals("two", attributes.get(0).getValue());
-
-        assertEquals("c", attributes.get(1).getKey());
-        assertEquals("three", attributes.get(1).getValue());
-
-        assertEquals("d", attributes.get(2).getKey());
-        assertEquals("four", attributes.get(2).getValue());
-
-        assertEquals("value", attributes.get(3).getKey());
-        assertEquals(1, attributes.get(3).getValue());
-    }
-
 
 }
 

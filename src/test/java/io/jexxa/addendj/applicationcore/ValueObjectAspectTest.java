@@ -11,7 +11,6 @@ import io.jexxa.addendj.applicationcore.testclasses.valueobject.DerivedValueObje
 import io.jexxa.addendj.applicationcore.testclasses.valueobject.DerivedValueObjectWithSameFieldNames;
 import io.jexxa.addendj.applicationcore.testclasses.valueobject.GenericValueObject;
 import io.jexxa.addendj.applicationcore.testclasses.valueobject.PrimitiveDataTypeValueObject;
-import io.jexxa.addendj.applicationcore.testclasses.valueobject.ThreeStringsValueObject;
 import io.jexxa.addendj.applicationcore.testclasses.valueobject.UnsupportedValueObjectWithArray;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,58 +21,58 @@ import org.junit.jupiter.params.provider.MethodSource;
 class ValueObjectAspectTest
 {
 
-    static class InternalValueObjectAspectTest
+    @ParameterizedTest
+    @MethodSource("equalityData")
+    void equalityTest(Object objectX, Object objectY, Object objectZ)
     {
-        final Object equalA;
-        final Object equalB;
-        final Object notEqual;
+        assertNotNull(objectX);
+        assertNotNull(objectY);
+        assertNotNull(objectZ);
 
-        InternalValueObjectAspectTest(final Object equalA, final Object equalB, final Object notEqual)
+        assertEquals(objectX, objectX);                                       // reflexive: an object must equal itself
+        assertEquals(objectX.equals(objectY), objectY.equals(objectX));       // symmetric: x.equals(y) must return the same result as y.equals(x)
+        if (objectX.equals(objectY) && objectY.equals(objectZ))
         {
-            this.equalA = equalA;
-            this.equalB = equalB;
-            this.notEqual = notEqual;
+            assertEquals(objectX, objectZ);                                     // transitive: if x.equals(y) and y.equals(z) then also x.equals(z)
         }
+        else
+        {
+            throw new IllegalStateException("If statement must be evaluate to true");
+        }
+
+        assertEquals(objectX.hashCode(), objectY.hashCode());
+        assertEquals(objectX.hashCode(), objectZ.hashCode());
     }
 
 
-    /**
-     * Datenquelle für parameterisierte tests. Arrays bestehen aus: zwei gleichen Objekten, einem ungleichen Objekt und ggf.
-     * der Exception, die erwartet ist. In dieser reihenfolge
-     *
-     * @return Eine Liste von Datensätzen, die getestet werden.
-     */
-    static Stream<InternalValueObjectAspectTest> data()
+    @ParameterizedTest
+    @MethodSource("inequalityData")
+    void inequalityTest(Object objectX, Object objectY)
     {
-        return Stream.of(
-                new InternalValueObjectAspectTest(
-                        new DerivedValueObjectWithSameFieldNames(1, 2),
-                        new DerivedValueObjectWithSameFieldNames(1, 2),
-                        new DerivedValueObjectWithSameFieldNames(2, 2)
-                ),
-                new InternalValueObjectAspectTest(
-                        new DerivedValueObject(9999, 123123),
-                        new DerivedValueObject(9999, 123123),
-                        new DerivedValueObject(1111111111, 0)
-                ),
+        assertNotNull(objectX);
+        assertNotNull(objectY);
 
-                new InternalValueObjectAspectTest(
-                        new ThreeStringsValueObject(1, null, null, null),
-                        new ThreeStringsValueObject(1, null, null, null),
-                        new ThreeStringsValueObject(1, "a", "b", "c")
-                ),
-                new InternalValueObjectAspectTest(
-                        new ThreeStringsValueObject(1, "a", "b", "c"),
-                        new ThreeStringsValueObject(1, "a", "b", "c"),
-                        new ThreeStringsValueObject(1, "a", "2", "c")
-                ),
-                new InternalValueObjectAspectTest(
-                        new ThreeStringsValueObject(1, "a", "b", "c"),
-                        new ThreeStringsValueObject(1, "a", "b", "c"),
-                        new ThreeStringsValueObject(2, "a", "b", "c")
-                )
-        );
+        assertNotEquals(objectX.hashCode(), objectY.hashCode());
+
+        assertNotEquals(objectX, objectY);
+
+        assertEquals(objectX.equals(objectY), objectY.equals(objectX));       // symmetric: x.equals(y) must return the same result as y.equals(x)
     }
+
+
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    @Test
+    void invalidValueObject()
+    {
+        //Arrange
+        var objectUnderTestA = new UnsupportedValueObjectWithArray(new int[]{1, 2, 3});
+        var objectUnderTestB = new UnsupportedValueObjectWithArray(new int[]{1, 2, 3});
+
+        //Act/Assert
+        assertThrows(IllegalArgumentException.class, () -> objectUnderTestA.equals(objectUnderTestB));
+        assertEquals(objectUnderTestA.hashCode(), objectUnderTestB.hashCode());
+    }
+
 
     static Stream<Arguments> equalityData()
     {
@@ -88,166 +87,76 @@ class ValueObjectAspectTest
                         PrimitiveDataTypeValueObject.newInstanceWithMinValues(),
                         PrimitiveDataTypeValueObject.newInstanceWithMinValues()
                 ),
-                
-                Arguments.of( // Test data with inheritance and same field naem 
+
+                Arguments.of( // Test data with inheritance and same field naem
                         new DerivedValueObjectWithSameFieldNames(Integer.MIN_VALUE, Integer.MAX_VALUE),
                         new DerivedValueObjectWithSameFieldNames(Integer.MIN_VALUE, Integer.MAX_VALUE),
                         new DerivedValueObjectWithSameFieldNames(Integer.MIN_VALUE, Integer.MAX_VALUE)
                 ),
-                
+
                 Arguments.of( // Test data with inheritance
                         new DerivedValueObject(Integer.MIN_VALUE, Integer.MAX_VALUE),
                         new DerivedValueObject(Integer.MIN_VALUE, Integer.MAX_VALUE),
                         new DerivedValueObject(Integer.MIN_VALUE, Integer.MAX_VALUE)
                 ),
-                
-                Arguments.of( // Test data with more complex data 
-                        new GenericValueObject<>( PrimitiveDataTypeValueObject.newInstanceWithMaxValues() ),
-                        new GenericValueObject<>( PrimitiveDataTypeValueObject.newInstanceWithMaxValues() ),
-                        new GenericValueObject<>( PrimitiveDataTypeValueObject.newInstanceWithMaxValues() )
+
+                Arguments.of( // Test data with more complex data
+                        new GenericValueObject<>(PrimitiveDataTypeValueObject.newInstanceWithMaxValues()),
+                        new GenericValueObject<>(PrimitiveDataTypeValueObject.newInstanceWithMaxValues()),
+                        new GenericValueObject<>(PrimitiveDataTypeValueObject.newInstanceWithMaxValues())
                 ),
 
                 Arguments.of( // Test data with string
-                        new GenericValueObject<>( GenericValueObject.class.getName() ),
-                        new GenericValueObject<>( GenericValueObject.class.getName() ),
-                        new GenericValueObject<>( GenericValueObject.class.getName() )
-                )
+                        new GenericValueObject<>(GenericValueObject.class.getName()),
+                        new GenericValueObject<>(GenericValueObject.class.getName()),
+                        new GenericValueObject<>(GenericValueObject.class.getName())
+                ),
 
+                Arguments.of( // Test with NULL
+                        new GenericValueObject<String>(null),
+                        new GenericValueObject<String>(null),
+                        new GenericValueObject<String>(null)
+                )
 
         );
     }
 
 
-    /**
-     * Checks conditions for equality
-     */
-    @ParameterizedTest
-    @MethodSource("equalityData")
-    void equalityTest(Object objectX, Object objectY, Object objectZ)
+    static Stream<Arguments> inequalityData()
     {
-        assertNotNull(objectX);
-        assertNotNull(objectY);
-        assertNotNull(objectZ);
+        return Stream.of(
+                Arguments.of( // Test data with all primitive types (Difference: 1x max values, 1x min values)
+                        PrimitiveDataTypeValueObject.newInstanceWithMaxValues(),
+                        PrimitiveDataTypeValueObject.newInstanceWithMinValues()
+                ),
 
-        assertEquals( objectX, objectX );                                       // reflexive: an object must equal itself
-        assertEquals( objectX.equals(objectY), objectY.equals(objectX) );       // symmetric: x.equals(y) must return the same result as y.equals(x)
-        if( objectX.equals(objectY) && objectY.equals(objectZ)){
-            assertEquals(objectX, objectZ);                                     // transitive: if x.equals(y) and y.equals(z) then also x.equals(z)
-        }
-        else
-        {
-            throw new IllegalStateException("If statement must be evaluate to true");
-        }
-        
-        assertEquals(objectX, objectY);
-        assertEquals(objectX.hashCode(), objectY.hashCode());
-        assertEquals(objectX.hashCode(), objectZ.hashCode());
+                Arguments.of( // Test data with inheritance and same field name (Difference: Switched Min-Max values)
+                        new DerivedValueObjectWithSameFieldNames(Integer.MIN_VALUE, Integer.MAX_VALUE),
+                        new DerivedValueObjectWithSameFieldNames(Integer.MAX_VALUE, Integer.MIN_VALUE)
+                ),
+
+                Arguments.of( // Test data with inheritance   (Difference: Switched Min-Max values)
+                        new DerivedValueObject(Integer.MIN_VALUE, Integer.MAX_VALUE),
+                        new DerivedValueObject(Integer.MAX_VALUE, Integer.MIN_VALUE)
+                ),
+
+                Arguments.of( // Test data with more complex data (Difference: 1x max values, 1x min values)
+                        new GenericValueObject<>(PrimitiveDataTypeValueObject.newInstanceWithMaxValues()),
+                        new GenericValueObject<>(PrimitiveDataTypeValueObject.newInstanceWithMinValues())
+                ),
+
+                Arguments.of( // Test data with different strings
+                        new GenericValueObject<>(GenericValueObject.class.getName()),
+                        new GenericValueObject<>(GenericValueObject.class.getSimpleName())
+                ),
+
+                Arguments.of( // Test with NULL
+                        new GenericValueObject<>(GenericValueObject.class.getName()),
+                        new GenericValueObject<String>(null)
+                )
+
+        );
     }
 
-
-    /**
-     * Startet die tests
-     */
-    @ParameterizedTest
-    @MethodSource("data")
-    void test(InternalValueObjectAspectTest testSetup)
-    {
-        equality(testSetup.equalA, testSetup.equalB);
-        inEquality(testSetup.equalA, testSetup.equalB, testSetup.notEqual);
-        equalsWithNull(testSetup.equalA, testSetup.equalB, testSetup.notEqual);
-        testHash(testSetup.equalA, testSetup.equalB, testSetup.notEqual);
-        testContracts(testSetup.notEqual, testSetup.equalA);
-        testContracts(testSetup.notEqual, testSetup.equalB);
-        testContracts(testSetup.equalA, testSetup.equalB);
-    }
-
-    @Test
-    void invalidValueObject()
-    {
-        //Arrange
-        var objectUnderTestA = new UnsupportedValueObjectWithArray(new int[]{1, 2, 3});
-        var objectUnderTestB = new UnsupportedValueObjectWithArray(new int[]{1, 2, 3});
-
-        //Act/Assert
-        assertThrows(IllegalArgumentException.class, () -> objectUnderTestA.equals(objectUnderTestB) );
-        assertEquals(objectUnderTestA.hashCode(), objectUnderTestB.hashCode());
-    }
-
-    
-    /**
-     * Testet ob beide übergebenen Objekte gleich sind. Testet auch ob die relation reflexiv ist.
-     *
-     * @param equalA Ein Objekt
-     * @param equalB Ein anderes Objekt
-     */
-    private void equality(final Object equalA, final Object equalB)
-    {
-        assertEquals(equalA, equalB);
-        assertEquals(equalB, equalA);
-    }
-
-    /**
-     * Testet ob equalA und equalB jeweils nicht gleich zu notEqual sind. Testet auch ob die Relation reflexiv ist.
-     *
-     * @param equalA   Ein Objekt, das equalB gleich ist.
-     * @param equalB   Ein Objekt, das equalA gleich ist.
-     * @param notEqual Ein Objekt, das equalA und equalB nicht gleich ist.
-     */
-    private void inEquality(final Object equalA, final Object equalB, final Object notEqual)
-    {
-        assertNotEquals(equalA, notEqual);
-        assertNotEquals(notEqual, equalA);
-
-        assertNotEquals(equalB, notEqual);
-        assertNotEquals(notEqual, equalB);
-    }
-
-    /**
-     * Testet ob alle Objekte jeweils ungleich null sind.
-     *
-     * @param equalA   Ein Objekt, das equalB gleich ist.
-     * @param equalB   Ein Objekt, das equalA gleich ist.
-     * @param notEqual Ein Objekt, das equalA und equalB nicht gleich ist.
-     */
-    private void equalsWithNull(final Object equalA, final Object equalB, final Object notEqual)
-    {
-        assertNotEquals(equalA, null);
-        assertNotEquals(equalB, null);
-        assertNotEquals(notEqual, null);
-    }
-
-    /**
-     * Testet ob der hashCode von zwei gleichen Objekten gleich ist. Testet auch, dass der hashCode von unterschiedlichen Objekten auch unterschiedlich ist.
-     *
-     * @param equalA   Ein Objekt, das equalB gleich ist.
-     * @param equalB   Ein Objekt, das equalA gleich ist.
-     * @param notEqual Ein Objekt, das equalA und equalB nicht gleich ist.
-     */
-    private void testHash(final Object equalA, final Object equalB, final Object notEqual)
-    {
-        assertEquals(equalA.hashCode(), equalB.hashCode());
-        assertNotEquals(equalA.hashCode(), notEqual.hashCode());
-        assertNotEquals(equalB.hashCode(), notEqual.hashCode());
-    }
-
-
-    /**
-     * Testet die Contracts zwischen hashcode und equals.
-     * Wenn beide Objekte gleich sind, muss der selbe hashCode erzeugt werden.
-     * Sind beide Objekte unterschiedlich, so sollte ein unterschiedlicher hashCode generiert werden.
-     *
-     * @param a Irgendein Objekt
-     * @param b Ein anderes Objekt, des selben Typen.
-     */
-    private void testContracts(final Object a, final Object b)
-    {
-        if (a.equals(b))
-        {
-            assertEquals(a.hashCode(), b.hashCode());
-        }
-        if (a.hashCode() != b.hashCode())
-        {
-            assertNotEquals(a, b);
-        }
-    }
 }
+
