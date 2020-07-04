@@ -33,6 +33,7 @@ public final class ClassAccessor
      *
      * The name of the attribute is returned as key. The attribute itself is returned as value.     
      *
+     * @param object whose attributes should be extracted 
      * @return a key/value list with all class attributes of given object.
      */
     public static List<Map.Entry<String, Object>> getAttributeList(Object object)
@@ -46,9 +47,10 @@ public final class ClassAccessor
     }
 
     /**
-     * Returns a map including the name of all attributes as {@code <full class name>.<attribute name> ->
+     * Returns a map including the name of all attributes as {@code <full class name>.<attribute name>} 
      * and the attribute itself.
      *
+     * @param object whose attributes should be extracted 
      * @return  a map including name of all attributes and the attribute itself 
      */
     public static Map<String, Object> getAllClassAttributes(Object object)
