@@ -1,8 +1,10 @@
 package io.jexxa.addendj.applicationcore;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import io.jexxa.addend.applicationcore.Aggregate;
 import io.jexxa.addend.applicationcore.AggregateFactory;
@@ -24,8 +26,8 @@ class AggregateAspectTest
 
 
         assertEquals(simpleAggregate1.hashCode(), simpleAggregate2.hashCode());
-        assertEquals(simpleAggregate1, simpleAggregate2);
-        assertEquals(simpleAggregate1, simpleAggregate1);
+        assertTrue(simpleAggregate1.equals(simpleAggregate2));
+        assertTrue(simpleAggregate1.equals(simpleAggregate1));
     }
 
     @Test
@@ -36,8 +38,8 @@ class AggregateAspectTest
         SimpleAggregate simpleAggregate2 = SimpleAggregate.create(new SimpleValueObject(DEFAULT_VALUE_ID * DEFAULT_VALUE_ID));
 
         assertNotEquals(simpleAggregate1.hashCode(), simpleAggregate2.hashCode());
-        assertNotEquals(simpleAggregate1, simpleAggregate2);
-        assertNotEquals(simpleAggregate1, null);
+        assertFalse(simpleAggregate1.equals(simpleAggregate2));
+        assertFalse(simpleAggregate1.equals(null));
     }
 
     @Test
