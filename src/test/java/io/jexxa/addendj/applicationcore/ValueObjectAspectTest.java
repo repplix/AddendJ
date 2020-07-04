@@ -148,6 +148,11 @@ class ValueObjectAspectTest
                         new GenericValueObject<>(PrimitiveDataTypeValueObject.newInstanceWithMinValues())
                 ),
 
+                Arguments.of( // Test data with different type
+                        new DerivedValueObject(Integer.MIN_VALUE, Integer.MAX_VALUE),
+                        new DerivedValueObjectWithSameFieldNames(Integer.MAX_VALUE, Integer.MIN_VALUE)
+                ),
+
                 Arguments.of( // Test data with different strings
                         new GenericValueObject<>(GenericValueObject.class.getName()),
                         new GenericValueObject<>(GenericValueObject.class.getSimpleName())

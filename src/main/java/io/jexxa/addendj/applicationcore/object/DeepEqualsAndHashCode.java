@@ -67,23 +67,23 @@ public final class DeepEqualsAndHashCode
             return false;
         }
 
-        return isDeepEquals(object1, object2);
+        return allFieldsEqual(object1, object2);
     }
 
-    private static boolean isDeepEquals(final Object object1, final Object object2)
+    private static boolean allFieldsEqual(final Object object1, final Object object2)
     {
-        Map<String, Object> attributesObject1 = ClassAccessor.getAllClassAttributes(object1);
-        Map<String, Object> attributesObject2 = ClassAccessor.getAllClassAttributes(object2);
+        Map<String, Object> fieldsObject1 = ClassAccessor.getAllClassAttributes(object1);
+        Map<String, Object> fieldsObject2 = ClassAccessor.getAllClassAttributes(object2);
 
-        if ( attributesObject1.size() != attributesObject2.size() )
+        if ( fieldsObject1.size() != fieldsObject2.size() )
         {
             return false;
         }
 
-        return attributesObject1
+        return fieldsObject1
                 .entrySet()
                 .stream()
-                .allMatch(e -> isEquals(e.getValue(), attributesObject2.get(e.getKey())));
+                .allMatch(e -> isEquals(e.getValue(), fieldsObject2.get(e.getKey())));
     }
 
     private static boolean isEquals(final Object object1, final Object object2)
