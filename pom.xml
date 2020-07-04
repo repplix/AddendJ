@@ -296,17 +296,19 @@
 
   <distributionManagement>
     <snapshotRepository>
-      <id>github</id>
-      <name>GitHub snapshot</name>
-      <url>https://maven.pkg.github.com/repplix/AddendJ</url>
+      <id>oss.sonatype.org</id>
+      <name>Addend snapshot</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
       <uniqueVersion>true</uniqueVersion>
     </snapshotRepository>
     <repository>
-      <id>github</id>
-      <name>GitHub OWNER Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/repplix/AddendJ</url>
+      <id>oss.sonatype.org</id>
+      <name>Addend Maven Packages</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+      <uniqueVersion>true</uniqueVersion>
     </repository>
   </distributionManagement>
+
   <reporting>
     <plugins>
       <plugin>
