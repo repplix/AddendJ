@@ -19,7 +19,7 @@ In order to use these features you have to annotate your classes with correspond
 
 ### Start programming 
 
-AddendJ provides valid implementation of methods equals(), hashCode() and toString() as soon as annotation @ValueObject is added. As you can see in the following example, the code focuses on the domain aspects and does not require any technical extensions for correct comparison or output opreation. 
+AddendJ provides valid implementation of methods equals(), hashCode() and toString() as soon as annotation @ValueObject is added. As you can see in the following example, the code focuses on the domain aspects and does not require any technical extensions for correct comparison or output operation. 
 
 
 ```Java
@@ -55,7 +55,7 @@ public class Customer
     <dependency>
       <groupId>io.jexxa.addendj</groupId>
       <artifactId>AddendJ</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.0</version>
     </dependency>
     
     <dependency>
@@ -76,7 +76,7 @@ public class Customer
 #### Gradle
 
 ```gradle
-compile "io.jexxa.addendj:AddendJ:1.0.0-SNAPSHOT"
+compile "io.jexxa.addendj:AddendJ:1.0.0"
 compile "org.aspectj:aspectjtools:1.9.5"
 compile "org.aspectj.aspectjrt:1.9.5"
 ```          
