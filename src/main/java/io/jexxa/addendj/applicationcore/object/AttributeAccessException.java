@@ -1,4 +1,4 @@
-package io.jexxa.addendj.object;
+package io.jexxa.addendj.applicationcore.object;
 
 /**
  * Runtime exception which is used if we cannot access attributes of an object using reflection

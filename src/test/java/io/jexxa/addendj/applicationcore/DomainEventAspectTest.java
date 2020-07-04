@@ -1,4 +1,4 @@
-package io.jexxa.addendj;
+package io.jexxa.addendj.applicationcore;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,4 +1,4 @@
-package io.jexxa.addendj.object;
+package io.jexxa.addendj.applicationcore.object;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,14 +27,11 @@ class ClassAccessorTest
     }
 
 
-    /**
-     * Testet ob alle Attribute korrekt wiedergegeben werden, auch geerbte attribute.
-     */
     @Test
-    void testGetAllAttributes()
+    void testGetAllAttributesFromInheritedClass()
     {
         assertEquals(2, ClassAccessor.getAllClassAttributes(new DerivedValueObject(1, 2)).get(BaseValueObject.class.getName() + ".value"));
-        assertEquals(1, ClassAccessor.getAllClassAttributes(new DerivedValueObject(1, 2)).get(DerivedValueObject.class.getName() + ".b"));
+        assertEquals(1, ClassAccessor.getAllClassAttributes(new DerivedValueObject(1, 2)).get(DerivedValueObject.class.getName() + ".derivedValue"));
     }
 
     /**
@@ -44,7 +41,7 @@ class ClassAccessorTest
     void testGetAllAttributesSortedInheritance()
     {
         List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(new DerivedValueObject(1, 2));
-        assertEquals("b", attributes.get(0).getKey());
+        assertEquals("derivedValue", attributes.get(0).getKey());
         assertEquals(1, attributes.get(0).getValue());
 
         assertEquals("value", attributes.get(1).getKey());

@@ -1,11 +1,11 @@
-package io.jexxa.addendj.object;
+package io.jexxa.addendj.applicationcore.object;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.stream.Stream;
 
-import io.jexxa.addendj.valueobject.ArrayIntTestVO;
+import io.jexxa.addendj.valueobject.UnsupportedValueObjectWithArray;
 import io.jexxa.addendj.valueobject.BaseValueObject;
 import io.jexxa.addendj.valueobject.DerivedValueObjectWithSameFieldNames;
 import io.jexxa.addendj.valueobject.DerivedValueObject;
@@ -41,13 +41,13 @@ class DeepToStringTest
     {
         return Stream.of(
                 new InternalDeepToStringTest(
-                        ArrayIntTestVO.class.getSimpleName() + "{value=null}",
-                        new ArrayIntTestVO(null),
+                        UnsupportedValueObjectWithArray.class.getSimpleName() + "{value=null}",
+                        new UnsupportedValueObjectWithArray(null),
                         null
                 ),
                 new InternalDeepToStringTest(
-                        ArrayIntTestVO.class.getSimpleName() + "{value=[1, 2, 3, 4, 5]}",
-                        new ArrayIntTestVO(new int[]{1, 2, 3, 4, 5}),
+                        UnsupportedValueObjectWithArray.class.getSimpleName() + "{value=[1, 2, 3, 4, 5]}",
+                        new UnsupportedValueObjectWithArray(new int[]{1, 2, 3, 4, 5}),
                         IllegalArgumentException.class
                 ),
                 new InternalDeepToStringTest(
@@ -61,7 +61,7 @@ class DeepToStringTest
                         null
                 ),
                 new InternalDeepToStringTest(
-                        DerivedValueObject.class.getSimpleName() + "{b=142, value=734}",
+                        DerivedValueObject.class.getSimpleName() + "{derivedValue=142, value=734}",
                         new DerivedValueObject(142, 734),
                         null
                 ),

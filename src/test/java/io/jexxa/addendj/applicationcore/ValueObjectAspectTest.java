@@ -1,4 +1,4 @@
-package io.jexxa.addendj;
+package io.jexxa.addendj.applicationcore;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.stream.Stream;
 
-import io.jexxa.addendj.valueobject.ArrayIntTestVO;
+import io.jexxa.addendj.valueobject.UnsupportedValueObjectWithArray;
 import io.jexxa.addendj.valueobject.DerivedValueObjectWithSameFieldNames;
 import io.jexxa.addendj.valueobject.DerivedValueObject;
 import io.jexxa.addendj.valueobject.PrimitiveDataTypeValueObject;
@@ -98,8 +98,8 @@ class ValueObjectAspectTest
     void invalidValueObject()
     {
         //Arrange
-        var objectUnderTestA = new ArrayIntTestVO(new int[]{1, 2, 3});
-        var objectUnderTestB = new ArrayIntTestVO(new int[]{1, 2, 3});
+        var objectUnderTestA = new UnsupportedValueObjectWithArray(new int[]{1, 2, 3});
+        var objectUnderTestB = new UnsupportedValueObjectWithArray(new int[]{1, 2, 3});
 
         //Act/Assert
         assertThrows(IllegalArgumentException.class, () -> objectUnderTestA.equals(objectUnderTestB) );

@@ -1,4 +1,4 @@
-package io.jexxa.addendj.object;
+package io.jexxa.addendj.applicationcore.object;
 
 import java.util.List;
 import java.util.Map;

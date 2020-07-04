@@ -1,8 +1,8 @@
-package io.jexxa.addendj;
+package io.jexxa.addendj.applicationcore;
 
 
-import io.jexxa.addendj.object.DeepEqualsAndHashCode;
-import io.jexxa.addendj.object.DeepToString;
+import io.jexxa.addendj.applicationcore.object.DeepEqualsAndHashCode;
+import io.jexxa.addendj.applicationcore.object.DeepToString;
 //Do NOT remove import! Some IDEs (such as Intellij detect as unrequired import which is wrong here.
 import io.jexxa.addend.applicationcore.ValueObject;
 

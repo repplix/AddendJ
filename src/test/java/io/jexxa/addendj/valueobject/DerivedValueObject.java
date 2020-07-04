@@ -7,11 +7,11 @@ import io.jexxa.addend.applicationcore.ValueObject;
 public class DerivedValueObject extends BaseValueObject
 {
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
-    private final int b;
+    private final int derivedValue;
 
-    public DerivedValueObject(final int b, final int a)
+    public DerivedValueObject(final int derivedValue, final int baseValue)
     {
-        super(a);
-        this.b = b;
+        super(baseValue);
+        this.derivedValue = derivedValue;
     }
 }
