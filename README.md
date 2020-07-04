@@ -1,10 +1,54 @@
 # AddendJ - Crosscutting Concerns for Domain Driven Design 
 
-![Java CI](https://github.com/repplix/AddendJ/workflows/Java%20CI/badge.svg)
+![Java CI](https://github.com/repplix/AddendJ/workflows/Java%20CI/badge.svg) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=io.jexxa.addendj%3AAddendJ&metric=alert_status)](https://sonarcloud.io/dashboard?id=io.jexxa.addendj%3AAddendJ)
 
+#About
+AddendJ supports the implementation of Domain Driven Design by integrating crosscutting concerns into the application core with AspectJ. 
+
+AddendJ provides a valid implementation of following methods.
+* equals()
+* hashCode()
+* toString()
+
+These methods are provided to following pattern elements of your code
+* Aggregate
+* ValueObject
+* DomainEvent   
+
+In order to use these features you have to annotate your classes with corresponding annotation of project [Addend](https://github.com/repplix/Addend).                
 
 ## Supported Java environments
-*   Java 8 (or higher)
+*   Java 10 (or higher)
+
+# Quickstart
+
+## Start programming 
+
+AddendJ provides valid implementation of methods equals(), hashCode() and toString() as soon as annotation @ValueObject is added.  
+
+```Java
+@ValueObject
+public class Customer
+{
+    private final String firstName; 
+    private final String lastName; 
+
+    public Customer(String firstName, String lasstName)
+    {
+        this.firstName = firstName;
+        this.lastName = lasstName;
+    }
+
+    public String getFirstName()
+    {
+        return firstName;
+    }
+    public String getLastName()
+    {
+        return lastName;
+    }
+}
+```
 
 ## Add dependency
 
