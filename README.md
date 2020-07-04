@@ -2,7 +2,7 @@
 
 ![Java CI](https://github.com/repplix/AddendJ/workflows/Java%20CI/badge.svg) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=io.jexxa.addendj%3AAddendJ&metric=alert_status)](https://sonarcloud.io/dashboard?id=io.jexxa.addendj%3AAddendJ)
 
-#About
+##About
 AddendJ supports the implementation of Domain Driven Design by integrating crosscutting concerns into the application core with AspectJ. 
 
 AddendJ provides a valid implementation of following methods.
