@@ -25,7 +25,10 @@ jobs:
     
     - name: Publish to GitHub Packages Apache Maven
       env:
+        GITHUB_USERNAME2: ${{ secrets.GITHUB_USERNAME2 }}
+        GITHUB_TOKEN2: ${{ secrets.GITHUB_TOKEN2 }}
         GITHUB_TOKEN: ${{ github.token }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
         SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
       run: mvn deploy
