@@ -52,7 +52,7 @@ public final class DeepEqualsAndHashCode
      */
     public static boolean deepEquals(final Object object1, final Object object2)
     {
-        if (isSameObject(object1, object2))
+        if (isSameAddress(object1, object2))
         {
             return true;
         }
@@ -88,7 +88,7 @@ public final class DeepEqualsAndHashCode
 
     private static boolean isEquals(final Object object1, final Object object2)
     {
-        if (isSameObject(object1, object2))
+        if (isSameAddress(object1, object2))
         {
             return true;
         }
@@ -124,12 +124,8 @@ public final class DeepEqualsAndHashCode
 
 
 
-    private static boolean isSameObject(final Object object1, final Object object2)
+    private static boolean isSameAddress(final Object object1, final Object object2)
     {
-        if ( object1 == null && object2 == null )
-        {  // explicitly added to avoid sonarlint Null pointer warnings
-            return true;
-        }
         return object1 == object2;
     }
 
