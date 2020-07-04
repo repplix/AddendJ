@@ -19,6 +19,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 
+@SuppressWarnings("SimplifiableJUnitAssertion") //Use equals for test coverage  
 class ValueObjectAspectTest
 {
 
@@ -48,6 +49,7 @@ class ValueObjectAspectTest
 
     @ParameterizedTest
     @MethodSource("inequalityData")
+    @SuppressWarnings("java:S2159") //Use equals for test coverage
     void inequalityTest(Object objectX, Object objectY)
     {
         assertNotNull(objectX);
@@ -59,6 +61,7 @@ class ValueObjectAspectTest
 
         assertEquals(objectX.equals(objectY), objectY.equals(objectX));       // symmetric: x.equals(y) must return the same result as y.equals(x)
 
+        //noinspection ConstantConditions
         assertFalse(objectX.equals(null));
     }
 
@@ -91,7 +94,7 @@ class ValueObjectAspectTest
                         PrimitiveDataTypeValueObject.newInstanceWithMinValues()
                 ),
 
-                Arguments.of( // Test data with inheritance and same field naem
+                Arguments.of( // Test data with inheritance and same field name
                         new DerivedValueObjectWithSameFieldNames(Integer.MIN_VALUE, Integer.MAX_VALUE),
                         new DerivedValueObjectWithSameFieldNames(Integer.MIN_VALUE, Integer.MAX_VALUE),
                         new DerivedValueObjectWithSameFieldNames(Integer.MIN_VALUE, Integer.MAX_VALUE)

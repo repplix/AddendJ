@@ -13,6 +13,7 @@ import io.jexxa.addendj.applicationcore.testclasses.domain.SimpleAggregate;
 import io.jexxa.addendj.applicationcore.testclasses.domain.SimpleValueObject;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings({"SimplifiableJUnitAssertion", "EqualsWithItself"})  //Use equals for test coverage 
 class AggregateAspectTest
 {
     private static final int DEFAULT_VALUE_ID = 42;
@@ -39,6 +40,7 @@ class AggregateAspectTest
 
         assertNotEquals(simpleAggregate1.hashCode(), simpleAggregate2.hashCode());
         assertFalse(simpleAggregate1.equals(simpleAggregate2));
+        //noinspection ConstantConditions
         assertFalse(simpleAggregate1.equals(null));
     }
 
