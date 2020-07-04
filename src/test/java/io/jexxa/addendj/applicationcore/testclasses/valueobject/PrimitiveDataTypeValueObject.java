@@ -6,7 +6,7 @@ import io.jexxa.addend.applicationcore.ValueObject;
 /**
  * ValueObject for testing purpose including all kind of primitive Java data types  
  */
-@SuppressWarnings({"FieldCanBeLocal", "unused"})
+@SuppressWarnings({"FieldCanBeLocal", "unused", "java:S1068", "java:S107"})
 @ValueObject
 public class PrimitiveDataTypeValueObject
 {
@@ -45,7 +45,7 @@ public class PrimitiveDataTypeValueObject
                 Long.MIN_VALUE,
                 Float.MIN_VALUE,
                 Double.MIN_VALUE,
-                Boolean.TRUE,
+                Boolean.FALSE,
                 Character.MIN_VALUE,
                 Byte.MIN_VALUE,
                 Short.MIN_VALUE);
@@ -58,7 +58,7 @@ public class PrimitiveDataTypeValueObject
                 Integer.MAX_VALUE,
                 Long.MAX_VALUE,
                 Float.MAX_VALUE, Double.MAX_VALUE,
-                Boolean.FALSE,
+                Boolean.TRUE,
                 Character.MAX_VALUE,
                 Byte.MAX_VALUE,
                 Short.MAX_VALUE);

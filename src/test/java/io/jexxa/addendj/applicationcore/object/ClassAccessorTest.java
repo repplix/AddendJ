@@ -2,9 +2,7 @@ package io.jexxa.addendj.applicationcore.object;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.List;
-import java.util.Map;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import io.jexxa.addendj.applicationcore.testclasses.valueobject.BaseValueObject;
 import io.jexxa.addendj.applicationcore.testclasses.valueobject.DerivedValueObject;
@@ -14,68 +12,71 @@ import org.junit.jupiter.api.Test;
 
 class ClassAccessorTest
 {
-
-
-    /**
-     * Checks class hierarchy with Inheritance .
-     */
     @Test
-    void testClassHierarchyWithInheritance()
+    void validateClassHierarchy()
     {
-        assertEquals(2, ClassAccessor.getClassHierarchy(new DerivedValueObject(1,2) ).size());
-    }
+        //arrange
+        var objectUnderTest = new DerivedValueObject(Integer.MIN_VALUE, Integer.MAX_VALUE);
 
+        //Act
+        var result = ClassAccessor.getClassHierarchy( objectUnderTest );
 
-    @Test
-    void testGetAllAttributesFromInheritedClass()
-    {
-        assertEquals(2, ClassAccessor.getAllClassAttributes(new DerivedValueObject(1, 2)).get(BaseValueObject.class.getName() + ".value"));
-        assertEquals(1, ClassAccessor.getAllClassAttributes(new DerivedValueObject(1, 2)).get(DerivedValueObject.class.getName() + ".derivedValue"));
-    }
-
-    /**
-     * Attribute sollten nach der ebene der Vererbung sortiert werden und dann alphabetisch.
-     */
-    @Test
-    void testGetAllAttributesSortedInheritance()
-    {
-        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(new DerivedValueObject(1, 2));
-        assertEquals("derivedValue", attributes.get(0).getKey());
-        assertEquals(1, attributes.get(0).getValue());
-
-        assertEquals("value", attributes.get(1).getKey());
-        assertEquals(2, attributes.get(1).getValue());
+        //Assert
+        assertEquals(2, result.size());
+        assertTrue(result.contains(DerivedValueObject.class));
+        assertTrue(result.contains(BaseValueObject.class));
     }
 
     @Test
-    void testGetAllAttributesSorted()
+    void validateAttributesInheritance()
     {
-        List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(
-                new PrimitiveDataTypeValueObject(1, 2L, 12.0f, 13.0, true, 'd', (byte) 12, (short) 13)
-        );
-        assertEquals("intValue", attributes.get(0).getKey());
-        assertEquals(1, attributes.get(0).getValue());
+        //arrange
+        var objectUnderTest = new DerivedValueObject(Integer.MIN_VALUE, Integer.MAX_VALUE);
 
-        assertEquals("longValue", attributes.get(1).getKey());
-        assertEquals(2L, attributes.get(1).getValue());
+        //Act
+        var result = ClassAccessor.getAttributeList(objectUnderTest);
 
-        assertEquals("floatValue", attributes.get(2).getKey());
-        assertEquals(12.0f, attributes.get(2).getValue());
+        //Assert
+        assertEquals("derivedValue", result.get(0).getKey());
+        assertEquals(Integer.MIN_VALUE, result.get(0).getValue());
 
-        assertEquals("doubleValue", attributes.get(3).getKey());
-        assertEquals(13.0, attributes.get(3).getValue());
+        assertEquals("value", result.get(1).getKey());
+        assertEquals(Integer.MAX_VALUE, result.get(1).getValue());
+    }
 
-        assertEquals("booleanValue", attributes.get(4).getKey());
-        assertEquals(true, attributes.get(4).getValue());
+    @Test
+    void validateAttributesPrimitiveTypes()
+    {
+        //Arrange
+        var objectUnderTest = PrimitiveDataTypeValueObject.newInstanceWithMaxValues();
 
-        assertEquals("charValue", attributes.get(5).getKey());
-        assertEquals('d', attributes.get(5).getValue());
+        //Act
+        var result = ClassAccessor.getAttributeList( objectUnderTest );
 
-        assertEquals("byteValue", attributes.get(6).getKey());
-        assertEquals((byte) 12, attributes.get(6).getValue());
+        //Assert
+        assertEquals("intValue", result.get(0).getKey());
+        assertEquals(Integer.MAX_VALUE, result.get(0).getValue());
 
-        assertEquals("shortValue", attributes.get(7).getKey());
-        assertEquals((short) 13, attributes.get(7).getValue());
+        assertEquals("longValue", result.get(1).getKey());
+        assertEquals(Long.MAX_VALUE, result.get(1).getValue());
+
+        assertEquals("floatValue", result.get(2).getKey());
+        assertEquals(Float.MAX_VALUE, result.get(2).getValue());
+
+        assertEquals("doubleValue", result.get(3).getKey());
+        assertEquals(Double.MAX_VALUE, result.get(3).getValue());
+
+        assertEquals("booleanValue", result.get(4).getKey());
+        assertEquals(true, result.get(4).getValue());
+
+        assertEquals("charValue", result.get(5).getKey());
+        assertEquals(Character.MAX_VALUE, result.get(5).getValue());
+
+        assertEquals("byteValue", result.get(6).getKey());
+        assertEquals(Byte.MAX_VALUE, result.get(6).getValue());
+
+        assertEquals("shortValue", result.get(7).getKey());
+        assertEquals(Short.MAX_VALUE, result.get(7).getValue());
     }
 
 }
