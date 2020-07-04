@@ -27,7 +27,7 @@
 
   <scm>
     <connection>scm:git:https://github.com/repplix/AddendJ.git</connection>
-    <url>https://addendj.jexxa.io</url>
+    <url>http://github.com/repplix/AddendJ</url>
     <developerConnection>scm:git:https://github.com/repplix/AddendJ.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
