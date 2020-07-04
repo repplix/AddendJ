@@ -2,29 +2,25 @@
 
 ![Java CI](https://github.com/repplix/AddendJ/workflows/Java%20CI/badge.svg) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=io.jexxa.addendj%3AAddendJ&metric=alert_status)](https://sonarcloud.io/dashboard?id=io.jexxa.addendj%3AAddendJ)
 
-##About
-AddendJ supports the implementation of Domain Driven Design by integrating crosscutting concerns into the application core with AspectJ. 
+## About
+AddendJ supports the implementation of a technology agnostic application core in terms of Domain Driven Design by integrating crosscutting concerns into the application core with AspectJ. 
 
-AddendJ provides a valid implementation of following methods.
+AddendJ provides a valid implementation of following methods for Aggregate/Entity, DomainEvent and ValueObject:
 * equals()
 * hashCode()
 * toString()
 
-These methods are provided to following pattern elements of your code
-* Aggregate
-* ValueObject
-* DomainEvent   
-
-In order to use these features you have to annotate your classes with corresponding annotation of project [Addend](https://github.com/repplix/Addend).                
+In order to use these features you have to annotate your classes with corresponding annotation of project [Addend](https://github.com/repplix/Addend).                 
 
 ## Supported Java environments
 *   Java 10 (or higher)
 
-# Quickstart
+## Quickstart
 
-## Start programming 
+### Start programming 
 
-AddendJ provides valid implementation of methods equals(), hashCode() and toString() as soon as annotation @ValueObject is added.  
+AddendJ provides valid implementation of methods equals(), hashCode() and toString() as soon as annotation @ValueObject is added. As you can see in the following example, the code focuses on the domain aspects and does not require any technical extensions for correct comparison or output opreation. 
+
 
 ```Java
 @ValueObject
@@ -33,10 +29,10 @@ public class Customer
     private final String firstName; 
     private final String lastName; 
 
-    public Customer(String firstName, String lasstName)
+    public Customer(String firstName, String lastName)
     {
         this.firstName = firstName;
-        this.lastName = lasstName;
+        this.lastName = lastName;
     }
 
     public String getFirstName()
@@ -50,9 +46,9 @@ public class Customer
 }
 ```
 
-## Add dependency
+### Add dependency
 
-### Maven
+#### Maven
 
 ```xml      
 <dependencies>
@@ -77,7 +73,7 @@ public class Customer
  
 ```
 
-### Gradle
+#### Gradle
 
 ```gradle
 compile "io.jexxa.addendj:AddendJ:1.0.0-SNAPSHOT"
