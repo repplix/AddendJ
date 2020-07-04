@@ -2,17 +2,20 @@ package io.jexxa.addendj.applicationcore;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.stream.Stream;
 
-import io.jexxa.addendj.valueobject.UnsupportedValueObjectWithArray;
-import io.jexxa.addendj.valueobject.DerivedValueObjectWithSameFieldNames;
-import io.jexxa.addendj.valueobject.DerivedValueObject;
-import io.jexxa.addendj.valueobject.PrimitiveDataTypeValueObject;
-import io.jexxa.addendj.valueobject.ThreeStringsValueObject;
+import io.jexxa.addendj.applicationcore.testclasses.valueobject.DerivedValueObject;
+import io.jexxa.addendj.applicationcore.testclasses.valueobject.DerivedValueObjectWithSameFieldNames;
+import io.jexxa.addendj.applicationcore.testclasses.valueobject.GenericValueObject;
+import io.jexxa.addendj.applicationcore.testclasses.valueobject.PrimitiveDataTypeValueObject;
+import io.jexxa.addendj.applicationcore.testclasses.valueobject.ThreeStringsValueObject;
+import io.jexxa.addendj.applicationcore.testclasses.valueobject.UnsupportedValueObjectWithArray;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 
@@ -53,11 +56,6 @@ class ValueObjectAspectTest
                         new DerivedValueObject(9999, 123123),
                         new DerivedValueObject(1111111111, 0)
                 ),
-                new InternalValueObjectAspectTest(
-                        new PrimitiveDataTypeValueObject(1, 2L, 12.0f, 13.0, true, 'd', (byte) 12, (short) 13),
-                        new PrimitiveDataTypeValueObject(1, 2L, 12.0f, 13.0, true, 'd', (byte) 12, (short) 13),
-                        new PrimitiveDataTypeValueObject(1, 2L, 12.0f, 13.0, false, 'd', (byte) 12, (short) 13)
-                ),
 
                 new InternalValueObjectAspectTest(
                         new ThreeStringsValueObject(1, null, null, null),
@@ -75,6 +73,75 @@ class ValueObjectAspectTest
                         new ThreeStringsValueObject(2, "a", "b", "c")
                 )
         );
+    }
+
+    static Stream<Arguments> equalityData()
+    {
+        return Stream.of(
+                Arguments.of( // Test data with all primitive types (max value)
+                        PrimitiveDataTypeValueObject.newInstanceWithMaxValues(),
+                        PrimitiveDataTypeValueObject.newInstanceWithMaxValues(),
+                        PrimitiveDataTypeValueObject.newInstanceWithMaxValues()
+                ),
+                Arguments.of( // Test data with all primitive types (min value)
+                        PrimitiveDataTypeValueObject.newInstanceWithMinValues(),
+                        PrimitiveDataTypeValueObject.newInstanceWithMinValues(),
+                        PrimitiveDataTypeValueObject.newInstanceWithMinValues()
+                ),
+                
+                Arguments.of( // Test data with inheritance and same field naem 
+                        new DerivedValueObjectWithSameFieldNames(Integer.MIN_VALUE, Integer.MAX_VALUE),
+                        new DerivedValueObjectWithSameFieldNames(Integer.MIN_VALUE, Integer.MAX_VALUE),
+                        new DerivedValueObjectWithSameFieldNames(Integer.MIN_VALUE, Integer.MAX_VALUE)
+                ),
+                
+                Arguments.of( // Test data with inheritance
+                        new DerivedValueObject(Integer.MIN_VALUE, Integer.MAX_VALUE),
+                        new DerivedValueObject(Integer.MIN_VALUE, Integer.MAX_VALUE),
+                        new DerivedValueObject(Integer.MIN_VALUE, Integer.MAX_VALUE)
+                ),
+                
+                Arguments.of( // Test data with more complex data 
+                        new GenericValueObject<>( PrimitiveDataTypeValueObject.newInstanceWithMaxValues() ),
+                        new GenericValueObject<>( PrimitiveDataTypeValueObject.newInstanceWithMaxValues() ),
+                        new GenericValueObject<>( PrimitiveDataTypeValueObject.newInstanceWithMaxValues() )
+                ),
+
+                Arguments.of( // Test data with string
+                        new GenericValueObject<>( GenericValueObject.class.getName() ),
+                        new GenericValueObject<>( GenericValueObject.class.getName() ),
+                        new GenericValueObject<>( GenericValueObject.class.getName() )
+                )
+
+
+        );
+    }
+
+
+    /**
+     * Checks conditions for equality
+     */
+    @ParameterizedTest
+    @MethodSource("equalityData")
+    void equalityTest(Object objectX, Object objectY, Object objectZ)
+    {
+        assertNotNull(objectX);
+        assertNotNull(objectY);
+        assertNotNull(objectZ);
+
+        assertEquals( objectX, objectX );                                       // reflexive: an object must equal itself
+        assertEquals( objectX.equals(objectY), objectY.equals(objectX) );       // symmetric: x.equals(y) must return the same result as y.equals(x)
+        if( objectX.equals(objectY) && objectY.equals(objectZ)){
+            assertEquals(objectX, objectZ);                                     // transitive: if x.equals(y) and y.equals(z) then also x.equals(z)
+        }
+        else
+        {
+            throw new IllegalStateException("If statement must be evaluate to true");
+        }
+        
+        assertEquals(objectX, objectY);
+        assertEquals(objectX.hashCode(), objectY.hashCode());
+        assertEquals(objectX.hashCode(), objectZ.hashCode());
     }
 
 
@@ -162,6 +229,7 @@ class ValueObjectAspectTest
         assertNotEquals(equalA.hashCode(), notEqual.hashCode());
         assertNotEquals(equalB.hashCode(), notEqual.hashCode());
     }
+
 
     /**
      * Testet die Contracts zwischen hashcode und equals.

@@ -1,4 +1,4 @@
-package io.jexxa.addendj.valueobject;
+package io.jexxa.addendj.applicationcore.testclasses.valueobject;
 
 
 import io.jexxa.addend.applicationcore.ValueObject;
@@ -37,4 +37,31 @@ public class PrimitiveDataTypeValueObject
         this.byteValue = byteValue;
         this.shortValue = shortValue;
     }
+
+    public static PrimitiveDataTypeValueObject newInstanceWithMinValues()
+    {
+        return  new PrimitiveDataTypeValueObject(
+                Integer.MIN_VALUE,
+                Long.MIN_VALUE,
+                Float.MIN_VALUE,
+                Double.MIN_VALUE,
+                Boolean.TRUE,
+                Character.MIN_VALUE,
+                Byte.MIN_VALUE,
+                Short.MIN_VALUE);
+    }
+
+
+    public static PrimitiveDataTypeValueObject newInstanceWithMaxValues()
+    {
+        return  new PrimitiveDataTypeValueObject(
+                Integer.MAX_VALUE,
+                Long.MAX_VALUE,
+                Float.MAX_VALUE, Double.MAX_VALUE,
+                Boolean.FALSE,
+                Character.MAX_VALUE,
+                Byte.MAX_VALUE,
+                Short.MAX_VALUE);
+    }
+
 }

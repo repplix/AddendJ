@@ -5,12 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.stream.Stream;
 
-import io.jexxa.addendj.valueobject.UnsupportedValueObjectWithArray;
-import io.jexxa.addendj.valueobject.BaseValueObject;
-import io.jexxa.addendj.valueobject.DerivedValueObjectWithSameFieldNames;
-import io.jexxa.addendj.valueobject.DerivedValueObject;
-import io.jexxa.addendj.valueobject.PrimitiveDataTypeValueObject;
-import io.jexxa.addendj.valueobject.ThreeStringsValueObject;
+import io.jexxa.addendj.applicationcore.testclasses.valueobject.UnsupportedValueObjectWithArray;
+import io.jexxa.addendj.applicationcore.testclasses.valueobject.BaseValueObject;
+import io.jexxa.addendj.applicationcore.testclasses.valueobject.DerivedValueObjectWithSameFieldNames;
+import io.jexxa.addendj.applicationcore.testclasses.valueobject.DerivedValueObject;
+import io.jexxa.addendj.applicationcore.testclasses.valueobject.PrimitiveDataTypeValueObject;
+import io.jexxa.addendj.applicationcore.testclasses.valueobject.ThreeStringsValueObject;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 

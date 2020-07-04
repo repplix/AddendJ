@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import java.util.Map;
 
-import io.jexxa.addendj.valueobject.BaseValueObject;
-import io.jexxa.addendj.valueobject.DerivedValueObject;
-import io.jexxa.addendj.valueobject.PrimitiveDataTypeValueObject;
-import io.jexxa.addendj.valueobject.ThreeStringsValueObject;
+import io.jexxa.addendj.applicationcore.testclasses.valueobject.BaseValueObject;
+import io.jexxa.addendj.applicationcore.testclasses.valueobject.DerivedValueObject;
+import io.jexxa.addendj.applicationcore.testclasses.valueobject.PrimitiveDataTypeValueObject;
+import io.jexxa.addendj.applicationcore.testclasses.valueobject.ThreeStringsValueObject;
 import org.junit.jupiter.api.Test;
 
 

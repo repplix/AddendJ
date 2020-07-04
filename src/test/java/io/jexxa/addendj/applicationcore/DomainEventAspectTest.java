@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import io.jexxa.addendj.domain.SimpleDomainEvent;
+import io.jexxa.addendj.applicationcore.testclasses.domain.SimpleDomainEvent;
 import org.junit.jupiter.api.Test;
 
 

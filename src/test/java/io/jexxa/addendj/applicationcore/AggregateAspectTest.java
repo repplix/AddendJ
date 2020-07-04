@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import io.jexxa.addend.applicationcore.Aggregate;
 import io.jexxa.addend.applicationcore.AggregateFactory;
 import io.jexxa.addend.applicationcore.AggregateID;
-import io.jexxa.addendj.domain.SimpleAggregate;
-import io.jexxa.addendj.domain.SimpleValueObject;
+import io.jexxa.addendj.applicationcore.testclasses.domain.SimpleAggregate;
+import io.jexxa.addendj.applicationcore.testclasses.domain.SimpleValueObject;
 import org.junit.jupiter.api.Test;
 
 class AggregateAspectTest
