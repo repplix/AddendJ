@@ -1,5 +1,7 @@
 # AddendJ - Crosscutting Concerns for Domain Driven Design 
 
+[![Maven Central](https://img.shields.io/maven-central/v/io.jexxa.addendj/AddendJ)](https://maven-badges.herokuapp.com/maven-central/io.jexxa.addendj/AddendJ/) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 ![Java CI](https://github.com/repplix/AddendJ/workflows/Java%20CI/badge.svg) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=io.jexxa.addendj%3AAddendJ&metric=alert_status)](https://sonarcloud.io/dashboard?id=io.jexxa.addendj%3AAddendJ)
 
 ## About
