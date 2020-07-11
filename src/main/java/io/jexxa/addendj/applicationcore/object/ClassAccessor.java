@@ -67,7 +67,7 @@ public final class ClassAccessor
     /**
      * returns class hierarchy (excluding Object.class) 
      */
-    static List<Class<?>> getClassHierarchy(Object object)
+    protected static List<Class<?>> getClassHierarchy(Object object)
     {
         Class<?> currentSuperClass = object.getClass();
         List<Class<?>> superClasses = new ArrayList<>();
