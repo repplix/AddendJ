@@ -51,6 +51,7 @@ public final class DeepToString
 
     private DeepToString()
     {
+        //Private constructor 
     }
 
 }
