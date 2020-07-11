@@ -3,10 +3,10 @@ package io.jexxa.addendj.applicationcore.testclasses.valueobject;
 
 import io.jexxa.addend.applicationcore.ValueObject;
 
+@SuppressWarnings({"unused", "FieldCanBeLocal"})
 @ValueObject
 public class DerivedValueObject extends BaseValueObject
 {
-    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private final int derivedValue;
 
     public DerivedValueObject(final int derivedValue, final int baseValue)

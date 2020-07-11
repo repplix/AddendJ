@@ -2,11 +2,10 @@ package io.jexxa.addendj.applicationcore.testclasses.valueobject;
 
 import io.jexxa.addend.applicationcore.ValueObject;
 
+@SuppressWarnings({"unused", "FieldCanBeLocal"})
 @ValueObject
-@SuppressWarnings("unused")
 public class GenericValueObject<T>
 {
-    @SuppressWarnings("FieldCanBeLocal")
     private final T value;
 
     public GenericValueObject(T value)

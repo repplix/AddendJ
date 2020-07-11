@@ -13,13 +13,12 @@ import io.jexxa.addendj.applicationcore.testclasses.domain.SimpleAggregate;
 import io.jexxa.addendj.applicationcore.testclasses.domain.SimpleValueObject;
 import org.junit.jupiter.api.Test;
 
-@SuppressWarnings({"SimplifiableJUnitAssertion", "EqualsWithItself"})  //Use equals for test coverage 
+@SuppressWarnings({"SimplifiableJUnitAssertion", "EqualsWithItself", "squid:S1874", "java:S5785"})  //Use equals for test coverage
 class AggregateAspectTest
 {
     private static final int DEFAULT_VALUE_ID = 42;
 
     @Test
-    @SuppressWarnings("squid:S1874")
     void testEquals()
     {
         SimpleAggregate simpleAggregate1 = SimpleAggregate.create(new SimpleValueObject(DEFAULT_VALUE_ID));
@@ -32,7 +31,6 @@ class AggregateAspectTest
     }
 
     @Test
-    @SuppressWarnings("squid:S1874")
     void testNotEquals()
     {
         SimpleAggregate simpleAggregate1 = SimpleAggregate.create(new SimpleValueObject(DEFAULT_VALUE_ID));
@@ -45,7 +43,6 @@ class AggregateAspectTest
     }
 
     @Test
-    @SuppressWarnings("squid:S1874")
     void testNotEqualsDifferentType()
     {
         var aggregateA = SimpleAggregate.create(new SimpleValueObject(DEFAULT_VALUE_ID));
@@ -57,7 +54,6 @@ class AggregateAspectTest
 
 
     @Test
-    @SuppressWarnings("squid:S1874")
     void testMissingAnnotation()
     {
         var aggregateA = AggregateMissingAnnotation.create(new SimpleValueObject(DEFAULT_VALUE_ID));
