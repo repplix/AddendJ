@@ -12,7 +12,7 @@ import io.jexxa.addend.applicationcore.DomainEvent;
  * {@link Object#hashCode()}
  * {@link Object#equals(Object).
  */
-@SuppressWarnings("DanglingJavadoc") public aspect DomainEventAspect
+public aspect DomainEventAspect
 {
     /**
      * Interface for weaving methods into a @ValueObject
@@ -22,10 +22,8 @@ import io.jexxa.addend.applicationcore.DomainEvent;
 
     }
     
-    /**
-     * Extensions are made for all classes annotated with @ValueObject
-     */
-    // Disable formatter because space between annotation and '*' is important
+    // 1. Extensions are made for all classes annotated with @DomainEvent
+    // 2. Disable formatter because space between annotation and '*' is important
     // @formatter:off
     declare parents :(@DomainEvent *)implements IDomainEventAspect;
     // @formatter:on
@@ -33,7 +31,7 @@ import io.jexxa.addend.applicationcore.DomainEvent;
 
     public String IDomainEventAspect.toString()
             {
-                return DeepToString.toString(this);
+                return DeepToString.objectToString(this);
             }
 
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")

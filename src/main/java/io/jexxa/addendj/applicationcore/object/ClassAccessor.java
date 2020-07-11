@@ -83,7 +83,7 @@ public final class ClassAccessor
     }
 
 
-
+    @SuppressWarnings("java:S3011")
     private static List< Map.Entry<String, Object>> getDeclaredClassAttributes(Class<?> clazz, Object object)
     {
         var returnedAttributes = new ArrayList<Map.Entry<String, Object>>();

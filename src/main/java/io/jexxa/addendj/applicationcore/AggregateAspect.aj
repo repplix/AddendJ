@@ -17,7 +17,7 @@ import io.jexxa.addend.applicationcore.Aggregate;
  *
  * NOTE: These methods depends on {@link Aggregate}  and {@link AggregateID}
  */
-@SuppressWarnings("DanglingJavadoc") public aspect AggregateAspect
+public aspect AggregateAspect
 {
     /**
      * Interface for weaving methods into a @ValueObject
@@ -26,10 +26,8 @@ import io.jexxa.addend.applicationcore.Aggregate;
     {
     }
 
-    /**
-     * Extensions are made for all classes annotated with @ValueObject
-     */
-    // Disable formatter because space between annotation and '*' is important
+    // 1. Extensions are made for all classes annotated with @Aggregate
+    // 2. Disable formatter because space between annotation and '*' is important
     // @formatter:off
     declare parents :(@Aggregate *)implements IAggregateAspect;
     // @formatter:on

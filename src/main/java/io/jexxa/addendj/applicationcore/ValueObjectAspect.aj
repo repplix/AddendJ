@@ -12,7 +12,7 @@ import io.jexxa.addend.applicationcore.ValueObject;
  * {@link Object#hashCode()}
  * {@link Object#equals(Object).
  */
-@SuppressWarnings("DanglingJavadoc") public aspect ValueObjectAspect
+public aspect ValueObjectAspect
 {
     /**
      * Interface for weaving methods into a @ValueObject
@@ -21,17 +21,15 @@ import io.jexxa.addend.applicationcore.ValueObject;
     {
     }
 
-    /**
-     * Extensions are made for all classes annotated with @ValueObject
-     */
-    // Disable formatter because space between annotation and '*' is important
+    // 1. Extensions are made for all classes annotated with @ValueObject
+    // 2. Disable formatter because space between annotation and '*' is important
     // @formatter:off
     declare parents :(@ValueObject *)implements IValueObjectAspect;
     // @formatter:on
 
     public String IValueObjectAspect.toString()
             {
-                return DeepToString.toString(this);
+                return DeepToString.objectToString(this);
             }
 
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")

@@ -15,7 +15,7 @@ import java.util.Map;
 public final class DeepToString
 {
 
-    public static String toString(final Object obj)
+    public static String objectToString(final Object obj)
     {
         List<Map.Entry<String, Object>> attributes = ClassAccessor.getAttributeList(obj);
         StringBuilder attributesAsString = new StringBuilder();
