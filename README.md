@@ -15,6 +15,7 @@ AddendJ provides a valid implementation of following methods for the pattern ele
 In order to use these features you have to annotate your classes with corresponding annotation of project [Addend](https://github.com/repplix/Addend).                 
 
 ## Supported Java environments
+
 *   Java 10 (or higher)
 
 ## Quickstart
