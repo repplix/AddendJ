@@ -90,36 +90,37 @@ In case you use Java 11 (or higher) together with maven we recommend AspectJ-Mav
 
 An example to configure this maven-plugin looks as follows.    
 ```xml
-<plugin>
+ <plugin>
     <groupId>com.nickwongdev</groupId>
     <artifactId>aspectj-maven-plugin</artifactId>
+    <version>1.12.6</version>
     <executions>
-        <execution>
-            <id>compile</id>
-            <goals>
-                <goal>compile</goal>
-            </goals>
-            <configuration>
-                <weaveDependencies>
-                    <weaveDependency>
-                        <groupId>io.jexxa.addendj</groupId>
-                        <artifactId>AddendJ</artifactId>
-                    </weaveDependency>
-                </weaveDependencies>
-                <complianceLevel>1.11</complianceLevel>
-                <source>1.11</source>
-                <target>1.11</target>
-                <XaddSerialVersionUID>true</XaddSerialVersionUID>
-                <encoding>UTF-8</encoding>
-            </configuration>
-        </execution>
+      <execution>
+        <id>compile</id>
+        <goals>
+          <goal>compile</goal>
+        </goals>
+        <configuration>
+          <weaveDependencies>
+            <weaveDependency>
+              <groupId>io.jexxa.addendj</groupId>
+              <artifactId>AddendJ</artifactId>
+            </weaveDependency>
+          </weaveDependencies>
+          <complianceLevel>11</complianceLevel>
+          <source>11</source>
+          <target>11</target>
+          <XaddSerialVersionUID>true</XaddSerialVersionUID>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </execution>
     </executions>
     <dependencies>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjtools</artifactId>
-            <version>1.9.5</version>
-        </dependency>
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjtools</artifactId>
+        <version>1.9.5</version>
+      </dependency>
     </dependencies>
 </plugin>
  ```
