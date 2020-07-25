@@ -65,7 +65,10 @@ public final class ClassAccessor
     }
 
     /**
-     * returns class hierarchy (excluding Object.class) 
+     * Returns class hierarchy (excluding Object.class)
+     * 
+     * @param object to get class hierarchy 
+     * @return list with class information of given object (excluding Object.class)
      */
     protected static List<Class<?>> getClassHierarchy(Object object)
     {

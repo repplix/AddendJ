@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import io.jexxa.addend.applicationcore.Aggregate;
 import io.jexxa.addend.applicationcore.AggregateFactory;
 import io.jexxa.addend.applicationcore.AggregateID;
+import io.jexxa.addendj.applicationcore.testclasses.domain.InvalidAggregate;
 import io.jexxa.addendj.applicationcore.testclasses.domain.SimpleAggregate;
 import io.jexxa.addendj.applicationcore.testclasses.domain.SimpleValueObject;
 import org.junit.jupiter.api.Test;
@@ -63,6 +64,18 @@ class AggregateAspectTest
         assertThrows(IllegalArgumentException.class, aggregateA::hashCode);
         //noinspection ResultOfMethodCallIgnored
         assertThrows(IllegalArgumentException.class, () -> aggregateA.equals(aggregateB));
+    }
+
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    @Test
+    void testMissingAggregateID()
+    {
+        //Arrange
+        var invalidAggregateA = InvalidAggregate.create( new SimpleValueObject(DEFAULT_VALUE_ID));
+        var invalidAggregateB = InvalidAggregate.create( new SimpleValueObject(DEFAULT_VALUE_ID));
+
+        //Act/assert
+        assertThrows(IllegalArgumentException.class, () -> invalidAggregateA.equals(invalidAggregateB));
     }
 
 

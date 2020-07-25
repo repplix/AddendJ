@@ -39,8 +39,8 @@
     <maven.jacoco.plugin>0.8.5</maven.jacoco.plugin>
     
     <addend.version>1.0</addend.version>
-    <aspectjtools.version>1.9.5</aspectjtools.version>
-    <aspectjrt.version>1.9.5</aspectjrt.version>
+    <aspectjtools.version>1.9.6</aspectjtools.version>
+    <aspectjrt.version>1.9.6</aspectjrt.version>
 
     <junit.platform.launcher.version>1.7.0-M1</junit.platform.launcher.version>
     <junit.jupiter.engine.version>5.7.0-M1</junit.jupiter.engine.version>
@@ -63,6 +63,10 @@
     <maven.resources.plugin>3.1.0</maven.resources.plugin>
     <maven.site.plugin>3.9.0</maven.site.plugin>
     <maven.release.plugin>3.0.0-M1</maven.release.plugin>
+    <maven.enforcer.plugin>3.0.0-M3</maven.enforcer.plugin>
+    <maven.project.info.reports.plugin>3.1.0</maven.project.info.reports.plugin>
+    <maven.surefire.plugin>3.0.0-M4</maven.surefire.plugin>
+    <maven.javadoc.plugin>3.2.0</maven.javadoc.plugin>
 
   </properties>
 
@@ -118,6 +122,11 @@
     <pluginManagement>
       <plugins>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>${maven.enforcer.plugin}</version>
+        </plugin>
+        <plugin>
           <groupId>com.nickwongdev</groupId>
           <artifactId>aspectj-maven-plugin</artifactId>
           <version>${aspectj-maven-plugin.version}</version>
@@ -125,46 +134,69 @@
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>${maven.clean.plugin}</version>
         </plugin>
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>${maven.resources.plugin}</version>
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.1</version>
+          <version>${maven.compiler.plugin}</version>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>3.0.0-M4</version>
+          <version>${maven.surefire.plugin}</version>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>${maven.jar.plugin}</version>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
-          <version>3.0.0-M1</version>
+          <version>${maven.install.plugin}</version>
         </plugin>
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>3.0.0-M1</version>
+          <version>${maven.deploy.plugin}</version>
         </plugin>
         <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.9.0</version>
+          <version>${maven.site.plugin}</version>
         </plugin>
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>${maven.project.info.reports.plugin}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>${maven.release.plugin}</version>
         </plugin>
 
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-maven</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <version>3.6</version>
+                </requireMavenVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
         <configuration>
@@ -259,7 +291,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>${maven.javadoc.plugin}</version>
         <executions>
           <execution>
             <id>attach-javadocs</id>
