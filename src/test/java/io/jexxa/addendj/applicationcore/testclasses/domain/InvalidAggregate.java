@@ -5,7 +5,7 @@ import io.jexxa.addend.applicationcore.AggregateFactory;
 
 @SuppressWarnings("unused")
 @Aggregate
-public class InvalidAggregate
+public final class InvalidAggregate
 {
     private final SimpleValueObject simpleValueObject;
 
