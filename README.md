@@ -58,19 +58,19 @@ public class Customer
     <dependency>
       <groupId>io.jexxa.addendj</groupId>
       <artifactId>AddendJ</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.1</version>
     </dependency>
     
     <dependency>
         <groupId>org.aspectj</groupId>
         <artifactId>aspectjtools</artifactId>
-        <version>1.9.5</version>
+        <version>1.9.6</version>
     </dependency>
     
     <dependency>
         <groupId>org.aspectj</groupId>
         <artifactId>aspectjrt</artifactId>
-        <version>1.9.5</version>
+        <version>1.9.6</version>
     </dependency>
 </dependencies>
  
@@ -79,9 +79,9 @@ public class Customer
 #### Gradle
 
 ```gradle
-compile "io.jexxa.addendj:AddendJ:1.0.0"
-compile "org.aspectj:aspectjtools:1.9.5"
-compile "org.aspectj.aspectjrt:1.9.5"
+compile "io.jexxa.addendj:AddendJ:1.0.1"
+compile "org.aspectj:aspectjtools:1.9.6"
+compile "org.aspectj.aspectjrt:1.9.6"
 ```          
 
 ### Weave dependencies
@@ -119,7 +119,7 @@ An example to configure this maven-plugin looks as follows.
       <dependency>
         <groupId>org.aspectj</groupId>
         <artifactId>aspectjtools</artifactId>
-        <version>1.9.5</version>
+        <version>1.9.6</version>
       </dependency>
     </dependencies>
 </plugin>
