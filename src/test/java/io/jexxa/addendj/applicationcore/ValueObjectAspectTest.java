@@ -82,6 +82,7 @@ class ValueObjectAspectTest
 
     static Stream<Arguments> equalityData()
     {
+        // Note: 3 objects are required for transitive test : if x.equals(y) and y.equals(z) then also x.equals(z)
         return Stream.of(
                 Arguments.of( // Test data with all primitive types (max value)
                         PrimitiveDataTypeValueObject.newInstanceWithMaxValues(),
