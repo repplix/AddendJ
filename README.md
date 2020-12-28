@@ -5,9 +5,9 @@
 ![Java CI](https://github.com/repplix/AddendJ/workflows/Java%20CI/badge.svg) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=io.jexxa.addendj%3AAddendJ&metric=alert_status)](https://sonarcloud.io/dashboard?id=io.jexxa.addendj%3AAddendJ)
 
 ## About
-AddendJ provides crosscutting concerns for the application core of a technology agnostic application core in terms of Domain Driven Design with AspectJ. 
+AddendJ provides crosscutting concerns for the application core of a technology agnostic application core in terms of Domain Driven Design with AspectJ.
 
-AddendJ provides a valid implementation of following methods for the pattern elements `Aggregate/Entity`, `DomainEvent`, and `ValueObject`:
+Goal of this library is to provide a semantically elegant and consistent solution for implementing the DDD pattern elements in Java. Therefore, AddendJ provides a valid implementation of following methods for the pattern elements `Aggregate/Entity`, `DomainEvent`, and `ValueObject`:
 * equals()
 * hashCode()
 * toString()
@@ -17,6 +17,10 @@ In order to use these features you have to annotate your classes with correspond
 ## Supported Java environments
 
 *   Java 10 (or higher)
+
+## Important Note
+
+The functionality provided in this library will most likely become obsolete with the introduction of Java `Records` as described in [JEP-359](https://openjdk.java.net/jeps/359). As soon as this feature is available in next JAVA LTS version please check if it fulfills your requirements. As soon as this feature is available in the next Java LTS version (most likely Java 17), please check if it meets your requirements. If so you should use Java `Records` if possible.
 
 ## Quickstart
 
