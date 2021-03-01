@@ -20,7 +20,12 @@ In order to use these features you have to annotate your classes with correspond
 
 ## Important Note
 
-The functionality provided in this library will most likely become obsolete with the introduction of Java `Records` as described in [JEP-359](https://openjdk.java.net/jeps/359). As soon as this feature is available in next JAVA LTS version please check if it fulfills your requirements. As soon as this feature is available in the next Java LTS version (most likely Java 17), please check if it meets your requirements. If so you should use Java `Records` if possible.
+The functionality provided in this library will most likely become 
+obsolete with the introduction of Java `Records` as described in 
+[JEP-359](https://openjdk.java.net/jeps/359).
+As soon as this feature is available in the next Java LTS version
+(most likely Java 17), please check if it meets your requirements.
+If so you should use Java `Records` if possible.
 
 ## Quickstart
 
